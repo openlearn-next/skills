@@ -2,812 +2,165 @@
   "module": "data-and-coding",
   "module_name": "数据与编码",
   "version": "1.0.0",
-  "description": "中学信息科技·数据与编码模块知识点库，覆盖数据基本概念、数制转换、字符编码、多媒体编码等核心主题",
-  "knowledge_points": [
+  "description": "中学信息科技·数据与编码模块知识点体系，基于2022版义务教育信息科技课程标准",
+  "grade_level": ["7", "8"],
+  "knowledge_tree": [
     {
-      "id": "data-vs-info",
-      "name": "数据与信息的概念",
-      "module": "data-and-coding",
-      "grade_level": ["7"],
-      "description": "理解数据与信息的区别与联系：数据是对客观事物的符号表示，信息是经过加工处理后有意义的数据。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["数据", "信息", "数据处理", "信息价值"],
-      "prerequisite_knowledge": [],
-      "question_type_suitability": ["单选题", "多选题", "判断题", "简答题"],
-      "question_templates": [
+      "id": "data-and-info",
+      "name": "数据与信息",
+      "order": 1,
+      "children": [
         {
-          "type": "单选题",
-          "template": "关于数据与信息的关系，下列说法{correct_option}？",
-          "params": {
-            "correct_option": "正确的是/错误的是"
-          },
-          "answer": "根据正确选项定义",
-          "difficulty": "易"
+          "id": "data-vs-info",
+          "name": "数据与信息的概念",
+          "grade_level": ["7"],
+          "description": "数据是对客观事物的符号表示，信息是经过加工处理后有意义的数据。理解两者区别与联系。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["数据", "信息", "数据处理", "信息价值", "知识"],
+          "prerequisites": []
         },
         {
-          "type": "简答题",
-          "template": "请举例说明数据与信息的区别。",
-          "params": {},
-          "answer": "数据是未经加工的原始符号记录（如数字'37'），信息是对数据进行加工处理后获得的有意义的内容（如'今天气温37°C'表示天气炎热）。区别：数据是载体，信息是内涵；数据相对客观，信息具有主观价值。",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "数据就是信息",
-          "correct_answer": "数据与信息是不同的概念",
-          "description": "混淆数据与信息的概念，认为两者等同",
-          "reason": "在日常生活中数据和信息常被混用，未理解加工处理这一关键环节"
-        }
-      ],
-      "common_misconceptions": [
-        "认为数据一定是有意义的，不理解原始数据的含义",
-        "认为信息就是数据，忽略加工处理环节"
-      ],
-      "sample_questions": [
-        {
-          "type": "单选题",
-          "difficulty": "易",
-          "question": "下列关于数据与信息的说法，正确的是？",
-          "answer": "信息是对数据进行加工处理后获得的有意义的内容",
-          "distractors": [
-            "数据和信息是同一个概念",
-            "数据一定是有意义的信息",
-            "信息不需要经过加工处理"
-          ],
-          "analysis": "数据是原始符号记录，经过加工处理后才成为有意义的信息（信息=数据+处理）。选项A混淆概念，B颠倒了关系（数据本身可以是无意义的），C否定了加工处理这一必要环节。"
-        },
-        {
-          "type": "判断题",
-          "difficulty": "易",
-          "question": "数据经过加工处理后才能成为信息。（ ）",
-          "answer": "正确",
-          "analysis": "数据是原始的符号表示，只有经过加工、解释、分析等处理后，才能提炼出有意义的信息。这是数据与信息关系的核心。"
+          "id": "info-encoding-decoding",
+          "name": "信息的编码与解码",
+          "grade_level": ["7", "8"],
+          "description": "编码是将信息转换成特定格式的过程，解码是反向还原过程。理解常用编码规则及其应用。",
+          "cognition_levels": ["理解", "应用", "分析"],
+          "key_concepts": ["编码", "解码", "编码规则", "摩尔斯电码", "条码", "二维码", "凯撒密码"],
+          "prerequisites": ["binary-basics"]
         }
       ]
     },
     {
-      "id": "binary-basics",
-      "name": "二进制计数原理",
-      "module": "data-and-coding",
-      "grade_level": ["7"],
-      "description": "理解二进制数的基本概念：二进制只使用0和1两个数码，逢二进一。理解位权（位值）概念和二进制展开式。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["二进制", "基数", "位权", "逢二进一", "数码"],
-      "prerequisite_knowledge": ["decimal-place-value"],
-      "question_type_suitability": ["单选题", "多选题", "判断题", "填空题", "连线题"],
-      "question_templates": [
+      "id": "numeral-systems",
+      "name": "数制系统",
+      "order": 2,
+      "children": [
         {
-          "type": "单选题",
-          "template": "二进制数由哪几个数码组成？",
-          "params": {},
-          "answer": "0和1",
-          "difficulty": "易"
+          "id": "binary-basics",
+          "name": "二进制计数原理",
+          "grade_level": ["7"],
+          "description": "二进制使用0和1两个数码，逢二进一。理解位权概念：每位对应2ⁿ。掌握二进制展开式。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["二进制", "基数", "位权", "逢二进一", "数码", "2的幂"],
+          "prerequisites": []
         },
         {
-          "type": "填空题",
-          "template": "二进制数的基数是____。",
-          "params": {},
-          "answer": "2",
-          "difficulty": "易"
+          "id": "binary-decimal-conversion",
+          "name": "二进制与十进制转换",
+          "grade_level": ["7"],
+          "description": "十进制→二进制：除2取余逆序排列。二进制→十进制：按权展开求和。仅限正整数范围。",
+          "cognition_levels": ["理解", "应用"],
+          "key_concepts": ["除2取余法", "逆序排列", "按权展开求和", "验算"],
+          "prerequisites": ["binary-basics"]
         },
         {
-          "type": "单选题",
-          "template": "二进制数1011从右向左第3位（从0开始编号）的位权是？",
-          "params": {},
-          "answer": "2²=4",
-          "difficulty": "中"
-        },
-        {
-          "type": "连线题",
-          "template": "将以下数制与其基数连线：\n二进制 ____\n十进制 ____\n八进制 ____\n十六进制 ____\n\n选项：2 / 8 / 10 / 16",
-          "params": {},
-          "answer": "二进制-2, 十进制-10, 八进制-8, 十六进制-16",
-          "difficulty": "易"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "二进制有0、1、2三个数码",
-          "correct_answer": "二进制只有0和1两个数码",
-          "description": "误以为逢二进一意味着有0、1、2三个数码",
-          "reason": "误解'逢二进一'的含义，把进制基数与可用数码混淆"
-        },
-        {
-          "error_answer": "位权从右向左是1,2,3,4...",
-          "correct_answer": "位权从右向左是2⁰,2¹,2²,2³...",
-          "description": "误把位权序列理解为递增自然数而非2的幂",
-          "reason": "未理解每个位权是基数（2）的幂次方"
-        }
-      ],
-      "common_misconceptions": [
-        "认为'逢二进一'意味着二进制可以用0、1、2三个数码",
-        "将二进制位权和十进制位权混淆",
-        "忘记最右边的位权是2⁰=1而非0"
-      ],
-      "sample_questions": [
-        {
-          "type": "单选题",
-          "difficulty": "易",
-          "question": "二进制数的基数是？",
-          "answer": "2",
-          "distractors": ["8", "10", "16"],
-          "analysis": "二进制由0和1两个数码组成，逢二进一，因此基数为2。8是八进制的基数，10是十进制，16是十六进制。"
-        },
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "二进制数1101从右向左各位的位权依次是____。",
-          "answer": "2⁰=1, 2¹=2, 2²=4, 2³=8",
-          "analysis": "二进制每位对应的位权是2的n次方，n从0开始（最右）。1101共4位：最右是2⁰=1，依次向左为2¹=2，2²=4，2³=8。理解位权是进位数制转换的基础。"
+          "id": "binary-hex-conversion",
+          "name": "二进制与十六进制转换",
+          "grade_level": ["8"],
+          "description": "十六进制用0-9和A-F表示0-15。二进制→十六进制：从右向左四位一组映射。十六进制→二进制：每位展开为4位。",
+          "cognition_levels": ["理解", "应用"],
+          "key_concepts": ["十六进制", "A-F对应10-15", "四位一分法", "补零规则"],
+          "prerequisites": ["binary-basics", "binary-decimal-conversion"]
         }
       ]
     },
     {
-      "id": "binary-decimal-conversion",
-      "name": "二进制与十进制转换",
-      "module": "data-and-coding",
-      "grade_level": ["7"],
-      "description": "掌握正整数在二进制与十进制之间的相互转换方法：十进制转二进制使用'除2取余，逆序排列'法；二进制转十进制使用'按权展开求和'法。",
-      "cognition_levels": ["理解", "应用"],
-      "key_concepts": ["除2取余法", "逆序排列", "按权展开", "正整数范围"],
-      "prerequisite_knowledge": ["binary-basics", "decimal-place-value"],
-      "question_type_suitability": ["单选题", "填空题", "判断题"],
-      "question_templates": [
+      "id": "data-storage",
+      "name": "数据存储",
+      "order": 3,
+      "children": [
         {
-          "type": "填空题",
-          "template": "将十进制数 {N} 转换为二进制。",
-          "params": {
-            "N": "1~255之间的整数"
-          },
-          "answer": "function: decimalToBinary(N)",
-          "difficulty": "易"
+          "id": "data-storage-units",
+          "name": "数据存储单位",
+          "grade_level": ["7"],
+          "description": "计算机存储的基本单位：bit（位）、Byte（字节）、KB、MB、GB、TB。单位间以1024为进率（2¹⁰=1024）。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["bit", "Byte", "KB/MB/GB/TB", "1024进率", "1Byte=8bit", "厂商1000进率"],
+          "prerequisites": ["binary-basics"]
         },
         {
-          "type": "填空题",
-          "template": "将二进制数 {B} 转换为十进制。",
-          "params": {
-            "B": "4~8位二进制字符串"
-          },
-          "answer": "function: binaryToDecimal(B)",
-          "difficulty": "易"
-        },
-        {
-          "type": "单选题",
-          "template": "十进制数{N}对应的二进制数是？",
-          "params": {
-            "N": "1~255之间的整数"
-          },
-          "answer": "function: decimalToBinary(N)",
-          "distractors": [
-            "function: randomBinary(distinctFrom, decimalToBinary(N))",
-            "function: randomBinary(distinctFrom, decimalToBinary(N))",
-            "function: randomBinary(distinctFrom, decimalToBinary(N))"
-          ],
-          "difficulty": "中"
-        },
-        {
-          "type": "单选题",
-          "template": "二进制数{B}对应的十进制数是？",
-          "params": {
-            "B": "5~8位二进制字符串"
-          },
-          "answer": "function: binaryToDecimal(B)",
-          "distractors": [
-            "function: nearValue(binaryToDecimal(B), 1, 2)",
-            "function: nearValue(binaryToDecimal(B), 3, 5)",
-            "function: commonErrorValue(binaryToDecimal(B))"
-          ],
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "从下往上读取余数时出错",
-          "correct_answer": "每次除2取余数，从最后一个余数开始从下往上读",
-          "description": "除2取余法的余数读取顺序颠倒（从上往下读）",
-          "reason": "不理解'逆序排列'的含义，或做题时将余数按计算先后排列而非从下往上读"
-        },
-        {
-          "error_answer": "按权展开时漏乘或漏项",
-          "correct_answer": "从右向左每位乘对应位权（2^n）后求和",
-          "description": "按权展开时漏算某一位或位权计算错误",
-          "reason": "粗心或对位权概念理解不足"
-        },
-        {
-          "error_answer": "25₁₀=10011₂",
-          "correct_answer": "25₁₀=11001₂",
-          "description": "除2取余过程中某步除法计算错误",
-          "reason": "整数除法运算出错"
-        }
-      ],
-      "common_misconceptions": [
-        "认为十进制转二进制等于直接每位数字分别转二进制并拼接",
-        "忘记每次除法的商要作为下一次的被除数",
-        "除到商为0时才停止，提前停止导致结果不完整"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "易",
-          "question": "将十进制数 25 转换为二进制。",
-          "answer": "11001",
-          "analysis": "除2取余法：25÷2=12余1, 12÷2=6余0, 6÷2=3余0, 3÷2=1余1, 1÷2=0余1。余数从下往上读：11001。验算：1×16+1×8+0×4+0×2+1×1=16+8+0+0+1=25。\n教学提示：学生常见错误是将余数从上往下读得到10011。建议让学生验证最高位必须是1（2⁴=16<=25<2⁵=32，所以共5位，最高位为1）。"
-        },
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "将二进制数 101011 转换为十进制。",
-          "answer": "43",
-          "analysis": "按权展开：1×2⁵+0×2⁴+1×2³+0×2²+1×2¹+1×2⁰ = 32+0+8+0+2+1 = 43。\n教学提示：引导学生从右向左依次计算，熟练后可以直接观察二进制各位推算十进制值。'1'的位置决定了贡献的2的幂。"
+          "id": "analog-digital-signal",
+          "name": "模拟信号与数字信号",
+          "grade_level": ["8"],
+          "description": "模拟信号在时间与幅度上连续变化；数字信号离散取值。A/D转换三步骤：采样→量化→编码。数字信号抗干扰能力强。",
+          "cognition_levels": ["识记", "理解"],
+          "key_concepts": ["模拟信号", "数字信号", "连续信号", "离散信号", "A/D转换", "采样", "量化", "抗干扰"],
+          "prerequisites": []
         }
       ]
     },
     {
-      "id": "binary-hex-conversion",
-      "name": "二进制与十六进制转换",
-      "module": "data-and-coding",
-      "grade_level": ["8"],
-      "description": "理解十六进制的基本概念（0-9和A-F），掌握二进制与十六进制之间的快速转换方法（四位一分法）。",
-      "cognition_levels": ["理解", "应用"],
-      "key_concepts": ["十六进制", "四位一组", "A-F表示10-15", "分组转换"],
-      "prerequisite_knowledge": ["binary-basics", "binary-decimal-conversion"],
-      "question_type_suitability": ["单选题", "填空题", "连线题", "判断题"],
-      "question_templates": [
+      "id": "data-encoding",
+      "name": "数据编码",
+      "order": 4,
+      "children": [
         {
-          "type": "填空题",
-          "template": "将二进制数 {B} 转换为十六进制。",
-          "params": {
-            "B": "8~16位二进制字符串（尽量4的倍数）"
-          },
-          "answer": "function: binaryToHex(B)",
-          "difficulty": "易"
+          "id": "character-encoding",
+          "name": "字符编码",
+          "grade_level": ["7", "8"],
+          "description": "ASCII：7位编码128个字符（英文/数字/符号）。GB2312/GBK：2字节编码汉字。Unicode：统一全球字符编码；UTF-8变长编码（英文1字节，汉字3字节）。乱码原因：编解码方案不匹配。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["ASCII", "GB2312", "GBK", "Unicode", "UTF-8", "字符集", "码点", "编码长度", "乱码"],
+          "prerequisites": ["binary-basics", "data-storage-units"]
         },
         {
-          "type": "填空题",
-          "template": "将十六进制数 {H} 转换为二进制。",
-          "params": {
-            "H": "2~4位十六进制字符串"
-          },
-          "answer": "function: hexToBinary(H)",
-          "difficulty": "易"
+          "id": "image-encoding",
+          "name": "图像数字化与编码",
+          "grade_level": ["7", "8"],
+          "description": "图像由像素矩阵构成。分辨率（宽×高像素数）、颜色深度（每像素位数）决定图像质量与文件大小。位图放大失真，矢量图数学描述缩放不失真。图像文件大小 = 宽×高×颜色深度÷8。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["像素", "分辨率", "颜色深度", "位图", "矢量图", "RGB", "BMP", "JPEG", "PNG", "图像文件大小计算"],
+          "prerequisites": ["binary-basics", "data-storage-units"]
         },
         {
-          "type": "连线题",
-          "template": "将以下二进制数与对应的十六进制数连线：\n{一组3~4组二元对的连线}",
-          "params": {},
-          "answer": "按正确对应关系",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "二进制转十六进制时从右向左分组，左边不足4位不应补零",
-          "correct_answer": "左边不足4位时需要补零补足4位",
-          "description": "从右向左四位分组后，最左边一组不足4位时忘记补零",
-          "reason": "忽略补零约定，直接用不足4位的分组转换"
-        },
-        {
-          "error_answer": "A-F与10-15的对应记错，如A=11",
-          "correct_answer": "A=10, B=11, C=12, D=13, E=14, F=15",
-          "description": "十六进制字母与数值对应关系混淆",
-          "reason": "A-F与数字10-15的对应关系记忆不牢"
-        }
-      ],
-      "common_misconceptions": [
-        "十六进制直接转十进制后，以为不需要二进制作为中介",
-        "分组方向错误（从左向右分而非从右向左分）"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "将二进制数 110101011100 转换为十六进制。",
-          "answer": "D5C",
-          "analysis": "从右向左每4位一组：1101 0101 1100。1101₂=13₁₀=D₁₆, 0101₂=5₁₀=5₁₆, 1100₂=12₁₀=C₁₆。所以结果为D5C₁₆。\n教学提示：强调从右向左分组的原因——二进制低位在右边，这样分组不会改变权值对应关系。"
-        },
-        {
-          "type": "单选题",
-          "difficulty": "中",
-          "question": "十六进制数 2F 转换为二进制是？",
-          "answer": "00101111",
-          "distractors": ["101111", "00101101", "00111111"],
-          "analysis": "2₁₆=0010₂, F₁₆=15₁₀=1111₂，合并得00101111₂。干扰项A漏了前导零，B中F对应的1111错写为1101(13)，C中2的二进制0010错写为0011(3)。\n教学提示：务必确保每位十六进制转为4位二进制（不足补零），这是常见丢分点。"
+          "id": "audio-encoding",
+          "name": "音频数字化与编码",
+          "grade_level": ["8"],
+          "description": "音频数字化三要素：采样频率（44.1kHz为CD标准）、量化位数（如16bit）、声道数（单声道/立体声）。奈奎斯特定理：采样频率≥2×信号最高频率。文件大小 = 采样频率×量化位数×声道数×时长。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["采样", "量化", "采样频率", "量化位数", "声道", "奈奎斯特定理", "PCM", "MP3", "WAV", "音频文件大小计算"],
+          "prerequisites": ["binary-basics", "data-storage-units", "analog-digital-signal"]
         }
       ]
     },
     {
-      "id": "character-encoding",
-      "name": "字符编码",
-      "module": "data-and-coding",
-      "grade_level": ["7", "8"],
-      "description": "理解计算机中字符的编码方式：ASCII编码（英文）、GB2312/GBK（中文）和Unicode编码体系。掌握常见编码方案的字符集范围和编码长度。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["ASCII", "GB2312", "GBK", "Unicode", "UTF-8", "编码长度", "字符集", "码点"],
-      "prerequisite_knowledge": ["binary-basics", "binary-hex-conversion"],
-      "question_type_suitability": ["单选题", "多选题", "填空题", "判断题", "简答题"],
-      "question_templates": [
+      "id": "data-processing",
+      "name": "数据处理",
+      "order": 5,
+      "children": [
         {
-          "type": "单选题",
-          "template": "ASCII编码使用__位二进制表示一个字符。",
-          "params": {},
-          "answer": "7位（标准ASCII）/ 8位（扩展ASCII）",
-          "difficulty": "易"
+          "id": "data-compression",
+          "name": "数据压缩基本概念",
+          "grade_level": ["8"],
+          "description": "压缩目的：减少存储空间和传输时间。无损压缩：解压后数据完整恢复（如ZIP、PNG）；有损压缩：牺牲部分质量换取更高压缩率（如JPEG、MP3）。压缩比 = 压缩前÷压缩后。",
+          "cognition_levels": ["识记", "理解", "应用"],
+          "key_concepts": ["无损压缩", "有损压缩", "压缩比", "冗余", "RLE编码", "哈夫曼编码", "ZIP", "JPEG", "MP3", "PNG"],
+          "prerequisites": ["image-encoding", "audio-encoding"]
         },
         {
-          "type": "判断题",
-          "template": "GB2312编码中，一个汉字通常用2个字节表示。",
-          "params": {},
-          "answer": "正确",
-          "difficulty": "易"
-        },
-        {
-          "type": "简答题",
-          "template": "为什么计算机需要不同的字符编码方案？请结合中英文字符的差异加以说明。",
-          "params": {},
-          "answer": "因为不同语言的字符数量和复杂程度不同。ASCII只有128个字符（7位足够），适合英文；而汉字数量庞大（GB2312收录6763个汉字），需要2个字节才能表示。Unicode作为统一编码方案，可以为全球所有语言的字符分配唯一编码，解决了不同编码方案之间的兼容性问题。",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "ASCII使用8位（1字节）表示一个字符",
-          "correct_answer": "标准ASCII使用7位，但通常存储在1字节（8位）空间中",
-          "description": "混淆ASCII编码的实际位数与存储空间",
-          "reason": "将计算机中1字节的存储单位与ASCII的7位编码混淆"
-        },
-        {
-          "error_answer": "UTF-8中每个字符都用3个字节表示",
-          "correct_answer": "UTF-8是变长编码：英文字母1字节，常用汉字3字节",
-          "description": "误认为UTF-8是定长编码",
-          "reason": "不理解UTF-8的变长编码机制"
-        }
-      ],
-      "common_misconceptions": [
-        "认为一种编码方案就能表示所有语言的字符",
-        "搞混GB2312（简体中文）和Big5（繁体中文）的适用场景",
-        "不清楚乱码产生的原因（编码方案不匹配）"
-      ],
-      "sample_questions": [
-        {
-          "type": "单选题",
-          "difficulty": "易",
-          "question": "标准ASCII编码可以表示多少个字符？",
-          "answer": "128个",
-          "distractors": ["256个", "64个", "1024个"],
-          "analysis": "标准ASCII使用7位二进制，2⁷=128，可表示128个字符（包括英文大小写字母、数字、标点符号、控制字符）。扩展ASCII用8位表示256个字符。"
-        },
-        {
-          "type": "单选题",
-          "difficulty": "中",
-          "question": "用GB2312编码存储'ABCD'这个字符串，需要多少个字节？",
-          "answer": "4个字节",
-          "distractors": ["2个字节", "8个字节", "1个字节"],
-          "analysis": "GB2312中英文字母（半角字符）用1字节表示，汉字用2字节。'ABCD'是4个英文字母，共4字节。干扰项B误当作汉字（2×4=8），干扰项A误以为2字节表示2个字符。\n教学提示：这里容易和学生平时写代码中的'一个char占多少个字节'混淆——在Java/C#中char固定2字节，但那是内部存储方式，与编码方案是两个概念。"
-        }
-      ]
-    },
-    {
-      "id": "image-encoding",
-      "name": "图像数字化与编码",
-      "module": "data-and-coding",
-      "grade_level": ["7", "8"],
-      "description": "理解图像的数字化原理：像素、分辨率、颜色深度（位深度）等概念。掌握位图与矢量图的基本区别，以及图像文件大小的计算方法。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["像素", "分辨率", "颜色深度", "位图", "矢量图", "RGB模型", "图像文件大小"],
-      "prerequisite_knowledge": ["binary-basics", "data-storage-units"],
-      "question_type_suitability": ["单选题", "多选题", "填空题", "判断题", "简答题"],
-      "question_templates": [
-        {
-          "type": "填空题",
-          "template": "一幅分辨率为{W}×{H}、颜色深度为{D}位的位图，其图像数据大小为____MB（不含文件头）。",
-          "params": {
-            "W": "常见宽度(如800, 1024, 1280, 1920)",
-            "H": "常见高度(如600, 768, 720, 1080)",
-            "D": "常见颜色深度(如8, 16, 24, 32)"
-          },
-          "answer": "function: (W*H*D)/(8*1024*1024) MB",
-          "difficulty": "中"
-        },
-        {
-          "type": "单选题",
-          "template": "以下关于位图与矢量图的说法，正确的是？",
-          "params": {},
-          "answer": "位图放大后会变得模糊，矢量图放大不会失真",
-          "difficulty": "易"
-        },
-        {
-          "type": "简答题",
-          "template": "为什么同一张照片保存为BMP格式文件远大于JPEG格式？",
-          "params": {},
-          "answer": "BMP是无压缩格式，直接存储每个像素的颜色数据；JPEG是有损压缩格式，通过舍弃人眼不敏感的颜色细节来大幅减小文件大小。",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "图像文件大小 = 分辨率 × 颜色深度",
-          "correct_answer": "图像文件大小 = 像素总数 × 颜色深度 ÷ 8（换算为字节）",
-          "description": "计算图像大小时忘记将位(bit)转换为字节(Byte)（÷8）",
-          "reason": "对bit和Byte的换算不熟悉"
-        },
-        {
-          "error_answer": "认为颜色深度就是颜色数量",
-          "correct_answer": "颜色数量 = 2^颜色深度",
-          "description": "混淆颜色深度（bit数）与可表示的颜色数量",
-          "reason": "不理解颜色深度是指每个像素用多少位来表示，颜色数量由其指数决定"
-        }
-      ],
-      "common_misconceptions": [
-        "认为像素越多图像就一定越清晰（忽略了每个像素的尺寸）",
-        "认为位图不能压缩",
-        "认为矢量化一定比位图好（忽略了照片类图像的适用场景）"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "一幅分辨率为1024×768、24位真彩色的位图，其图像数据量约为____MB。",
-          "answer": "2.25",
-          "analysis": "计算过程：1024×768×24 bit = 18,874,368 bit。转换为字节：18,874,368÷8 = 2,359,296 Byte ≈ 2.25 MB。\n教学提示：关键步骤（1）总像素=宽×高（2）总位数=总像素×颜色深度（3）总字节=总位数÷8（4）转为MB=÷1024÷1024。这是计算题易错点集中处。"
-        },
-        {
-          "type": "判断题",
-          "difficulty": "易",
-          "question": "矢量图无论放大多少倍都不会失真。（ ）",
-          "answer": "正确",
-          "analysis": "矢量图使用数学公式（如点、线、曲线）描述图形，放大时只需重新计算坐标即可，不会产生像素化现象。而位图由固定数量像素构成，放大后每个像素被拉伸，出现锯齿和模糊。"
-        }
-      ]
-    },
-    {
-      "id": "audio-encoding",
-      "name": "音频数字化与编码",
-      "module": "data-and-coding",
-      "grade_level": ["8"],
-      "description": "理解音频数字化的三个关键参数：采样频率、量化位数、声道数。掌握音频文件大小的计算方法，了解常见音频编码格式。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["采样", "量化", "采样频率", "量化位数", "声道数", "PCM编码", "MP3压缩"],
-      "prerequisite_knowledge": ["binary-basics", "data-storage-units", "image-encoding"],
-      "question_type_suitability": ["单选题", "多选题", "填空题", "判断题"],
-      "question_templates": [
-        {
-          "type": "填空题",
-          "template": "一段采样频率为{S}kHz、量化位数为{Q}位、{C}声道的音频，录制{T}秒，其数据量约为____MB（未压缩）。",
-          "params": {
-            "S": "常见采样频率(如11.025, 22.05, 44.1, 48)",
-            "Q": "常见量化位数(如8, 16, 24)",
-            "C": "单声道/立体声",
-            "T": "常见时长(如10, 30, 60)"
-          },
-          "answer": "function: (S*1000*Q*C*T)/(8*1024*1024) MB",
-          "difficulty": "中"
-        },
-        {
-          "type": "单选题",
-          "template": "根据奈奎斯特采样定理，要完整还原频率为f的模拟信号，采样频率至少应为？",
-          "params": {},
-          "answer": "2f",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "采样频率44.1kHz = 44100Hz，计算时误用44000或4410",
-          "correct_answer": "44.1kHz = 44100Hz",
-          "description": "kHz换算为Hz时错位（44.1kHz = 44100Hz，不是44000Hz）",
-          "reason": "对千(k)的含义理解有偏差或小数点后移错误"
-        },
-        {
-          "error_answer": "音频数据量 = 采样频率 × 时间，忽略量化位数和声道数",
-          "correct_answer": "数据量 = 采样频率 × 量化位数 × 声道数 × 时间",
-          "description": "遗漏量化位数或声道数因子",
-          "reason": "对音频数字化的三个参数不熟悉"
-        }
-      ],
-      "common_misconceptions": [
-        "认为采样频率越高一定越好（忽略了成本和存储的增加）",
-        "认为MP3是无损压缩格式",
-        "混淆模拟信号和数字信号的概念"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "录制一段采样频率44.1kHz、16位量化、立体声的音频60秒，未压缩时数据量约为____MB。",
-          "answer": "10.09",
-          "analysis": "计算：44100×16×2×60 = 84,672,000 bit。转为MB：84,672,000÷8÷1024÷1024 ≈ 10.09 MB。\n教学提示：CD音质就是44.1kHz/16bit/立体声，让学生对CD音质的数据量有直观认识。可对比MP3（~1MB/min）让学生理解压缩的意义。"
-        },
-        {
-          "type": "单选题",
-          "difficulty": "易",
-          "question": "CD音质的采样频率通常为？",
-          "answer": "44.1kHz",
-          "distractors": ["22.05kHz", "48kHz", "8kHz"],
-          "analysis": "44.1kHz是CD（Compact Disc）的标准采样频率，根据奈奎斯特定理，44.1kHz可以完整还原22.05kHz以下的声音频率，覆盖了人耳的听觉范围（20Hz~20kHz）。"
-        }
-      ]
-    },
-    {
-      "id": "data-compression",
-      "name": "数据压缩基本概念",
-      "module": "data-and-coding",
-      "grade_level": ["8"],
-      "description": "理解数据压缩的基本目的和分类：无损压缩（可完全还原）与有损压缩（不可完全还原但压缩率更高）。认识常见压缩格式及其适用场景。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["无损压缩", "有损压缩", "压缩比", "冗余", "RLE编码", "哈夫曼编码"],
-      "prerequisite_knowledge": ["image-encoding", "audio-encoding"],
-      "question_type_suitability": ["单选题", "多选题", "判断题", "简答题", "填空题"],
-      "question_templates": [
-        {
-          "type": "单选题",
-          "template": "以下哪种文件格式使用了有损压缩？",
-          "params": {},
-          "answer": "JPEG",
-          "distractors": ["PNG", "BMP", "ZIP"],
-          "difficulty": "易"
-        },
-        {
-          "type": "简答题",
-          "template": "请解释无损压缩与有损压缩的区别，并各举两个常见应用场景。",
-          "params": {},
-          "answer": "无损压缩：解压后数据与原数据完全一致，适合文本文件、程序代码等（如ZIP、PNG格式）。有损压缩：解压后数据有损失但人眼/人耳不易察觉，压缩率高，适合图像、音频等（如JPEG、MP3格式）。",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "认为压缩后的文件总能恢复到原始大小",
-          "correct_answer": "只有无损压缩才能完整恢复",
-          "description": "混淆有损压缩和无损压缩的恢复能力",
-          "reason": "未区分两种压缩方式的根本差异"
-        }
-      ],
-      "common_misconceptions": [
-        "认为压缩一定会降低质量",
-        "认为PNG是有损压缩（PNG是无损压缩格式）",
-        "认为文件越小质量一定越差"
-      ],
-      "sample_questions": [
-        {
-          "type": "多选题",
-          "difficulty": "中",
-          "question": "以下文件格式中，属于无损压缩的有？（多选）",
-          "answer": ["PNG", "ZIP"],
-          "distractors": ["JPEG", "MP3"],
-          "analysis": "PNG使用无损压缩（DEFLATE算法），ZIP也是无损压缩格式。JPEG使用DCT有损压缩，MP3使用感知编码有损压缩。教学提示：让学生记住'质量敏感用无损、感官容忍用有损'这个原则。"
-        }
-      ]
-    },
-    {
-      "id": "data-storage-units",
-      "name": "数据存储单位",
-      "module": "data-and-coding",
-      "grade_level": ["7"],
-      "description": "掌握计算机数据存储的基本单位及其换算关系：bit、Byte、KB、MB、GB、TB。理解各单位的层级关系和进率。",
-      "cognition_levels": ["识记", "理解", "应用"],
-      "key_concepts": ["bit（位）", "Byte（字节）", "KB", "MB", "GB", "TB", "1024进率"],
-      "prerequisite_knowledge": ["binary-basics"],
-      "question_type_suitability": ["单选题", "填空题", "判断题", "连线题"],
-      "question_templates": [
-        {
-          "type": "填空题",
-          "template": "1MB = ____KB = ____Byte",
-          "params": {},
-          "answer": "1024KB = 1024×1024 = 1,048,576 Byte",
-          "difficulty": "易"
-        },
-        {
-          "type": "连线题",
-          "template": "将以下存储单位从小到大排列：KB, Byte, GB, bit, MB",
-          "params": {},
-          "answer": "bit < Byte < KB < MB < GB",
-          "difficulty": "易"
-        },
-        {
-          "type": "填空题",
-          "template": "一张{S}GB的存储卡，大约可以存储____张每张{photosize}MB的照片。",
-          "params": {
-            "S": "常见容量(如8, 16, 32, 64, 128)",
-            "photosize": "常见照片大小(如2, 3, 4, 5)"
-          },
-          "answer": "function: Math.floor(S*1024/photosize)",
-          "difficulty": "易"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "1KB=1000Byte",
-          "correct_answer": "1KB=1024Byte",
-          "description": "将计算机存储的1024进率误当作1000进率",
-          "reason": "日常生活习惯使用1000进率（如1km=1000m），容易混淆"
-        },
-        {
-          "error_answer": "bit和Byte混淆，如1MB=8Mb写成1MB=1Mb",
-          "correct_answer": "1Byte=8bit, 1MB=8Mb",
-          "description": "大小写b/B混淆，不分bit和Byte",
-          "reason": "忽略b（bit）和B（Byte）的区别"
-        }
-      ],
-      "common_misconceptions": [
-        "认为所有计算机单位都是1000进率",
-        "不清楚为何用1024而非1000（因为2^10=1024，计算机用二进制）",
-        "混淆存储容量和传输速率的单位"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "易",
-          "question": "1Byte = ____bit，1KB = ____Byte。",
-          "answer": "8, 1024",
-          "analysis": "1Byte=8bit是计算机存储的基本换算关系。1KB=1024Byte而非1000，因为计算机基于二进制，2¹⁰=1024最接近1000。\n教学提示：提醒学生注意B（大写）=Byte、b（小写）=bit的区别，这在网络速度测试中经常遇到。"
-        },
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "某手机标称存储容量为128GB，系统显示可用空间约为119GB。造成这个差异的原因是什么？",
-          "answer": "厂商使用1000进率（1GB=1000MB），操作系统使用1024进率（1GB=1024MB）",
-          "analysis": "厂商：128×1000×1000×1000 Byte = 128,000,000,000 Byte。系统：128,000,000,000 ÷ (1024×1024×1024) ≈ 119.2 GB。这是两个进率体系造成的显示差异。\n教学提示：这是一个非常好的真实问题情境，能让学生理解知识在生活中的应用。"
-        }
-      ]
-    },
-    {
-      "id": "info-encoding-decoding",
-      "name": "信息的编码与解码",
-      "module": "data-and-coding",
-      "grade_level": ["7", "8"],
-      "description": "理解编码和解码的基本概念：编码是将信息转换成特定格式（如数字信号）的过程，解码是反向还原的过程。能应用简单编码规则进行编解码操作。",
-      "cognition_levels": ["理解", "应用", "分析"],
-      "key_concepts": ["编码", "解码", "编码规则", "摩尔斯电码", "条码/二维码"],
-      "prerequisite_knowledge": ["binary-basics", "character-encoding"],
-      "question_type_suitability": ["单选题", "填空题", "简答题", "连线题"],
-      "question_templates": [
-        {
-          "type": "填空题",
-          "template": "已知编码规则为'每个字母替换为其在字母表中的序号（A=1, B=2, …）'，则字符串'CAB'的编码结果是____。",
-          "params": {},
-          "answer": "3,1,2",
-          "difficulty": "易"
-        },
-        {
-          "type": "简答题",
-          "template": "小明设计了一个简单的加密规则：将每个字母在字母表中后移{shift}位（Z后接A）。请用这个规则将'{plainText}'编码为密文。",
-          "params": {
-            "shift": "1~5之间的整数",
-            "plainText": "3~5个字母的英文单词"
-          },
-          "answer": "function: caesarEncrypt(plainText, shift)",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "解码时未按原编码规则逆向操作，如后移了相同的位数而非前移",
-          "correct_answer": "解码是编码的逆过程，应反向操作",
-          "description": "解码时方向与编码相同而非相反",
-          "reason": "未理解编码和解码是对称的逆过程"
-        }
-      ],
-      "common_misconceptions": [
-        "认为编码就是加密（编码偏重格式转换，加密偏重安全性）",
-        "认为一种数据只能有一种编码方式"
-      ],
-      "sample_questions": [
-        {
-          "type": "填空题",
-          "difficulty": "中",
-          "question": "已知凯撒密码规则为每个字母后移3位（A→D, B→E, … , X→A），则单词'HELLO'的密文为____。",
-          "answer": "KHOOR",
-          "analysis": "H→K(8→11), E→H(5→8), L→O(12→15), L→O(12→15), O→R(15→18)。解密时只需反向操作（前移3位）。\n教学提示：凯撒密码是经典的信息编码入门案例，可以让学生体验编码-传输-解码的完整过程，理解信息安全的基础。"
-        }
-      ]
-    },
-    {
-      "id": "analog-digital-signal",
-      "name": "模拟信号与数字信号",
-      "module": "data-and-coding",
-      "grade_level": ["8"],
-      "description": "理解模拟信号与数字信号的基本概念、特点和区别。认识A/D转换（模数转换）的基本过程：采样、量化、编码。",
-      "cognition_levels": ["识记", "理解"],
-      "key_concepts": ["模拟信号", "数字信号", "连续信号", "离散信号", "A/D转换", "D/A转换", "抗干扰"],
-      "prerequisite_knowledge": ["audio-encoding"],
-      "question_type_suitability": ["单选题", "多选题", "判断题", "简答题"],
-      "question_templates": [
-        {
-          "type": "单选题",
-          "template": "以下关于模拟信号和数字信号的说法，错误的是？",
-          "params": {},
-          "answer": "数字信号一定是连续变化的",
-          "distractors": [
-            "模拟信号是连续变化的",
-            "数字信号抗干扰能力强",
-            "计算机内部使用数字信号"
-          ],
-          "difficulty": "易"
-        },
-        {
-          "type": "简答题",
-          "template": "请说明数字信号比模拟信号有哪些优势？",
-          "params": {},
-          "answer": "（1）抗干扰能力强，信号在传输过程中不易失真；（2）便于存储和处理，可以直接用计算机处理；（3）便于压缩和加密；（4）易于复制且不失真。",
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "认为模拟信号就是正弦波、数字信号就是方波",
-          "correct_answer": "模拟信号是连续变化信号，数字信号是离散不连续信号",
-          "description": "把信号的外形波形作为分类标准，而非本质特征（连续/离散）",
-          "reason": "教材示例通常展示正弦波和方波，造成刻板印象"
-        }
-      ],
-      "common_misconceptions": [
-        "认为数字信号完全不会受干扰（只是抗干扰能力强，不是完全免疫）",
-        "认为A/D转换只是简单地四舍五入"
-      ],
-      "sample_questions": [
-        {
-          "type": "判断题",
-          "difficulty": "易",
-          "question": "模拟信号的值是连续变化的，数字信号的值是离散的。（ ）",
-          "answer": "正确",
-          "analysis": "这是模拟信号和数字信号的本质区别。模拟信号在时间和幅度上都是连续的（如人的声音波形），数字信号在时间和幅度上都是离散的（只有有限个取值）。"
-        }
-      ]
-    },
-    {
-      "id": "checksum-basics",
-      "name": "校验码基础",
-      "module": "data-and-coding",
-      "grade_level": ["8", "9"],
-      "description": "理解数据校验的基本概念和目的。掌握简单校验方法（如奇偶校验、校验和），了解校验码在数据传输和存储中的作用。",
-      "cognition_levels": ["理解", "应用"],
-      "key_concepts": ["奇偶校验", "校验和", "检错码", "纠错码", "冗余"],
-      "prerequisite_knowledge": ["binary-basics", "data-compression"],
-      "question_type_suitability": ["单选题", "判断题", "填空题"],
-      "question_templates": [
-        {
-          "type": "填空题",
-          "template": "采用奇校验时，若数据位为'1011001'，则校验位应为____（使1的总个数为奇数）。",
-          "params": {},
-          "answer": "0 (已有4个1即偶数个1，加0保持偶数，需要加1使其变成奇数；所以应加1)",
-          "difficulty": "中"
-        },
-        {
-          "type": "单选题",
-          "template": "奇偶校验可以检测出传输数据中的__位错误。",
-          "params": {},
-          "answer": "奇数个",
-          "distractors": ["1个", "2个", "任意个"],
-          "difficulty": "中"
-        }
-      ],
-      "common_errors": [
-        {
-          "error_answer": "奇校验时校验位使得1的总数为偶数",
-          "correct_answer": "奇校验时校验位使得包含校验位在内的1的总数为奇数",
-          "description": "将奇校验和偶校验的目标弄反",
-          "reason": "概念记忆混乱，未理解'奇'指的是1的总数是奇数"
-        }
-      ],
-      "common_misconceptions": [
-        "认为加了校验码就能纠正所有错误",
-        "以为校验码本身就一定能发现所有错误"
-      ],
-      "sample_questions": [
-        {
-          "type": "单选题",
-          "difficulty": "中",
-          "question": "在数据传输中加入奇偶校验位，其主要目的是？",
-          "answer": "检测数据在传输过程中是否出错",
-          "distractors": [
-            "纠正传输中的所有错误",
-            "提高数据传输速度",
-            "加密传输数据"
-          ],
-          "analysis": "奇偶校验是一种检错码（只能发现错误），不是纠错码（不能纠正错误）。它通过在数据中添加冗余位来判断传输是否有误。提高速度、加密都不是校验的目的。\n教学提示：可以类比为快递包裹上的'易碎'标签——只能提醒是否出了问题，不能自动修复损坏。"
+          "id": "checksum-basics",
+          "name": "校验码基础",
+          "grade_level": ["8", "9"],
+          "description": "校验码目的：检测数据传输/存储中的错误。奇偶校验：使1的总数为奇数（奇校验）或偶数（偶校验），能检测奇数个错误，不能纠错。校验和：简单累加后用低字节作为校验值。",
+          "cognition_levels": ["理解", "应用"],
+          "key_concepts": ["奇偶校验", "校验和", "检错码", "纠错码", "冗余位", "汉明距离"],
+          "prerequisites": ["binary-basics"]
         }
       ]
     }
-  ]
+  ],
+  "knowledge_point_index": {
+    "data-vs-info": "数据与信息/数据与信息的概念",
+    "info-encoding-decoding": "数据与信息/信息的编码与解码",
+    "binary-basics": "数制系统/二进制计数原理",
+    "binary-decimal-conversion": "数制系统/二进制与十进制转换",
+    "binary-hex-conversion": "数制系统/二进制与十六进制转换",
+    "data-storage-units": "数据存储/数据存储单位",
+    "analog-digital-signal": "数据存储/模拟信号与数字信号",
+    "character-encoding": "数据编码/字符编码",
+    "image-encoding": "数据编码/图像数字化与编码",
+    "audio-encoding": "数据编码/音频数字化与编码",
+    "data-compression": "数据处理/数据压缩基本概念",
+    "checksum-basics": "数据处理/校验码基础"
+  }
 }

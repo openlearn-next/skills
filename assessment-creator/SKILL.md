@@ -73,29 +73,34 @@ x-astron-category: education
 ```
 knowledge/
 ├── curriculum-standard/
-│   └── it-curriculum-2022.json    # 课标模块定义
+│   └── it-curriculum-2022.json              # 课标模块定义
 └── modules/
-    └── data-and-coding.json       # 数据与编码模块知识点（12个知识点）
+    ├── data-and-coding.json                  # 知识点体系（树形层级、概念描述）
+    └── data-and-coding-question-data.json    # 出题辅助数据（模板、常见错误、范例）
 ```
 
-### 知识点条目字段（16个字段）
+### 知识点条目字段（知识点库）
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | string | 唯一标识 |
-| name | string | 知识点名称 |
-| module | string | 所属模块 |
-| grade_level | string[] | 适用年级 |
-| description | string | 知识点描述 |
-| cognition_levels | string[] | 可评估的认知层级 |
-| key_concepts | string[] | 核心概念列表 |
-| prerequisite_knowledge | string[] | 前置知识点 ID |
-| question_type_suitability | string[] | 适合的题型 |
-| **question_templates** | object[] | **参数化出题模板**（核心字段） |
-| common_errors | object[] | 学生常见错误及正确答案 |
-| common_misconceptions | string[] | 常见概念误区 |
-| sample_questions | object[] | 代表性范例（2-3道） |
-| analysis | string | 解析文本 |
+| 字段 | 说明 |
+|------|------|
+| id | 唯一标识 |
+| name | 知识点名称 |
+| grade_level | 适用年级 |
+| description | 知识点描述——教什么 |
+| cognition_levels | 可评估的认知层级 |
+| key_concepts | 核心概念列表 |
+| prerequisites | 前置知识点 ID |
+| children | 子知识点（树形结构） |
+
+### 出题辅助数据字段（独立文件）
+
+| 字段 | 说明 |
+|------|------|
+| question_type_suitability | 该知识点适合的题型 |
+| **question_templates** | **参数化出题模板**（核心字段） |
+| common_errors | 学生常见错误及原因 |
+| common_misconceptions | 常见概念误区 |
+| sample_questions | 代表性范例（每知识点1-2道） |
 
 `question_templates` 是出题的核心机制——包含参数占位符（如 `{N}`）和答案计算函数（如 `function: decimalToBinary(N)`），出题 Expert 随机采样参数值即可批量生成变体。
 
@@ -179,7 +184,8 @@ knowledge/
 | 审题 Prompt | `prompts/experts/question-reviewer.md` | 审题 Expert 指令 |
 | 排版 Prompt | `prompts/experts/output-formatter.md` | 排版 Expert 指令 |
 | 课标定义 | `knowledge/curriculum-standard/it-curriculum-2022.json` | 课标模块 |
-| 知识点库 | `knowledge/modules/data-and-coding.json` | 数据与编码模块（12个知识点） |
+| 知识点库 | `knowledge/modules/data-and-coding.json` | 数据与编码模块（12知识点·树形层级） |
+| 出题数据 | `knowledge/modules/data-and-coding-question-data.json` | 模板/常见错误/范例 |
 | 试卷模板 | `templates/markdown/exam-paper.md` | 试卷格式模板 |
 | 答案模板 | `templates/markdown/answer-sheet.md` | 答案卷格式模板 |
 | 评估清单 | `evaluation/review-checklist.json` | 分阶段检查清单 |

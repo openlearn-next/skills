@@ -43,7 +43,8 @@
   "knowledge": {
     "local": {
       "curriculumStandard": "knowledge/curriculum-standard/it-curriculum-2022.json",
-      "modules": "knowledge/modules/"
+      "modules": "knowledge/modules/",
+      "questionData": "knowledge/modules/{module}-question-data.json"
     },
     "external": {
       "enabled": true,
