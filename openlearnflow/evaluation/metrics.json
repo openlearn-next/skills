@@ -1,0 +1,81 @@
+{
+  "name": "Teaching Design Skill Evaluation Metrics",
+  "version": "1.0.0",
+  "description": "5 维度 20 项指标评分体系，满分 100 分",
+  "passThreshold": 70,
+
+  "dimensions": [
+    {
+      "id": "technical",
+      "name": "技术质量",
+      "weight": 0.20,
+      "maxScore": 20,
+      "criteria": [
+        { "id": "T01", "name": "Workflow 执行完整性", "description": "所有步骤是否成功执行", "maxScore": 5 },
+        { "id": "T02", "name": "Context 流转正确性", "description": "Context 在各 Expert 间是否正确传递", "maxScore": 5 },
+        { "id": "T03", "name": "Prompt 模板解析", "description": "Prompt 变量是否正确替换", "maxScore": 5 },
+        { "id": "T04", "name": "错误处理", "description": "异常情况下是否正确回滚或重试", "maxScore": 5 }
+      ]
+    },
+    {
+      "id": "workflow",
+      "name": "工作流质量",
+      "weight": 0.20,
+      "maxScore": 20,
+      "criteria": [
+        { "id": "W01", "name": "步骤依赖顺序", "description": "步骤执行顺序是否符合 DAG 依赖", "maxScore": 5 },
+        { "id": "W02", "name": "并行执行效率", "description": "独立步骤是否正确并行", "maxScore": 5 },
+        { "id": "W03", "name": "Checkpoint 可用性", "description": "暂停恢复是否正常工作", "maxScore": 5 },
+        { "id": "W04", "name": "超时控制", "description": "长时间步骤是否正确超时", "maxScore": 5 }
+      ]
+    },
+    {
+      "id": "expert",
+      "name": "专家质量",
+      "weight": 0.20,
+      "maxScore": 20,
+      "criteria": [
+        { "id": "E01", "name": "Expert 输出结构完整性", "description": "每个 Expert 输出是否包含所有 required 字段", "maxScore": 5 },
+        { "id": "E02", "name": "约束遵守", "description": "每个 Expert 是否遵守 must_not 约束", "maxScore": 5 },
+        { "id": "E03", "name": "Expert 职责不越界", "description": "Expert 是否只生成职责范围内的内容", "maxScore": 5 },
+        { "id": "E04", "name": "输出一致性", "description": "前后 Expert 输出是否存在逻辑冲突", "maxScore": 5 }
+      ]
+    },
+    {
+      "id": "output",
+      "name": "输出质量",
+      "weight": 0.20,
+      "maxScore": 20,
+      "criteria": [
+        { "id": "O01", "name": "Markdown 格式正确性", "description": "生成文档是否符合 GFM 规范", "maxScore": 5 },
+        { "id": "O02", "name": "JSON Schema 校验", "description": "JSON 输出是否符合 Schema", "maxScore": 5 },
+        { "id": "O03", "name": "DOCX/PPTX 可打开", "description": "二进制输出文件是否可正常打开", "maxScore": 5 },
+        { "id": "O04", "name": "内容完整性", "description": "输出是否包含所有必需章节", "maxScore": 5 }
+      ]
+    },
+    {
+      "id": "educational",
+      "name": "教育质量",
+      "weight": 0.20,
+      "maxScore": 20,
+      "criteria": [
+        { "id": "ED01", "name": "课程标准符合度", "description": "教学设计是否引用课标原文", "maxScore": 4 },
+        { "id": "ED02", "name": "核心素养体现", "description": "五大核心素养是否均有体现", "maxScore": 4 },
+        { "id": "ED03", "name": "工程实践设计", "description": "是否体现 EDP 工程设计流程", "maxScore": 4 },
+        { "id": "ED04", "name": "教学闭环", "description": "目标→活动→评价是否一一对应", "maxScore": 4 },
+        { "id": "ED05", "name": "学情适配性", "description": "设计是否回应了学情分析", "maxScore": 4 }
+      ]
+    }
+  ],
+
+  "scoring": {
+    "method": "sum",
+    "rounding": "integer",
+    "levels": [
+      { "range": [90, 100], "grade": "A", "label": "优秀" },
+      { "range": [80, 89], "grade": "B", "label": "良好" },
+      { "range": [70, 79], "grade": "C", "label": "合格" },
+      { "range": [0, 69], "grade": "D", "label": "待改进" }
+    ]
+  }
+}

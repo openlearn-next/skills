@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openlearn.ai/schemas/teaching-design-output.schema.json",
+  "title": "Teaching Design Output Schema",
+  "description": "教学设计最终输出的 JSON Schema 定义",
+  "type": "object",
+
+  "required": ["title", "subject", "grade", "chapter", "topic", "objectives", "teachingProcess", "assessment"],
+
+  "properties": {
+    "title": { "type": "string", "description": "教学设计标题" },
+    "subtitle": { "type": "string", "description": "副标题" },
+    "subject": { "type": "string", "description": "学科" },
+    "grade": { "type": "string", "enum": ["高一", "高二", "高三"], "description": "年级" },
+    "semester": { "type": "string", "enum": ["上", "下"], "description": "学期" },
+    "chapter": { "type": "string", "description": "章节" },
+    "topic": { "type": "string", "description": "课题" },
+    "lessonType": { "type": "string", "description": "课型" },
+    "classHours": { "type": "integer", "minimum": 1, "description": "课时" },
+    "teachingMode": { "type": "string", "description": "教学模式" },
+
+    "curriculum": {
+      "type": "object",
+      "required": ["coursePosition", "contentRequirements", "coreCompetencies"],
+      "properties": {
+        "coursePosition": { "type": "string" },
+        "contentRequirements": { "type": "array", "items": { "type": "string" } },
+        "coreCompetencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "manifestation"],
+            "properties": {
+              "name": { "type": "string" },
+              "manifestation": { "type": "string" }
+            }
+          }
+        },
+        "academicQuality": { "type": "object" }
+      }
+    },
+
+    "textbook": {
+      "type": "object",
+      "properties": {
+        "chapterPosition": { "type": "string" },
+        "knowledgeStructure": { "type": "string" },
+        "keyPoints": { "type": "array", "items": { "type": "string" } },
+        "difficultPoints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "knowledge": {
+      "type": "object",
+      "properties": {
+        "knowledgeNetwork": { "type": "string" },
+        "coreConcepts": { "type": "array", "items": { "type": "object" } },
+        "engineeringCases": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "student": {
+      "type": "object",
+      "properties": {
+        "existingExperience": { "type": "string" },
+        "learningDifficulties": { "type": "array", "items": { "type": "string" } },
+        "tieredStrategy": { "type": "string" }
+      }
+    },
+
+    "objectives": {
+      "type": "object",
+      "required": ["knowledgeObjectives", "skillObjectives", "engineeringObjectives"],
+      "properties": {
+        "knowledgeObjectives": { "type": "array", "items": { "type": "string" } },
+        "skillObjectives": { "type": "array", "items": { "type": "string" } },
+        "engineeringObjectives": { "type": "array", "items": { "type": "string" } },
+        "innovationObjectives": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "strategy": {
+      "type": "object",
+      "properties": {
+        "teachingModel": { "type": "string" },
+        "teachingMethods": { "type": "array", "items": { "type": "string" } },
+        "selectionRationale": { "type": "string" }
+      }
+    },
+
+    "teachingProcess": {
+      "type": "object",
+      "required": ["stages"],
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "durationMinutes"],
+            "properties": {
+              "name": { "type": "string" },
+              "edpPhase": { "type": "string" },
+              "objective": { "type": "string" },
+              "durationMinutes": { "type": "integer" },
+              "teacherActivities": { "type": "array", "items": { "type": "string" } },
+              "studentActivities": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+
+    "assessment": {
+      "type": "object",
+      "required": ["framework", "rubrics"],
+      "properties": {
+        "framework": { "type": "string" },
+        "methods": { "type": "array", "items": { "type": "string" } },
+        "rubrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "criteria"],
+            "properties": {
+              "name": { "type": "string" },
+              "criteria": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+
+    "reflection": {
+      "type": "object",
+      "properties": {
+        "framework": { "type": "string" },
+        "presetQuestions": { "type": "array", "items": { "type": "string" } },
+        "suggestions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "review": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "readyToPublish": { "type": "boolean" }
+      }
+    },
+
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "generatedTime": { "type": "string" },
+        "workflow": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    }
+  }
+}

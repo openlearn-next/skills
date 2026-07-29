@@ -1,0 +1,9 @@
+{
+  "environment": "production",
+  "debug": false,
+  "verbose": false,
+  "provider": "openai",
+  "logging": "info",
+  "quality": { "autoOptimize": true, "passThreshold": 70 },
+  "knowledge": { "retrievalEnabled": true, "cacheTTL": 300000 }
+}

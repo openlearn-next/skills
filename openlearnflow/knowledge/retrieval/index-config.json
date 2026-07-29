@@ -1,0 +1,145 @@
+{
+  "id": "teaching-design-knowledge-index",
+  "type": "knowledge",
+  "description": "教学设计知识库检索索引配置。定义所有可用知识源及其检索策略。",
+  "version": "1.0.0",
+
+  "sources": [
+    {
+      "id": "pedagogy-models",
+      "path": "knowledge/pedagogy/teaching-models.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "教学理论基础（建构主义/PBL/EDP等）"
+    },
+    {
+      "id": "curriculum-competencies",
+      "path": "knowledge/curriculum/core-competencies.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "课程标准五大核心素养定义"
+    },
+    {
+      "id": "assessment-methods",
+      "path": "knowledge/assessment/assessment-methods.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "评价方法与Rubric设计知识"
+    },
+    {
+      "id": "engineering-education",
+      "path": "knowledge/education/engineering-education.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "工程教育基础（EDP/系统思维等）"
+    },
+    {
+      "id": "curriculum-standard",
+      "path": "knowledge/curriculum-standard/standards/technology-engineering.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "技术与工程课程标准完整模型"
+    },
+    {
+      "id": "competency-mapping",
+      "path": "knowledge/curriculum-standard/mappings/competency-objective-map.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "素养→目标→评价映射"
+    },
+    {
+      "id": "subject-graph",
+      "path": "knowledge/subject-graph/nodes/technology-engineering-core.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "技术与工程学科知识图谱"
+    },
+    {
+      "id": "python-graph",
+      "path": "knowledge/subject-graph/examples/information-technology-python.json",
+      "type": "file",
+      "format": "json",
+      "enabled": true,
+      "description": "Python编程知识图谱"
+    },
+    {
+      "id": "lesson-examples",
+      "path": "knowledge/examples/",
+      "type": "directory",
+      "format": "json",
+      "enabled": true,
+      "description": "教学案例库"
+    }
+  ],
+
+  "policies": [
+    {
+      "expertId": "curriculum-expert",
+      "description": "Curriculum Expert 检索课标和核心素养知识",
+      "sources": ["curriculum-competencies", "curriculum-standard", "competency-mapping"],
+      "strategy": "keyword",
+      "maxResults": 5,
+      "minRelevance": 0.5,
+      "contextKey": "retrievedCurriculum"
+    },
+    {
+      "expertId": "pedagogy-expert",
+      "description": "Pedagogy Expert 检索教学策略知识",
+      "sources": ["pedagogy-models", "engineering-education"],
+      "strategy": "keyword",
+      "maxResults": 5,
+      "minRelevance": 0.5,
+      "contextKey": "retrievedPedagogy"
+    },
+    {
+      "expertId": "objective-expert",
+      "description": "Objective Expert 检索目标设计参考",
+      "sources": ["curriculum-competencies", "competency-mapping"],
+      "strategy": "exact",
+      "maxResults": 3,
+      "minRelevance": 0.7,
+      "contextKey": "retrievedObjective"
+    },
+    {
+      "expertId": "activity-expert",
+      "description": "Activity Expert 检索工程教育和教学案例",
+      "sources": ["engineering-education", "lesson-examples", "subject-graph", "python-graph"],
+      "strategy": "hybrid",
+      "maxResults": 8,
+      "minRelevance": 0.4,
+      "contextKey": "retrievedActivity"
+    },
+    {
+      "expertId": "assessment-expert",
+      "description": "Assessment Expert 检索评价方法和量规设计知识",
+      "sources": ["assessment-methods", "competency-mapping"],
+      "strategy": "keyword",
+      "maxResults": 5,
+      "minRelevance": 0.5,
+      "contextKey": "retrievedAssessment"
+    },
+    {
+      "expertId": "reflection-expert",
+      "description": "Reflection Expert 检索教学反思方法论",
+      "sources": ["pedagogy-models", "lesson-examples"],
+      "strategy": "keyword",
+      "maxResults": 3,
+      "minRelevance": 0.4,
+      "contextKey": "retrievedReflection"
+    }
+  ],
+
+  "contextInjection": {
+    "enabled": true,
+    "contextType": "RetrievedKnowledgeContext",
+    "injectionPoint": "beforePromptRender",
+    "maxTokensPerExpert": 2000
+  }
+}

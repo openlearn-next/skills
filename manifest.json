@@ -1,0 +1,95 @@
+{
+  "collection": "edu-skills",
+  "name": "教育领域 AI Skills 合集",
+  "displayName": "Edu Skills Collection",
+  "version": "1.0.0",
+  "description": "面向中国 K-12 教育的 AI 协同教学 Skills 合集。每个 Skill 封装一个教学领域的专业知识与工作流，通过 Chief Expert 编排实现完整教学任务自动化。",
+  "type": "collection",
+  "author": {
+    "name": "OpenLearn AI Team",
+    "email": "dev@openlearn.ai",
+    "url": "https://openlearn.ai"
+  },
+  "license": "MIT",
+
+  "skills": [
+    {
+      "id": "openlearnflow",
+      "path": "openlearnflow/",
+      "version": "1.1.0",
+      "name": "OpenLearn Flow",
+      "displayName": "技术与工程教学设计",
+      "description": "高中《技术与工程》AI 协同教学设计。支持课程分析、活动设计、评价方案、PPT 课件和互动网页生成。",
+      "category": "teaching-design",
+      "subject": "技术与工程",
+      "gradeLevels": ["高一", "高二", "高三"],
+      "capabilities": [
+        "curriculum-analysis",
+        "textbook-analysis",
+        "knowledge-graph",
+        "student-analysis",
+        "objective-design",
+        "strategy-design",
+        "activity-design",
+        "assessment-design",
+        "resource-curation",
+        "teaching-reflection",
+        "quality-review",
+        "ppt-generation",
+        "web-interactive"
+      ],
+      "dependencies": {
+        "skills": [],
+        "optional": ["pptx", "web-design-engineer"]
+      },
+      "keywords": ["教学设计", "技术与工程", "通用技术", "项目式学习", "工程教育", "PPT", "互动网页"]
+    }
+  ],
+
+  "shared": {
+    "knowledgeBase": {
+      "description": "跨 Skill 共享的知识库，未来多学科 Skill 可共用课程标准和教学法知识",
+      "paths": []
+    },
+    "schemas": {
+      "description": "合集级别的 Schema 定义，各 Skill 可引用",
+      "paths": []
+    }
+  },
+
+  "categories": {
+    "teaching-design": {
+      "name": "教学设计",
+      "description": "面向各学科的 AI 协同教学设计技能"
+    },
+    "exercise-generation": {
+      "name": "练习生成",
+      "description": "自动生成学科练习题、测试卷和答案解析",
+      "status": "planned"
+    },
+    "knowledge-graph": {
+      "name": "知识图谱",
+      "description": "学科知识体系的图结构建模与检索",
+      "status": "planned"
+    },
+    "student-assessment": {
+      "name": "学情评估",
+      "description": "学生认知诊断、学习分析、个性化推荐",
+      "status": "planned"
+    },
+    "resource-curation": {
+      "name": "资源整合",
+      "description": "跨平台教学资源的发现、整理与适配",
+      "status": "planned"
+    }
+  },
+
+  "metadata": {
+    "language": "zh-CN",
+    "locale": "zh_CN",
+    "educationLevel": "K-12",
+    "keywords": ["教育", "AI教学", "K-12", "教学设计", "学科教育", "工程教育"],
+    "homepage": "https://openlearn.ai",
+    "repository": "https://github.com/openlearn/edu-skills"
+  }
+}

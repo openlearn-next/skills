@@ -1,0 +1,78 @@
+{
+  "id": "student-expert",
+  "name": "学情分析专家",
+  "version": "1.0.0",
+  "role": "student-analyst",
+  "type": "analysis",
+  "description": "分析学生已有基础、认知特点、学习困难和常见误区",
+
+  "input": {
+    "required": ["studentProfile", "knowledgePoints"],
+    "optional": ["knowledgeOutput", "grade"],
+    "contexts": ["TeachingContext", "KnowledgeContext"]
+  },
+
+  "output": {
+    "context": "StudentContext",
+    "fields": {
+      "required": ["existingExperience", "learningDifficulties", "tieredStrategy"],
+      "optional": ["cognitiveCharacteristics", "interestPoints", "commonMisconceptions"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Student_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "高中生认知发展特点",
+      "皮亚杰认知发展阶段理论",
+      "维果茨基最近发展区理论",
+      "技术与工程学习困难研究"
+    ],
+    "references": [
+      "学情分析框架",
+      "认知发展阶段理论",
+      "分层教学策略研究"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must", "description": "必须基于最近发展区分析学习困难", "severity": "critical" },
+    { "type": "must", "description": "必须提出分层教学策略", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计具体教学活动", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "学情分析框架（已有基础→认知特点→学习困难→常见误区→分层策略）",
+    "steps": [
+      "分析学生已有知识基础和生活经验",
+      "评估认知发展水平和学习风格",
+      "预测学习困难和知识障碍",
+      "归纳常见错误概念和误区",
+      "制定分层教学策略"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "学情分析是否全面" },
+    { "id": "QC02", "category": "accuracy", "description": "困难预测是否有依据" },
+    { "id": "QC03", "category": "logic", "description": "分层策略是否可行" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": {
+    "category": "analysis",
+    "priority": 4,
+    "language": "zh-CN"
+  }
+}

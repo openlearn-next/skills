@@ -1,0 +1,58 @@
+{
+  "id": "quality-reviewer",
+  "name": "教学设计质量审核专家",
+  "version": "1.0.0",
+  "role": "quality-reviewer",
+  "type": "review",
+  "description": "对完整教学设计进行系统质量审核，生成评分报告和优化建议",
+
+  "input": {
+    "required": ["FinalTeachingDesign", "QualityScore", "DiagnosisReport"],
+    "contexts": ["TeachingContext", "CurriculumContext", "GoalContext", "LearningActivityContext", "AssessmentContext"]
+  },
+
+  "output": {
+    "context": "QualityReviewContext",
+    "fields": {
+      "required": ["overallScore", "dimensionScores", "issues", "optimizationApplied", "readyToPublish"],
+      "optional": ["revisionHistory", "comparisonChart"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Quality_Review_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 3072,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "教学设计质量标准",
+      "教育评价理论",
+      "工程教育评估",
+      "教学设计优化方法论"
+    ]
+  },
+
+  "reasoningRules": [
+    { "rule": "evidence-based", "description": "评分必须有具体事实支撑,不能主观臆断" },
+    { "rule": "improvement-oriented", "description": "审核目的是改进而非否定,应给出建设性建议" },
+    { "rule": "no-modification", "description": "审核不修改原始内容,仅标记问题和建议" },
+    { "rule": "threshold-aware", "description": "总分 < 70 或任关键维度 < 60% 则判定为不通过" }
+  ],
+
+  "qualityChecklist": [
+    { "id": "QR01", "name": "课标符合度", "minScore": 70 },
+    { "id": "QR02", "name": "核心素养体现", "minScore": 65 },
+    { "id": "QR03", "name": "教学闭环", "minScore": 70 },
+    { "id": "QR04", "name": "工程实践完整性", "minScore": 65 },
+    { "id": "QR05", "name": "学情适配性", "minScore": 55 },
+    { "id": "QR06", "name": "资源完整性", "minScore": 55 },
+    { "id": "QR07", "name": "课时合理性", "minScore": 70 },
+    { "id": "QR08", "name": "创新性", "minScore": 50 },
+    { "id": "QR09", "name": "可操作性", "minScore": 60 }
+  ],
+
+  "metadata": { "category": "review", "priority": 12, "language": "zh-CN" }
+}

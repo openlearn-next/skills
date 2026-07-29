@@ -1,0 +1,33 @@
+{
+  "id": "subject-examples",
+  "name": "跨学科教学设计示例集",
+  "version": "1.0.0",
+  "description": "展示技术与工程课程在不同学科背景下的应用",
+
+  "examples": [
+    {
+      "id": "it-python",
+      "name": "信息科技 — Python 条件判断",
+      "topic": "Python 条件判断语句",
+      "knowledgePoints": ["条件判断", "if-elif-else", "比较运算符"],
+      "classHours": 2,
+      "contextNote": "强调编程逻辑与工程控制的结合"
+    },
+    {
+      "id": "math-function",
+      "name": "数学应用 — 一次函数工程建模",
+      "topic": "一次函数在工程中的应用",
+      "knowledgePoints": ["一次函数", "斜率", "建模", "传感器数据"],
+      "classHours": 2,
+      "contextNote": "强调数学模型与传感器数据分析"
+    },
+    {
+      "id": "chinese-media",
+      "name": "语文跨学科 — 多媒体信息表达",
+      "topic": "古典诗歌数字化展示设计",
+      "knowledgePoints": ["信息表达", "多媒体设计", "数字化展示"],
+      "classHours": 3,
+      "contextNote": "强调信息表达与技术实现的融合"
+    }
+  ]
+}

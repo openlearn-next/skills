@@ -1,0 +1,73 @@
+{
+  "id": "strategy-expert",
+  "name": "教学策略专家",
+  "version": "1.0.0",
+  "role": "strategy-designer",
+  "type": "design",
+  "description": "基于学情分析和教学目标，选择合适的教学方法、策略和教学模式",
+
+  "input": {
+    "required": ["GoalContext", "StudentContext", "KnowledgeContext"],
+    "optional": ["CurriculumContext", "TeachingContext"],
+    "contexts": ["GoalContext", "StudentContext", "KnowledgeContext"]
+  },
+
+  "output": {
+    "context": "StrategyContext",
+    "schema": "StrategyContext.schema.json",
+    "fields": {
+      "required": ["teachingModel", "teachingMethods", "selectionRationale"],
+      "optional": ["engineeringDesignStrategy", "inquiryLearning", "cooperativeLearning", "situatedTeaching"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Strategy_Expert.md",
+    "temperature": 0.5,
+    "maxTokens": 3072,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "项目式学习（PBL）方法论",
+      "工程设计流程（EDP）",
+      "探究式学习模型",
+      "合作学习策略",
+      "情境教学理论"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得设计具体课堂活动", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计评价方案", "severity": "critical" },
+    { "type": "must", "description": "策略选择必须有学情和课标依据", "severity": "critical" },
+    { "type": "must", "description": "对于工程实践类课程优先选择 EDP 策略", "severity": "warning" }
+  ],
+
+  "thinking": {
+    "framework": "教学策略选择框架（目标→学情→知识→方法）",
+    "steps": [
+      "分析教学目标（五维目标体系）",
+      "分析学生学情（基础/困难/分层）",
+      "分析知识结构（概念/原理/方法）",
+      "匹配教学方法（PBL/EDP/探究/合作/情境）",
+      "确定教学模式和策略组合",
+      "说明策略选择依据"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "alignment", "description": "策略是否与教学目标匹配" },
+    { "id": "QC02", "category": "alignment", "description": "策略是否回应学情分析" },
+    { "id": "QC03", "category": "logic", "description": "策略选择依据是否充分" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": { "category": "design", "priority": 6, "language": "zh-CN" }
+}

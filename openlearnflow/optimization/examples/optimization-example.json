@@ -1,0 +1,62 @@
+{
+  "id": "optimization-example",
+  "name": "质量优化示例",
+  "description": "展示一个完整的质量问题检测→分类→优化→验证流程",
+  "version": "1.0.0",
+
+  "scenario": {
+    "workflowId": "lesson-plan",
+    "topic": "系统的结构",
+    "issues": [
+      {
+        "ruleId": "R03",
+        "severity": "critical",
+        "description": "教学目标的知识Objective字段为空",
+        "location": "GoalContext.knowledgeObjectives[0]",
+        "strategy": "regenerate",
+        "resolution": "要求 Objective Expert 重新生成教学目标"
+      },
+      {
+        "ruleId": "R11",
+        "severity": "critical",
+        "description": "活动总时长 65分钟 超出课时 45分钟",
+        "location": "LearningActivityContext.tasks[].durationMinutes",
+        "strategy": "adjust",
+        "resolution": "自动按比例压缩: 15→10, 20→14, 15→11, 15→10"
+      },
+      {
+        "ruleId": "R13",
+        "severity": "critical",
+        "description": "EDP 缺少 test 和 improve 阶段",
+        "location": "LearningActivityContext.tasks[].edpPhase",
+        "strategy": "regenerate",
+        "resolution": "要求 Activity Expert 补充测试和优化阶段"
+      },
+      {
+        "ruleId": "R02",
+        "severity": "warning", 
+        "description": "将'零件组合'误用为'系统'",
+        "location": "KnowledgeContext.coreConcepts[0].definition",
+        "strategy": "refine",
+        "resolution": "自动替换为知识库中的标准定义"
+      },
+      {
+        "ruleId": "R16",
+        "severity": "warning",
+        "description": "评价方案章节出现在教学资源章节之前",
+        "location": "OutputSection order",
+        "strategy": "format",
+        "resolution": "自动按模板顺序重新排列章节"
+      }
+    ]
+  },
+
+  "optimizationResult": {
+    "before": { "score": 62, "level": "D", "issues": 5 },
+    "after": { "score": 88, "level": "B", "issues": 0 },
+    "iterations": 2,
+    "autoFixed": 3,
+    "regenerated": 2,
+    "timeSaved": "~45s vs manual fix"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "common-issues",
+  "name": "教学设计常见问题诊断",
+  "version": "1.0.0",
+  "description": "常见质量问题的诊断规则、影响分析和修复建议",
+
+  "issues": [
+    {
+      "id": "DIAG-001",
+      "name": "教学目标缺失或不完整",
+      "category": "objective",
+      "severity": "critical",
+      "detectionRule": "GoalContext.knowledgeObjectives 或 skillObjectives 为空",
+      "affectedExperts": ["objective-expert", "assessment-expert"],
+      "rootCause": "Objective Expert 输入上下文不完整或 Prompt 约束不足",
+      "impact": "后续 Expert (Strategy/Activity/Assessment) 缺乏设计依据",
+      "suggestion": "检查 CurriculumContext 和 KnowledgeContext 的完整性后重新生成"
+    },
+    {
+      "id": "DIAG-002",
+      "name": "活动设计缺乏工程实践",
+      "category": "activity",
+      "severity": "high",
+      "detectionRule": "LearningActivityContext.tasks 未覆盖完整的 EDP 7阶段",
+      "affectedExperts": ["activity-expert", "assessment-expert"],
+      "rootCause": "Activity Expert 未遵循 EDP 约束或知识图谱引用不足",
+      "impact": "无法体现技术与工程的实践特色",
+      "suggestion": "使用 enhanced activity-expert 并确保 engineering-education 知识源可用"
+    },
+    {
+      "id": "DIAG-003",
+      "name": "评价方案与目标不对应",
+      "category": "assessment",
+      "severity": "critical",
+      "detectionRule": "AssessmentContext.rubrics 覆盖维度与 GoalContext 目标数不匹配",
+      "affectedExperts": ["assessment-expert", "reflection-expert"],
+      "rootCause": "Assessment Expert 未读取完整 GoalContext",
+      "impact": "教学闭环断裂,无法验证目标达成度",
+      "suggestion": "确保 Assessment Expert 输入包含完整 GoalContext"
+    },
+    {
+      "id": "DIAG-004",
+      "name": "缺乏核心素养导向",
+      "category": "curriculum",
+      "severity": "high",
+      "detectionRule": "CurriculumContext.coreCompetencies 少于 3 项",
+      "affectedExperts": ["curriculum-expert", "objective-expert"],
+      "rootCause": "Curriculum Expert 未充分解析五大核心素养",
+      "impact": "教学设计偏离课程标准导向",
+      "suggestion": "使用 curriculum-standard 知识源确保素养覆盖"
+    },
+    {
+      "id": "DIAG-005",
+      "name": "时间分配不合理",
+      "category": "activity",
+      "severity": "high",
+      "detectionRule": "Σ task.durationMinutes > totalPeriods × 45",
+      "affectedExperts": ["activity-expert"],
+      "rootCause": "Activity Expert 未考虑总课时限制",
+      "impact": "活动无法在规定时间内完成",
+      "suggestion": "可使用 auto-fix (R11) 按比例自动压缩"
+    },
+    {
+      "id": "DIAG-006",
+      "name": "跨 Expert 输出矛盾",
+      "category": "consistency",
+      "severity": "high",
+      "detectionRule": "Strategy Context 的教学模式与 Activity Context 的设计不一致",
+      "affectedExperts": ["strategy-expert", "activity-expert"],
+      "rootCause": "Expert 间上下文传递丢失或 Prompt 约束冲突",
+      "impact": "教学设计内部逻辑不一致",
+      "suggestion": "标记为人工审核 (strategy-human-review)"
+    },
+    {
+      "id": "DIAG-007",
+      "name": "学情分析未被回应",
+      "category": "student",
+      "severity": "medium",
+      "detectionRule": "StrategyContext.selectionRationale 未引用 StudentContext",
+      "affectedExperts": ["student-expert", "strategy-expert"],
+      "rootCause": "Strategy Expert 未读取或忽略了学情分析",
+      "impact": "教学设计脱离学生实际",
+      "suggestion": "在 pedagogy-expert 的 Prompt 中强化学情回应的约束"
+    }
+  ],
+
+  "diagnosticWorkflow": [
+    { "step": 1, "action": "scan", "description": "逐规则扫描输出" },
+    { "step": 2, "action": "match", "description": "匹配到已知问题模式" },
+    { "step": 3, "action": "classify", "description": "按严重程度分类" },
+    { "step": 4, "action": "suggest", "description": "生成修复建议" },
+    { "step": 5, "action": "report", "description": "生成诊断报告" }
+  ]
+}

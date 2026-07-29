@@ -1,0 +1,9 @@
+{
+  "environment": "development",
+  "debug": true,
+  "verbose": true,
+  "provider": "mock",
+  "logging": "debug",
+  "quality": { "autoOptimize": false, "passThreshold": 0 },
+  "knowledge": { "retrievalEnabled": true, "cacheTTL": 60000 }
+}

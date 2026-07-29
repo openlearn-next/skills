@@ -1,0 +1,105 @@
+{
+  "id": "reflection",
+  "name": "教学反思与改进",
+  "description": "对完整教学设计进行系统反思，诊断问题并提出具体改进建议",
+  "version": "1.0.0",
+  "type": "analysis",
+
+  "input": {
+    "required": ["TeachingContext", "CurriculumContext", "GoalContext", "LearningActivityContext", "AssessmentContext"],
+    "optional": ["TextbookContext", "KnowledgeContext", "StudentContext", "StrategyContext", "ResourceContext"]
+  },
+
+  "output": {
+    "format": "ReflectionContext",
+    "schema": "ReflectionContext.schema.json"
+  },
+
+  "steps": [
+    {
+      "id": "step-review-inputs",
+      "name": "回顾输入",
+      "type": "system",
+      "expert": "system",
+      "description": "汇总所有输入上下文，建立全局视图",
+      "input": ["TeachingContext", "CurriculumContext", "GoalContext", "LearningActivityContext", "AssessmentContext"],
+      "output": ["GlobalReview"],
+      "dependsOn": []
+    },
+    {
+      "id": "step-goal-reflection",
+      "name": "目标达成反思",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "分析与评估教学目标达成情况",
+      "input": ["GlobalReview", "GoalContext"],
+      "output": ["GoalReflection"],
+      "dependsOn": ["step-review-inputs"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-process-reflection",
+      "name": "教学过程反思",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "反思教学流程、活动设计和组织实施",
+      "input": ["GlobalReview", "LearningActivityContext", "StrategyContext"],
+      "output": ["ProcessReflection"],
+      "dependsOn": ["step-review-inputs"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-assessment-reflection",
+      "name": "评价有效性反思",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "评估评价方案的合理性和有效性",
+      "input": ["GlobalReview", "AssessmentContext", "GoalContext"],
+      "output": ["AssessmentReflection"],
+      "dependsOn": ["step-review-inputs"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-diagnosis",
+      "name": "问题诊断",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "识别教学设计中存在的问题和不足",
+      "input": ["GlobalReview", "GoalReflection", "ProcessReflection", "AssessmentReflection"],
+      "output": ["ProblemDiagnosis"],
+      "dependsOn": ["step-goal-reflection", "step-process-reflection", "step-assessment-reflection"],
+      "timeout": 45000
+    },
+    {
+      "id": "step-improvements",
+      "name": "改进建议生成",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "提出具体的教学改进建议和优化方向",
+      "input": ["GlobalReview", "ProblemDiagnosis", "GoalReflection", "ProcessReflection", "AssessmentReflection"],
+      "output": ["ImprovementSuggestions"],
+      "dependsOn": ["step-diagnosis"],
+      "timeout": 45000,
+      "critical": true
+    },
+    {
+      "id": "step-compile",
+      "name": "反思方案汇编",
+      "type": "system",
+      "expert": "system",
+      "description": "汇编完整的 ReflectionContext",
+      "input": ["GoalReflection", "ProcessReflection", "AssessmentReflection", "ProblemDiagnosis", "ImprovementSuggestions"],
+      "output": ["ReflectionContext"],
+      "dependsOn": ["step-goal-reflection", "step-process-reflection", "step-assessment-reflection", "step-diagnosis", "step-improvements"]
+    }
+  ],
+
+  "parallelGroups": [
+    ["step-goal-reflection", "step-process-reflection", "step-assessment-reflection"]
+  ],
+
+  "failure": {
+    "strategy": "abort_on_critical",
+    "criticalSteps": ["step-improvements"]
+  }
+}

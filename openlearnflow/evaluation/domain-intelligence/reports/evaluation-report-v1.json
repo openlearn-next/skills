@@ -1,0 +1,57 @@
+{
+  "reportId": "EVR-2026-001",
+  "skillId": "teaching-design",
+  "skillVersion": "1.0.0",
+  "evaluatedAt": "2026-07-28",
+  "evaluator": "Domain Intelligence Evaluation System",
+
+  "overallScore": 84,
+  "level": "advanced",
+  "certified": true,
+
+  "dimensionScores": {
+    "knowledgeIntelligence": {
+      "score": 22,
+      "maxScore": 25,
+      "percentage": 88,
+      "strengths": ["课程标准知识准确", "教学理论基础扎实", "工程教育理解到位"],
+      "improvements": ["跨学科知识关联可进一步加强"]
+    },
+    "reasoningIntelligence": {
+      "score": 21,
+      "maxScore": 25,
+      "percentage": 84,
+      "strengths": ["课标→目标推理逻辑清晰", "学情→策略回应合理"],
+      "improvements": ["复杂情境下的多因素推理可提升"]
+    },
+    "generationIntelligence": {
+      "score": 22,
+      "maxScore": 25,
+      "percentage": 88,
+      "strengths": ["EDP活动设计完整", "Rubric规范专业", "输出格式丰富"],
+      "improvements": ["创新性活动的多样性和新颖性可增强"]
+    },
+    "optimizationIntelligence": {
+      "score": 19,
+      "maxScore": 25,
+      "percentage": 76,
+      "strengths": ["自动检测基础质量问题", "时间分配自动调整"],
+      "improvements": ["深层逻辑问题的自动修复能力较弱", "优化迭代速度可提升"]
+    }
+  },
+
+  "benchmarkResults": [
+    { "benchmark": "information-technology", "score": 85, "level": "advanced" },
+    { "benchmark": "engineering-practice", "score": 83, "level": "advanced" }
+  ],
+
+  "recommendations": [
+    "加强跨学科知识关联（物理/数学/信息科技）",
+    "开发更多创新性教学活动模板",
+    "优化深层逻辑问题的自动诊断能力",
+    "引入用户反馈机制持续改进Prompt",
+    "定期更新课程标准知识库"
+  ],
+
+  "certificationStatement": "Teaching Design Skill v1.0.0 已达到高级(Advanced)领域智能水平,具备独立完成高中技术与工程教学设计的能力。建议在v1.1中重点提升优化智能维度。"
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Subject Knowledge Graph Schema",
+  "description": "学科知识图谱 Schema 定义",
+  "type": "object",
+  "required": ["id", "name", "subject", "nodes", "relations"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "type": { "type": "string", "enum": ["subject", "topic", "unit"] },
+    "subject": { "type": "string" },
+    "description": { "type": "string" },
+    "gradeLevels": { "type": "array", "items": { "type": "string" } },
+
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "type"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["concept", "skill", "application", "difficulty", "tool"] },
+          "description": { "type": "string" },
+          "difficulty": { "type": "string", "enum": ["basic", "intermediate", "advanced"] },
+          "prerequisites": { "type": "array", "items": { "type": "string" } },
+          "attributes": { "type": "object" }
+        }
+      }
+    },
+
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "type"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type": { "type": "string", "enum": ["prerequisite", "belongsTo", "supports", "assessedBy", "extends"] },
+          "strength": { "type": "string", "enum": ["strong", "moderate", "weak"] }
+        }
+      }
+    },
+
+    "learningPaths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "level", "nodes"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "level": { "type": "string", "enum": ["basic", "intermediate", "advanced"] },
+          "description": { "type": "string" },
+          "nodes": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "reflection-expert",
+  "name": "教学反思专家",
+  "version": "1.0.0",
+  "role": "reflection-designer",
+  "type": "analysis",
+  "description": "对完整教学设计进行系统反思，诊断问题并提出具体改进建议，支持教师专业发展",
+
+  "input": {
+    "required": ["TeachingContext", "CurriculumContext", "GoalContext", "LearningActivityContext", "AssessmentContext"],
+    "optional": ["TextbookContext", "KnowledgeContext", "StudentContext", "StrategyContext", "ResourceContext"],
+    "contexts": ["TeachingContext", "CurriculumContext", "GoalContext", "LearningActivityContext", "AssessmentContext"]
+  },
+
+  "output": {
+    "context": "ReflectionContext",
+    "schema": "ReflectionContext.schema.json",
+    "fields": {
+      "required": ["reflectionFramework", "presetQuestions", "improvementSuggestions"],
+      "optional": ["expectedChallenges", "goalAchievementAnalysis", "processReflection"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Reflection_Expert.md",
+    "temperature": 0.5,
+    "maxTokens": 3072,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "教学反思方法论",
+      "教师专业发展理论",
+      "课堂观察技术",
+      "AI 教育分析",
+      "持续改进模型（PDCA）"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得修改其他 Expert 的输出", "severity": "critical" },
+    { "type": "must_not", "description": "不得重新生成教学内容", "severity": "critical" },
+    { "type": "must", "description": "反思必须基于教学设计事实", "severity": "critical" },
+    { "type": "must", "description": "改进建议必须具体可操作", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "PDCA 反思框架（Plan→Do→Check→Act）",
+    "steps": [
+      "回顾教学目标达成度",
+      "评估教学过程有效性",
+      "分析学生参与和学习成果",
+      "诊断存在的问题和不足",
+      "提出具体改进建议",
+      "设计持续改进计划"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "反思是否覆盖目标/过程/评价/资源" },
+    { "id": "QC02", "category": "logic", "description": "问题诊断是否有教学事实支撑" },
+    { "id": "QC03", "category": "alignment", "description": "改进建议是否具体可操作" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": { "category": "analysis", "priority": 11, "language": "zh-CN" }
+}

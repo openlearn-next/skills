@@ -1,0 +1,45 @@
+{
+  "id": "python-lesson",
+  "name": "Python 条件判断教学",
+  "description": "高一信息科技《Python 条件判断语句》教学设计评估用例",
+  "version": "1.0.0",
+  "skillId": "teaching-design",
+  "workflowId": "lesson-plan",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "semester": "上",
+    "chapter": "第二章 程序设计基础",
+    "topic": "Python 条件判断语句",
+    "knowledgePoints": ["条件判断", "if-elif-else", "比较运算符", "逻辑运算符"],
+    "classHours": 2,
+    "studentProfile": "学生已掌握Python基本语法和变量概念，具备简单的编程能力，但逻辑思维较弱",
+    "teachingMode": "项目式学习",
+    "equipment": "计算机教室、Python IDE、在线评测平台"
+  },
+
+  "expectedOutput": {
+    "objectives": {
+      "knowledgeObjectives": ["理解条件判断的执行流程", "掌握 if-elif-else 语法"],
+      "skillObjectives": ["能够编写包含条件判断的Python程序", "能够使用条件判断解决实际问题"],
+      "engineeringObjectives": ["完成一个包含条件判断的小项目"]
+    },
+    "activities": {
+      "shouldIncludeEDP": true,
+      "expectedTaskCount": { "min": 3, "max": 8 }
+    },
+    "assessment": {
+      "shouldIncludeRubric": true,
+      "shouldIncludeFormative": true
+    }
+  },
+
+  "evaluationPoints": {
+    "technical": { "T01": "所有 Workflow 步骤成功执行", "T02": "Context 正确传递学生编程基础信息" },
+    "workflow": { "W01": "从课标到评价顺序正确", "W03": "可暂停恢复" },
+    "expert": { "E01": "课程含 Python/编程相关课标要求", "E03": "策略Expert不设计具体代码活动" },
+    "output": { "O01": "Markdown 含代码块", "O04": "包含所有章节" },
+    "educational": { "ED01": "引用信息科技课标", "ED03": "含EDP实践任务" }
+  }
+}

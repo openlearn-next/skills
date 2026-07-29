@@ -1,0 +1,61 @@
+{
+  "id": "assessment-expert",
+  "name": "评价方案设计专家",
+  "version": "1.0.0",
+  "role": "assessment-designer",
+  "type": "design",
+  "description": "设计完整的评价体系（形成性+终结性+表现性+Rubric），实现教学目标→学习活动→学习评价闭环",
+
+  "input": {
+    "required": ["GoalContext", "LearningActivityContext"],
+    "contexts": ["GoalContext", "LearningActivityContext"]
+  },
+
+  "output": {
+    "context": "AssessmentContext",
+    "schema": "AssessmentContext.schema.json",
+    "fields": {
+      "required": ["assessmentFramework", "assessmentMethods", "assessmentTasks", "rubrics", "learningEvidence"],
+      "optional": ["formativeAssessment", "summativeAssessment", "performanceAssessment", "peerAssessment"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Assessment_Expert.md",
+    "temperature": 0.4,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "教育评价理论",
+      "表现性评价设计",
+      "Rubric 开发方法（4级/5级量规）",
+      "形成性评价策略",
+      "AI 辅助评价"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得设计教学活动", "severity": "critical" },
+    { "type": "must_not", "description": "不得修改教学目标", "severity": "critical" },
+    { "type": "must", "description": "评价必须与教学目标一一对应", "severity": "critical" },
+    { "type": "must", "description": "Rubric 必须包含等级描述（优/良/合格/待改进）", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "目标→评价对齐框架",
+    "steps": [
+      "回顾教学目标（五维目标体系）",
+      "匹配评价类型（形成性/终结性/表现性）",
+      "设计评价任务（对应每个教学目标）",
+      "设计 Rubric 量规（维度+等级+描述+权重）",
+      "确定学习证据类型",
+      "设计反馈机制"
+    ]
+  },
+
+  "workflow": { "compatible": ["lesson-plan", "project-design", "engineering-design"], "timeout": 120000, "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 } },
+  "metadata": { "category": "design", "priority": 9, "language": "zh-CN" }
+}

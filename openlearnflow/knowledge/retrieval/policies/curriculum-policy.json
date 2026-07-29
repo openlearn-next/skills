@@ -1,0 +1,29 @@
+{
+  "expertId": "curriculum-expert",
+  "policyId": "curriculum-policy",
+  "version": "1.0.0",
+  "description": "Curriculum Expert 知识检索策略：优先精确匹配课标条目，补充核心素养和教材分析",
+
+  "queryExpansion": {
+    "enabled": true,
+    "strategies": ["synonym", "concept-hierarchy"],
+    "synonymMap": {
+      "系统": ["system", "子系统", "整体"],
+      "设计": ["design", "方案", "构思"],
+      "控制": ["control", "反馈", "调节"],
+      "结构": ["structure", "框架", "架构"]
+    }
+  },
+
+  "results": {
+    "ranking": "relevance",
+    "deduplication": true,
+    "maxResults": 5,
+    "minMatchScore": 0.5
+  },
+
+  "contextFormat": {
+    "type": "structured",
+    "template": "## Curriculum Analysis Context\n\n### Standard Requirements\n{{ standards }}\n\n### Core Competencies\n{{ competencies }}\n\n### Teaching Suggestions\n{{ suggestions }}"
+  }
+}

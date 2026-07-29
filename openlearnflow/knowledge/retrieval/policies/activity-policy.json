@@ -1,0 +1,29 @@
+{
+  "expertId": "activity-expert",
+  "policyId": "activity-policy",
+  "version": "1.0.0",
+  "description": "Activity Expert 知识检索策略：混合检索工程教育知识和教学案例",
+
+  "queryExpansion": {
+    "enabled": true,
+    "strategies": ["concept-hierarchy", "case-similarity"],
+    "topicMapping": {
+      "系统": ["系统分析", "系统设计", "控制系统"],
+      "控制": ["传感器", "Arduino", "反馈控制"],
+      "编程": ["条件判断", "循环", "函数", "Python"],
+      "制作": ["3D打印", "Arduino", "工具使用", "材料"]
+    }
+  },
+
+  "results": {
+    "ranking": "hybrid",
+    "deduplication": true,
+    "maxResults": 8,
+    "minMatchScore": 0.4
+  },
+
+  "contextFormat": {
+    "type": "structured",
+    "template": "## Activity Design Context\n\n### Engineering Knowledge\n{{ engineering }}\n\n### Relevant Projects\n{{ projects }}\n\n### Teaching Cases\n{{ cases }}\n\n### Subject Concepts\n{{ concepts }}"
+  }
+}

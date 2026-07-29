@@ -1,0 +1,45 @@
+{
+  "id": "chinese-lesson",
+  "name": "古典诗歌鉴赏教学设计",
+  "description": "高一语文《古典诗歌鉴赏》跨学科教学设计评估用例",
+  "version": "1.0.0",
+  "skillId": "teaching-design",
+  "workflowId": "lesson-plan",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "semester": "下",
+    "chapter": "第四章 信息表达与传播",
+    "topic": "古典诗歌数字化展示设计",
+    "knowledgePoints": ["信息表达", "多媒体设计", "数字化展示", "古典诗歌鉴赏"],
+    "classHours": 3,
+    "studentProfile": "学生具有基本的计算机操作能力和语文素养，对多媒体设计有兴趣",
+    "teachingMode": "项目式学习",
+    "equipment": "计算机教室、多媒体设计软件、电子白板"
+  },
+
+  "expectedOutput": {
+    "objectives": {
+      "knowledgeObjectives": ["理解信息表达的多种方式", "掌握多媒体设计基本原则"],
+      "skillObjectives": ["能够设计数字化展示方案", "能够使用多媒体工具"],
+      "engineeringObjectives": ["完成古典诗歌数字化展示项目"]
+    },
+    "activities": {
+      "shouldIncludeEDP": true,
+      "expectedTaskCount": { "min": 4, "max": 8 }
+    },
+    "assessment": {
+      "shouldIncludeRubric": true,
+      "dimensions": ["信息表达", "设计创意", "技术实现"]
+    }
+  },
+
+  "evaluationPoints": {
+    "technical": { "T01": "跨学科 Context 正确传递", "T02": "课标引用准确" },
+    "workflow": { "W04": "长时间步骤可超时控制" },
+    "expert": { "E01": "KnowledgeExpert 含跨学科联系", "E04": "反思Expert不修改活动设计" },
+    "output": { "O03": "DOCX 生成成功", "O04": "含所有必需章节" },
+    "educational": { "ED01": "课标符合度≥70%", "ED03": "体现工程实践（数字化设计）", "ED05": "回应学情分析中的多媒体兴趣" }
+  }
+}

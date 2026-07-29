@@ -1,0 +1,21 @@
+{
+  "id": "workflow-config",
+  "name": "工作流配置",
+  "version": "1.0.0",
+  "description": "工作流执行参数和策略配置",
+
+  "workflows": {
+    "lesson-plan": { "timeout": 1800000, "maxParallelism": 3, "failure": "abort_on_critical" },
+    "curriculum-analysis": { "timeout": 120000, "maxParallelism": 1, "failure": "abort" },
+    "assessment-design": { "timeout": 300000, "maxParallelism": 2, "failure": "abort_on_critical" },
+    "reflection": { "timeout": 240000, "maxParallelism": 3, "failure": "continue" },
+    "quality-optimization": { "timeout": 600000, "maxParallelism": 1, "failure": "continue", "maxLoops": 3 }
+  },
+
+  "stepDefaults": {
+    "timeoutMs": 120000,
+    "retryMax": 3,
+    "retryBaseDelayMs": 1000,
+    "retryMaxDelayMs": 30000
+  }
+}

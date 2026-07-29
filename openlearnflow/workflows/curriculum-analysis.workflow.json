@@ -1,0 +1,49 @@
+{
+  "id": "curriculum-analysis",
+  "name": "课程标准分析",
+  "description": "独立执行课程标准分析，提取内容要求、核心素养和教学建议",
+  "version": "1.0.0",
+  "type": "analysis",
+
+  "input": {
+    "required": ["subject", "grade", "chapter", "topic"],
+    "optional": ["textbookVersion", "module", "knowledgePoints"]
+  },
+
+  "output": {
+    "format": "CurriculumContext",
+    "schema": "CurriculumContext.schema.json"
+  },
+
+  "steps": [
+    {
+      "id": "step-init",
+      "name": "初始化",
+      "type": "system",
+      "expert": "system",
+      "description": "准备分析上下文",
+      "input": ["teacherInput"],
+      "output": ["TeachingContext"],
+      "dependsOn": []
+    },
+    {
+      "id": "step-analyze",
+      "name": "课程标准解析",
+      "type": "analysis",
+      "expert": "curriculum-expert",
+      "description": "定位课标模块、提取内容要求、映射核心素养、确定学业质量",
+      "input": ["TeachingContext"],
+      "output": ["CurriculumContext"],
+      "dependsOn": ["step-init"],
+      "timeout": 60000,
+      "retry": { "maxAttempts": 2, "strategy": "exponential", "baseDelayMs": 2000 },
+      "validation": {
+        "required": ["coursePosition", "contentRequirements", "coreCompetencies", "academicQuality", "teachingSuggestions"]
+      }
+    }
+  ],
+
+  "failure": {
+    "strategy": "abort"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "mathematics-lesson",
+  "name": "一次函数教学设计",
+  "description": "高一数学《一次函数》教学设计评估用例",
+  "version": "1.0.0",
+  "skillId": "teaching-design",
+  "workflowId": "lesson-plan",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "semester": "上",
+    "chapter": "第三章 数学模型",
+    "topic": "一次函数在工程中的应用",
+    "knowledgePoints": ["一次函数", "斜率", "截距", "线性关系", "建模"],
+    "classHours": 2,
+    "studentProfile": "学生已学习一次函数的定义和图像，掌握基础代数运算",
+    "teachingMode": "探究式学习",
+    "equipment": "多媒体教室、几何画板、传感器套件"
+  },
+
+  "expectedOutput": {
+    "objectives": {
+      "knowledgeObjectives": ["理解一次函数在实际工程中的应用", "掌握线性建模方法"],
+      "skillObjectives": ["能够用一次函数建立简单的工程模型"],
+      "engineeringObjectives": ["完成一次函数的工程应用实验"]
+    },
+    "activities": {
+      "shouldIncludeEDP": true,
+      "expectedTaskCount": { "min": 3, "max": 6 }
+    },
+    "assessment": {
+      "shouldIncludeRubric": true
+    }
+  },
+
+  "evaluationPoints": {
+    "technical": { "T01": "Workflow 完整执行", "T03": "Prompt 正确替换数学相关变量" },
+    "workflow": { "W02": "独立步骤并行" },
+    "expert": { "E01": "数学建模概念出现在知识Expert", "E02": "课标Expert不设计数学题" },
+    "output": { "O02": "JSON Schema 校验通过" },
+    "educational": { "ED02": "体现工程思维和创新设计素养", "ED04": "目标→活动→评价闭环" }
+  }
+}

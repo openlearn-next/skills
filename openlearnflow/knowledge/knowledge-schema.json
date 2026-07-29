@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Teaching Design Knowledge Schema",
+  "description": "教学知识库条目 Schema 定义",
+
+  "type": "object",
+  "required": ["id", "type", "title", "concepts"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "type": { "type": "string", "enum": ["pedagogy", "curriculum", "assessment", "engineering", "example"] },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "definition"],
+        "properties": {
+          "name": { "type": "string" },
+          "definition": { "type": "string" },
+          "applications": { "type": "array", "items": { "type": "string" } },
+          "relatedConcepts": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type": { "type": "string", "enum": ["requires", "supports", "extends", "contradicts"] }
+        }
+      }
+    },
+    "source": { "type": "string" },
+    "expertCompatibility": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

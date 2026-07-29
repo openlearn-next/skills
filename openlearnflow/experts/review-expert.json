@@ -1,0 +1,76 @@
+{
+  "id": "review-expert",
+  "name": "教学质量审核专家",
+  "version": "1.0.0",
+  "role": "teaching-reviewer",
+  "type": "review",
+  "description": "对完整教学设计进行 9 项标准审核，评分并给出修改建议",
+
+  "input": {
+    "required": ["allContexts"],
+    "contexts": ["*"]
+  },
+
+  "output": {
+    "context": "TeachingReviewContext",
+    "fields": {
+      "required": ["overallScore", "dimensionScores", "strengths", "weaknesses", "revisionSuggestions", "readyToPublish"],
+      "optional": ["detailedFeedback", "benchmarkComparison"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Teaching_Review_Expert.md",
+    "temperature": 0.2,
+    "maxTokens": 8192,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "教学设计质量评估框架",
+      "技术与工程教学评价标准",
+      "优质教学设计特征分析"
+    ],
+    "references": [
+      "教学设计质量评价量表",
+      "优质课评价标准",
+      "教学诊断与改进框架"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must", "description": "必须逐项评分并给出依据", "severity": "critical" },
+    { "type": "must", "description": "unsatisfactory 项必须提供修订建议", "severity": "critical" },
+    { "type": "must_not", "description": "不得修改原教学设计内容", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "质量审核框架（完整性→一致性→合理性→创新性→可行性）",
+    "steps": [
+      "检查教学设计的完整性（是否有缺失环节）",
+      "检查各环节之间的一致性（目标-活动-评价对齐）",
+      "检查教学策略的合理性",
+      "检查活动的创新性和工程特色",
+      "检查资源的可行性和安全性"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "9 项标准是否全部评分" },
+    { "id": "QC02", "category": "accuracy", "description": "评分依据是否充分" },
+    { "id": "QC03", "category": "logic", "description": "修订建议是否可操作" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 120000,
+    "retry": { "maxAttempts": 2, "strategy": "exponential", "baseDelayMs": 2000, "maxDelayMs": 60000 }
+  },
+
+  "metadata": {
+    "category": "review",
+    "priority": 11,
+    "language": "zh-CN"
+  }
+}

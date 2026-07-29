@@ -1,0 +1,78 @@
+{
+  "id": "textbook-expert",
+  "name": "教材分析专家",
+  "version": "1.0.0",
+  "role": "textbook-analyst",
+  "type": "analysis",
+  "description": "分析教材章节定位、知识结构、前后联系和重难点",
+
+  "input": {
+    "required": ["textbookVersion", "chapter", "topic"],
+    "optional": ["module", "subject"],
+    "contexts": ["TeachingContext"]
+  },
+
+  "output": {
+    "context": "TextbookContext",
+    "fields": {
+      "required": ["chapterPosition", "knowledgeStructure", "keyPoints", "difficultPoints"],
+      "optional": ["textbookReferences", "interChapterLinks", "optionalContent"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Textbook_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "普通高中《技术与工程》教材体系",
+      "教材章节结构与编排逻辑",
+      "技术与工程核心知识点体系"
+    ],
+    "references": [
+      "教材原文",
+      "教师教学用书",
+      "教材分析指南"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得生成教学目标", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计课堂活动", "severity": "critical" },
+    { "type": "must", "description": "必须明确重难点依据", "severity": "critical" },
+    { "type": "must", "description": "必须说明前后章节联系", "severity": "warning" }
+  ],
+
+  "thinking": {
+    "framework": "教材分析框架（整体定位→章节结构→知识脉络→重难点→教学价值）",
+    "steps": [
+      "确定教材版本和章节信息",
+      "分析本章在全书中的地位",
+      "梳理本章内部知识结构",
+      "标记教学重难点",
+      "分析前后联系和知识衔接"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "教材版本和章节是否明确" },
+    { "id": "QC02", "category": "accuracy", "description": "重难点分析是否有依据" },
+    { "id": "QC03", "category": "logic", "description": "前后联系是否清晰" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": {
+    "category": "analysis",
+    "priority": 2,
+    "language": "zh-CN"
+  }
+}

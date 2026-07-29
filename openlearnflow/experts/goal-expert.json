@@ -1,0 +1,61 @@
+{
+  "id": "goal-expert",
+  "name": "教学目标专家",
+  "version": "1.0.0",
+  "role": "goal-designer",
+  "type": "design",
+  "description": "基于课标要求、知识分析和学情，设计完整的五维教学目标体系",
+
+  "input": {
+    "required": ["CurriculumContext", "KnowledgeContext", "StudentContext"],
+    "contexts": ["CurriculumContext", "KnowledgeContext", "StudentContext"]
+  },
+
+  "output": {
+    "context": "GoalContext",
+    "schema": "GoalContext.schema.json",
+    "fields": {
+      "required": ["knowledgeObjectives", "skillObjectives", "engineeringObjectives"],
+      "optional": ["literacyObjectives", "innovationObjectives", "academicQualityLevel"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Goal_Expert.md",
+    "temperature": 0.4,
+    "maxTokens": 3072,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "Bloom 教育目标分类学",
+      "核心素养目标设计",
+      "工程教育目标体系",
+      "可观测行为动词库"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得设计课堂流程", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计评价工具", "severity": "critical" },
+    { "type": "must", "description": "目标必须可观测、可评价", "severity": "critical" },
+    { "type": "must", "description": "目标必须与课标要求对齐", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "五维目标设计框架（知识→技能→素养→工程→创新）",
+    "steps": [
+      "分析课标中的内容要求和学业质量",
+      "确定知识目标（概念/原理/方法）",
+      "确定技能目标（操作/分析/设计）",
+      "确定素养目标（技术意识/工程思维/创新设计）",
+      "确定工程实践目标",
+      "确定创新能力目标",
+      "确保目标可观测、可评价"
+    ]
+  },
+
+  "workflow": { "compatible": ["lesson-plan", "project-design", "engineering-design"], "timeout": 90000, "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 } },
+  "metadata": { "category": "design", "priority": 5, "language": "zh-CN" }
+}

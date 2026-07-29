@@ -1,0 +1,68 @@
+{
+  "id": "domain-intelligence-metrics",
+  "name": "领域智能评估指标",
+  "version": "1.0.0",
+  "description": "4 维度 16 项指标评估 Skill 的领域智能水平，满分 100 分",
+
+  "dimensions": [
+    {
+      "id": "knowledge-intelligence",
+      "name": "知识智能",
+      "weight": 0.25,
+      "maxScore": 25,
+      "description": "评估 Skill 对教学设计领域知识的掌握程度",
+      "criteria": [
+        { "id": "KI-01", "name": "课标知识准确度", "description": "是否正确引用和理解课程标准原文", "maxScore": 7 },
+        { "id": "KI-02", "name": "教学理论应用", "description": "是否正确应用建构主义、PBL等教学理论", "maxScore": 6 },
+        { "id": "KI-03", "name": "工程教育理解", "description": "是否理解EDP、系统思维等工程教育概念", "maxScore": 6 },
+        { "id": "KI-04", "name": "评价理论应用", "description": "是否正确应用形成性/表现性评价理论", "maxScore": 6 }
+      ]
+    },
+    {
+      "id": "reasoning-intelligence",
+      "name": "推理智能",
+      "weight": 0.25,
+      "maxScore": 25,
+      "description": "评估 Skill 基于知识进行教学推理的能力",
+      "criteria": [
+        { "id": "RI-01", "name": "课标→目标推理", "description": "能否从课标要求推导出合理的教学目标", "maxScore": 7 },
+        { "id": "RI-02", "name": "学情→策略推理", "description": "能否基于学情分析选择合适的教学策略", "maxScore": 6 },
+        { "id": "RI-03", "name": "目标→评价推理", "description": "能否从教学目标推导出对应的评价方式", "maxScore": 6 },
+        { "id": "RI-04", "name": "跨Expert一致性", "description": "多Expert输出是否逻辑自洽无矛盾", "maxScore": 6 }
+      ]
+    },
+    {
+      "id": "generation-intelligence",
+      "name": "生成智能",
+      "weight": 0.25,
+      "maxScore": 25,
+      "description": "评估 Skill 生成高质量教学设计内容的能力",
+      "criteria": [
+        { "id": "GI-01", "name": "目标质量", "description": "生成的教学目标是否具体、可测、分层次", "maxScore": 7 },
+        { "id": "GI-02", "name": "活动设计质量", "description": "学习活动是否体现EDP、含真实情境", "maxScore": 7 },
+        { "id": "GI-03", "name": "评价方案质量", "description": "Rubric是否规范、评价方式是否多元", "maxScore": 6 },
+        { "id": "GI-04", "name": "输出完整性", "description": "所有必需章节是否完整填充", "maxScore": 5 }
+      ]
+    },
+    {
+      "id": "optimization-intelligence",
+      "name": "优化智能",
+      "weight": 0.25,
+      "maxScore": 25,
+      "description": "评估 Skill 自我诊断和优化改进的能力",
+      "criteria": [
+        { "id": "OI-01", "name": "问题检测能力", "description": "能否自动检测出输出中的质量问题", "maxScore": 7 },
+        { "id": "OI-02", "name": "自动修复能力", "description": "能否自动修复可解决的问题", "maxScore": 6 },
+        { "id": "OI-03", "name": "优化后提升", "description": "优化后质量评分是否有实质性提升", "maxScore": 6 },
+        { "id": "OI-04", "name": "反思深度", "description": "反思是否基于事实、改进建议是否具体", "maxScore": 6 }
+      ]
+    }
+  ],
+
+  "certificationLevels": [
+    { "level": "expert", "minScore": 90, "label": "专家级", "description": "具备完整的领域智能,可独立完成高质量教学设计" },
+    { "level": "advanced", "minScore": 80, "label": "高级", "description": "具备较高的领域智能,输出质量稳定" },
+    { "level": "competent", "minScore": 70, "label": "胜任级", "description": "具备基本的领域智能,可辅助教学设计" },
+    { "level": "basic", "minScore": 0, "label": "基础级", "description": "领域智能建设初期,需要大量人工介入" }
+  ]
+}

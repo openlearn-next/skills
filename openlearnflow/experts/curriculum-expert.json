@@ -1,0 +1,83 @@
+{
+  "id": "curriculum-expert",
+  "name": "课程标准专家",
+  "version": "1.0.0",
+  "role": "curriculum-analyst",
+  "type": "analysis",
+  "description": "解析《普通高中技术课程标准》，提取与当前章节相关的课标要求、核心素养、学业质量和教学建议",
+
+  "input": {
+    "required": ["subject", "grade", "chapter", "topic"],
+    "optional": ["module", "textbookVersion", "knowledgePoints"],
+    "contexts": ["TeachingContext"]
+  },
+
+  "output": {
+    "context": "CurriculumContext",
+    "schema": "CurriculumContext.schema.json",
+    "fields": {
+      "required": ["coursePosition", "contentRequirements", "coreCompetencies", "academicQuality", "teachingSuggestions"],
+      "optional": ["standardReferences", "curriculumValue", "knowledgeRelationship"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Curriculum_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "普通高中技术课程标准（2017年版2020年修订）",
+      "技术与工程领域内容要求",
+      "核心素养体系（技术意识/工程思维/创新设计/图样表达/物化能力）",
+      "学业质量标准"
+    ],
+    "references": [
+      "课程标准原文",
+      "课程标准解读",
+      "教学指导意见"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得生成教学目标", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计课堂活动", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计评价方案", "severity": "critical" },
+    { "type": "must", "description": "必须使用最新版课程标准", "severity": "critical" },
+    { "type": "must", "description": "必须引用课程标准原文条目编号", "severity": "warning" }
+  ],
+
+  "thinking": {
+    "framework": "课程标准解读框架（模块→主题→内容要求→素养→学业质量）",
+    "steps": [
+      "识别课程信息（教材/年级/章节）",
+      "定位课程标准模块和主题",
+      "提取课程内容要求",
+      "映射五大核心素养",
+      "确定学业质量水平",
+      "生成课标教学建议"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "课标条目是否完整引用" },
+    { "id": "QC02", "category": "accuracy", "description": "核心素养映射是否准确" },
+    { "id": "QC03", "category": "alignment", "description": "是否体现工程教育特点" },
+    { "id": "QC04", "category": "logic", "description": "是否没有越界（无教学目标/活动/评价）" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "curriculum-analysis"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": {
+    "category": "analysis",
+    "priority": 1,
+    "language": "zh-CN"
+  }
+}

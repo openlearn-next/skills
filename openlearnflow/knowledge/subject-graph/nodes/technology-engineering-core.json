@@ -1,0 +1,57 @@
+{
+  "id": "technology-engineering-core",
+  "name": "技术与工程核心概念图",
+  "type": "subject",
+  "subject": "技术与工程",
+  "description": "高中技术与工程课程的核心概念、技能和应用知识图谱",
+  "gradeLevels": ["高一", "高二", "高三"],
+
+  "nodes": [
+    { "id": "cn-design", "name": "设计", "type": "concept", "difficulty": "basic", "description": "将创意转化为具体方案的过程", "prerequisites": [] },
+    { "id": "cn-system", "name": "系统", "type": "concept", "difficulty": "intermediate", "description": "由相互关联的部分组成的有机整体", "prerequisites": ["cn-design"] },
+    { "id": "cn-control", "name": "控制", "type": "concept", "difficulty": "advanced", "description": "使系统按照预定目标运行的技术", "prerequisites": ["cn-system"] },
+    { "id": "cn-structure", "name": "结构", "type": "concept", "difficulty": "basic", "description": "物体各组成部分的排列方式", "prerequisites": [] },
+    { "id": "cn-material", "name": "材料", "type": "concept", "difficulty": "basic", "description": "用于制作产品或结构的物质", "prerequisites": [] },
+
+    { "id": "sk-analysis", "name": "系统分析", "type": "skill", "difficulty": "intermediate", "description": "识别系统组成部分及其相互关系的能力", "prerequisites": ["cn-system"] },
+    { "id": "sk-modeling", "name": "建模", "type": "skill", "difficulty": "intermediate", "description": "使用数学或图形方式表达技术方案", "prerequisites": ["cn-system"] },
+    { "id": "sk-drawing", "name": "制图", "type": "skill", "difficulty": "basic", "description": "绘制技术图样表达设计思想", "prerequisites": ["cn-design"] },
+    { "id": "sk-fabrication", "name": "制作", "type": "skill", "difficulty": "basic", "description": "使用工具将设计转化为实物", "prerequisites": ["cn-design", "cn-material"] },
+    { "id": "sk-programming", "name": "编程", "type": "skill", "difficulty": "advanced", "description": "使用编程语言实现控制逻辑", "prerequisites": ["cn-control"] },
+
+    { "id": "ap-arduino", "name": "Arduino项目", "type": "application", "difficulty": "advanced", "description": "使用Arduino平台搭建控制系统", "prerequisites": ["cn-control", "sk-programming"] },
+    { "id": "ap-3dprint", "name": "3D打印", "type": "application", "difficulty": "intermediate", "description": "使用3D打印技术制作模型", "prerequisites": ["cn-structure", "sk-modeling"] },
+    { "id": "ap-sensor", "name": "传感器", "type": "application", "difficulty": "intermediate", "description": "使用传感器采集环境数据", "prerequisites": ["cn-control", "cn-system"] }
+  ],
+
+  "relations": [
+    { "from": "cn-system", "to": "cn-design", "type": "extends", "strength": "strong" },
+    { "from": "cn-control", "to": "cn-system", "type": "extends", "strength": "strong" },
+    { "from": "sk-analysis", "to": "cn-system", "type": "supports", "strength": "strong" },
+    { "from": "sk-modeling", "to": "cn-system", "type": "supports", "strength": "strong" },
+    { "from": "sk-drawing", "to": "cn-design", "type": "supports", "strength": "strong" },
+    { "from": "sk-fabrication", "to": "cn-design", "type": "supports", "strength": "strong" },
+    { "from": "sk-fabrication", "to": "cn-material", "type": "supports", "strength": "moderate" },
+    { "from": "sk-programming", "to": "cn-control", "type": "supports", "strength": "strong" },
+    { "from": "ap-arduino", "to": "cn-control", "type": "supports", "strength": "strong" },
+    { "from": "ap-arduino", "to": "sk-programming", "type": "supports", "strength": "strong" },
+    { "from": "ap-3dprint", "to": "cn-structure", "type": "supports", "strength": "strong" },
+    { "from": "ap-3dprint", "to": "sk-modeling", "type": "supports", "strength": "moderate" },
+    { "from": "ap-sensor", "to": "cn-control", "type": "supports", "strength": "strong" }
+  ],
+
+  "learningPaths": [
+    {
+      "id": "path-basic", "name": "基础路径", "level": "basic", "description": "技术设计入门",
+      "nodes": ["cn-design", "cn-structure", "cn-material", "sk-drawing", "sk-fabrication"]
+    },
+    {
+      "id": "path-intermediate", "name": "中级路径", "level": "intermediate", "description": "系统分析与建模",
+      "nodes": ["cn-system", "sk-analysis", "sk-modeling", "ap-3dprint", "ap-sensor"]
+    },
+    {
+      "id": "path-advanced", "name": "高级路径", "level": "advanced", "description": "控制与编程实践",
+      "nodes": ["cn-control", "sk-programming", "ap-arduino"]
+    }
+  ]
+}

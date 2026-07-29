@@ -1,0 +1,59 @@
+{
+  "id": "skill-config",
+  "name": "Skill 主配置",
+  "version": "1.0.0",
+  "description": "Teaching Design Skill 的核心运行配置",
+
+  "runtime": {
+    "maxWorkflowConcurrency": 3,
+    "workflowTimeoutMs": 1800000,
+    "stepTimeoutMs": 120000,
+    "retryMaxAttempts": 3,
+    "retryStrategy": "exponential",
+    "parallelExecution": true
+  },
+
+  "expert": {
+    "defaultModel": "default",
+    "temperature": 0.4,
+    "maxTokens": 4096,
+    "executionMode": "sequential",
+    "maxRetries": 3
+  },
+
+  "prompt": {
+    "templatePath": "prompts/",
+    "cacheEnabled": true,
+    "maxLength": 128000,
+    "tokenBudget": 128000,
+    "optimizationEnabled": true
+  },
+
+  "output": {
+    "defaultFormat": "markdown",
+    "enabledFormats": ["markdown", "json", "docx", "pptx"],
+    "includeMetadata": true,
+    "includeReview": true
+  },
+
+  "knowledge": {
+    "retrievalEnabled": true,
+    "maxResultsPerQuery": 5,
+    "minRelevanceScore": 0.5,
+    "contextInjectionEnabled": true
+  },
+
+  "quality": {
+    "autoOptimize": true,
+    "maxOptimizationLoops": 3,
+    "passThreshold": 70,
+    "autoFixEnabled": true
+  },
+
+  "logging": {
+    "level": "info",
+    "includePrompts": false,
+    "includeResponses": true,
+    "includeMetrics": true
+  }
+}

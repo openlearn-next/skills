@@ -1,0 +1,60 @@
+{
+  "id": "python-learning-path",
+  "name": "Python 编程学习路径",
+  "description": "从零基础到工程应用的三级学习路径规划",
+  "subject": "技术与工程",
+
+  "levels": [
+    {
+      "level": "basic",
+      "name": "基础入门",
+      "estimatedHours": 8,
+      "objectives": [
+        "理解变量的概念和基本数据类型",
+        "掌握条件判断语句的语法和使用场景",
+        "能编写简单的交互式程序"
+      ],
+      "nodes": ["py-variables", "py-datatypes", "py-operators", "py-conditionals"],
+      "checkpoint": "完成一个简单的计算器程序"
+    },
+    {
+      "level": "intermediate",
+      "name": "进阶提升",
+      "estimatedHours": 12,
+      "objectives": [
+        "掌握循环结构的应用",
+        "理解函数封装和代码复用",
+        "能使用列表处理批量数据",
+        "能读取传感器数据并进行分析"
+      ],
+      "nodes": ["py-loops", "py-lists", "py-functions", "py-sensor"],
+      "prerequisites": ["py-conditionals"],
+      "checkpoint": "完成传感器数据采集和分析程序"
+    },
+    {
+      "level": "advanced",
+      "name": "工程应用",
+      "estimatedHours": 10,
+      "objectives": [
+        "能设计完整的应用程序架构",
+        "能集成硬件控制完成工程实践项目",
+        "能对程序进行优化和调试"
+      ],
+      "nodes": ["py-design", "py-led", "py-sensor"],
+      "prerequisites": ["py-functions", "py-lists"],
+      "checkpoint": "完成一个完整的Arduino+Python控制项目"
+    }
+  ],
+
+  "teachingStrategies": {
+    "basic": "讲授+演示+练习",
+    "intermediate": "任务驱动+问题解决",
+    "advanced": "项目式学习+工程实践"
+  },
+
+  "assessmentPoints": [
+    { "level": "basic", "method": "编程练习", "passCriteria": "正确编写条件判断程序" },
+    { "level": "intermediate", "method": "项目作品", "passCriteria": "完成传感器数据处理程序" },
+    { "level": "advanced", "method": "项目答辩", "passCriteria": "展示并讲解工程控制项目" }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "id": "lesson-plan",
+  "name": "课时教学设计",
+  "description": "标准课时教学设计完整流程。从课程分析到质量审核，生成完整教学设计方案。",
+  "version": "1.0.0",
+  "type": "sequential",
+
+  "input": {
+    "required": ["subject", "grade", "chapter", "topic", "classHours"],
+    "optional": ["textbookVersion", "knowledgePoints", "studentProfile", "teachingMode", "equipment"]
+  },
+
+  "output": {
+    "formats": ["markdown", "json", "docx", "pptx"],
+    "schema": "FinalTeachingDesign"
+  },
+
+  "steps": [
+    {
+      "id": "step-context",
+      "name": "上下文初始化",
+      "type": "system",
+      "expert": "system",
+      "description": "解析教师输入，创建 TeachingContext",
+      "input": ["teacherInput"],
+      "output": ["TeachingContext"],
+      "dependsOn": []
+    },
+    {
+      "id": "step-curriculum",
+      "name": "课程标准分析",
+      "type": "analysis",
+      "expert": "curriculum-expert",
+      "description": "解析课程标准，提取内容要求、核心素养和教学建议",
+      "input": ["TeachingContext"],
+      "output": ["CurriculumContext"],
+      "dependsOn": ["step-context"],
+      "timeout": 30000,
+      "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000 }
+    },
+    {
+      "id": "step-textbook",
+      "name": "教材分析",
+      "type": "analysis",
+      "expert": "textbook-expert",
+      "description": "分析教材章节地位、内容结构和重难点",
+      "input": ["TeachingContext", "CurriculumContext"],
+      "output": ["TextbookContext"],
+      "dependsOn": ["step-curriculum"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-knowledge",
+      "name": "知识体系分析",
+      "type": "analysis",
+      "expert": "knowledge-expert",
+      "description": "构建知识图谱，梳理核心概念和工程案例",
+      "input": ["TeachingContext", "CurriculumContext", "TextbookContext"],
+      "output": ["KnowledgeContext"],
+      "dependsOn": ["step-curriculum", "step-textbook"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-student",
+      "name": "学情分析",
+      "type": "analysis",
+      "expert": "student-expert",
+      "description": "分析学生已有基础、学习困难和分层策略",
+      "input": ["TeachingContext", "KnowledgeContext"],
+      "output": ["StudentContext"],
+      "dependsOn": ["step-knowledge"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-objective",
+      "name": "教学目标设计",
+      "type": "design",
+      "expert": "goal-expert",
+      "description": "基于课标、知识和学情设计五维教学目标",
+      "input": ["TeachingContext", "CurriculumContext", "KnowledgeContext", "StudentContext"],
+      "output": ["GoalContext"],
+      "dependsOn": ["step-curriculum", "step-knowledge", "step-student"],
+      "timeout": 30000,
+      "critical": true
+    },
+    {
+      "id": "step-strategy",
+      "name": "教学策略设计",
+      "type": "design",
+      "expert": "strategy-expert",
+      "description": "选择教学策略、方法和模式",
+      "input": ["TeachingContext", "GoalContext", "StudentContext", "KnowledgeContext"],
+      "output": ["StrategyContext"],
+      "dependsOn": ["step-objective", "step-student", "step-knowledge"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-activity",
+      "name": "学习活动设计",
+      "type": "design",
+      "expert": "activity-expert",
+      "description": "基于工程设计流程设计学习任务序列",
+      "input": ["TeachingContext", "StrategyContext", "GoalContext", "StudentContext", "KnowledgeContext"],
+      "output": ["LearningActivityContext"],
+      "dependsOn": ["step-strategy", "step-objective", "step-student", "step-knowledge"],
+      "timeout": 60000
+    },
+    {
+      "id": "step-assessment",
+      "name": "评价方案设计",
+      "type": "design",
+      "expert": "assessment-expert",
+      "description": "设计形成性/终结性/表现性评价方案与 Rubric",
+      "input": ["TeachingContext", "GoalContext", "LearningActivityContext"],
+      "output": ["AssessmentContext"],
+      "dependsOn": ["step-objective", "step-activity"],
+      "timeout": 60000,
+      "critical": true
+    },
+    {
+      "id": "step-resource",
+      "name": "教学资源整合",
+      "type": "curation",
+      "expert": "resource-expert",
+      "description": "整合教学案例、素材、学习单、板书设计和 PPT 大纲",
+      "input": ["TeachingContext", "LearningActivityContext", "AssessmentContext"],
+      "output": ["ResourceContext"],
+      "dependsOn": ["step-activity", "step-assessment"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-reflection",
+      "name": "教学反思设计",
+      "type": "analysis",
+      "expert": "reflection-expert",
+      "description": "设计教学反思框架、预设问题和改进方向",
+      "input": ["TeachingContext", "CurriculumContext", "TextbookContext", "KnowledgeContext", "StudentContext", "GoalContext", "StrategyContext", "LearningActivityContext", "AssessmentContext", "ResourceContext"],
+      "output": ["ReflectionContext"],
+      "dependsOn": ["step-curriculum", "step-textbook", "step-knowledge", "step-student", "step-objective", "step-strategy", "step-activity", "step-assessment", "step-resource"],
+      "timeout": 30000
+    },
+    {
+      "id": "step-review",
+      "name": "教学质量审核",
+      "type": "review",
+      "expert": "review-expert",
+      "description": "执行 9 项标准审核，评分并给出修改建议",
+      "input": ["TeachingContext", "CurriculumContext", "TextbookContext", "KnowledgeContext", "StudentContext", "GoalContext", "StrategyContext", "LearningActivityContext", "AssessmentContext", "ResourceContext", "ReflectionContext"],
+      "output": ["TeachingReviewContext"],
+      "dependsOn": ["step-curriculum", "step-textbook", "step-knowledge", "step-student", "step-objective", "step-strategy", "step-activity", "step-assessment", "step-resource", "step-reflection"],
+      "timeout": 60000,
+      "reviewCriteria": [
+        { "id": "RC01", "name": "课程标准符合度", "minScore": 70 },
+        { "id": "RC02", "name": "核心素养体现度", "minScore": 65 },
+        { "id": "RC03", "name": "工程实践完整性", "minScore": 65 },
+        { "id": "RC04", "name": "学情匹配度", "minScore": 55 },
+        { "id": "RC05", "name": "教学闭环", "minScore": 70 },
+        { "id": "RC06", "name": "逻辑一致性", "minScore": 60 },
+        { "id": "RC07", "name": "资源完整性", "minScore": 55 },
+        { "id": "RC08", "name": "课时合理性", "minScore": 70 },
+        { "id": "RC09", "name": "技术与工程特色", "minScore": 60 }
+      ]
+    }
+  ],
+
+  "failure": {
+    "strategy": "abort_on_critical",
+    "criticalSteps": ["step-objective", "step-assessment"]
+  },
+
+  "parallelGroups": [
+    ["step-textbook", "step-knowledge"],
+    ["step-resource", "step-reflection"]
+  ]
+}

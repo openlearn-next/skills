@@ -1,0 +1,263 @@
+{
+  "$schema": "./schema/manifest.schema.json",
+  "id": "openlearnflow",
+  "name": "OpenLearn Flow — Teaching Design Skill",
+  "displayName": "技术与工程教学设计",
+  "version": "1.1.0",
+  "description": "中国普通高中《技术与工程》AI 协同教学设计技能。支持课程标准分析、教学目标设计、学习活动设计、评价方案设计、教学反思、PPT 课件生成和互动教学网页生成。",
+  "type": "skill",
+  "author": {
+    "name": "OpenLearn AI Team",
+    "email": "dev@openlearn.ai",
+    "url": "https://openlearn.ai"
+  },
+  "license": "MIT",
+
+  "runtime": {
+    "minVersion": "1.0.0",
+    "maxVersion": "2.0.0"
+  },
+
+  "capabilities": [
+    {
+      "id": "curriculum-analysis",
+      "name": "课程标准分析",
+      "type": "analysis",
+      "description": "解析《普通高中技术课程标准》，提取与当前章节相关的课标要求、核心素养和教学建议",
+      "input": ["subject", "grade", "chapter", "topic"],
+      "output": ["coursePosition", "contentRequirements", "coreCompetencies", "academicQuality", "teachingSuggestions"],
+      "expert": "curriculum-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "textbook-analysis",
+      "name": "教材分析",
+      "type": "analysis",
+      "description": "分析教材章节定位、知识结构、前后联系和重难点",
+      "input": ["textbookVersion", "chapter", "topic"],
+      "output": ["chapterPosition", "knowledgeStructure", "keyPoints", "difficultPoints"],
+      "expert": "textbook-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "knowledge-organization",
+      "name": "知识体系分析",
+      "type": "analysis",
+      "description": "构建知识图谱，梳理核心概念、工程案例和跨学科联系",
+      "input": ["topic", "knowledgePoints"],
+      "output": ["coreConcepts", "knowledgeNetwork", "engineeringCases", "crossDisciplinary"],
+      "expert": "knowledge-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "student-analysis",
+      "name": "学情分析",
+      "type": "analysis",
+      "description": "分析学生已有基础、认知特点、学习困难和常见误区",
+      "input": ["studentProfile", "knowledgePoints"],
+      "output": ["existingExperience", "learningDifficulties", "tieredStrategy"],
+      "expert": "student-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "objective-design",
+      "name": "教学目标设计",
+      "type": "design",
+      "description": "基于课标和学情设计五维教学目标体系",
+      "input": ["curriculumOutput", "knowledgeOutput", "studentOutput"],
+      "output": ["knowledgeObjectives", "skillObjectives", "engineeringObjectives", "innovationObjectives"],
+      "expert": "goal-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "strategy-design",
+      "name": "教学策略设计",
+      "type": "design",
+      "description": "选择教学方法、策略和模式，提供选择依据",
+      "input": ["goalOutput", "studentOutput", "knowledgeOutput"],
+      "output": ["teachingModel", "teachingMethods", "selectionRationale"],
+      "expert": "strategy-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "activity-design",
+      "name": "学习活动设计",
+      "type": "design",
+      "description": "基于工程设计流程设计学习任务序列",
+      "input": ["strategyOutput", "goalOutput", "knowledgeOutput"],
+      "output": ["learningTasks", "designRationale", "timeAllocation"],
+      "expert": "activity-expert",
+      "timeout": 60000
+    },
+    {
+      "id": "assessment-design",
+      "name": "评价方案设计",
+      "type": "design",
+      "description": "设计形成性/终结性/表现性评价方案与 Rubric 量规",
+      "input": ["goalOutput", "activityOutput"],
+      "output": ["assessmentPlan", "rubric", "evaluationEvidence"],
+      "expert": "assessment-expert",
+      "timeout": 60000
+    },
+    {
+      "id": "resource-curation",
+      "name": "教学资源整合",
+      "type": "curation",
+      "description": "整合教学案例、素材、学习单、板书设计和 PPT 大纲",
+      "input": ["activityOutput", "assessmentOutput"],
+      "output": ["teachingResources", "worksheet", "pptOutline", "boardDesign"],
+      "expert": "resource-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "teaching-reflection",
+      "name": "教学反思设计",
+      "type": "analysis",
+      "description": "设计教学反思框架、预设问题和改进方向",
+      "input": ["allContexts"],
+      "output": ["reflectionFramework", "presetQuestions", "improvementSuggestions"],
+      "expert": "reflection-expert",
+      "timeout": 30000
+    },
+    {
+      "id": "quality-review",
+      "name": "教学质量审核",
+      "type": "review",
+      "description": "对完整教学设计进行 9 项标准审核，评分并给出修改建议",
+      "input": ["allContexts"],
+      "output": ["overallScore", "dimensionScores", "strengths", "weaknesses", "revisionSuggestions", "readyToPublish"],
+      "expert": "review-expert",
+      "timeout": 60000
+    },
+    {
+      "id": "ppt-generation",
+      "name": "PPT 课件生成",
+      "type": "generation",
+      "description": "基于 Resource Expert 产出的 PPT 大纲，调用外部 pptx skill 渲染实际 .pptx 演示文稿",
+      "input": ["resourceOutput"],
+      "output": ["pptxFile"],
+      "externalSkill": "pptx",
+      "timeout": 120000
+    },
+    {
+      "id": "web-interactive",
+      "name": "互动教学网页生成",
+      "type": "generation",
+      "description": "基于 Activity Expert 产出的活动设计，调用外部 web-design-engineer skill 生成 HTML/CSS/JS 互动教学页面",
+      "input": ["activityOutput", "strategyOutput"],
+      "output": ["htmlPage"],
+      "externalSkill": "web-design-engineer",
+      "timeout": 180000
+    }
+  ],
+
+  "workflows": [
+    {
+      "id": "lesson-plan",
+      "name": "课时教学设计",
+      "type": "sequential",
+      "description": "标准课时教学设计完整流程，从课标分析到质量审核",
+      "steps": [
+        "curriculum-analysis",
+        "textbook-analysis",
+        "knowledge-organization",
+        "student-analysis",
+        "objective-design",
+        "strategy-design",
+        "activity-design",
+        "assessment-design",
+        "resource-curation",
+        "teaching-reflection",
+        "quality-review"
+      ]
+    },
+    {
+      "id": "curriculum-analysis",
+      "name": "课程标准分析",
+      "type": "analysis",
+      "description": "独立执行课程标准分析，提取内容要求、核心素养和教学建议",
+      "steps": ["curriculum-analysis"]
+    },
+    {
+      "id": "assessment-design",
+      "name": "评价方案设计",
+      "type": "design",
+      "description": "基于教学目标和活动设计，生成完整的评价方案",
+      "steps": ["assessment-design"]
+    },
+    {
+      "id": "reflection",
+      "name": "教学反思与改进",
+      "type": "analysis",
+      "description": "对完整教学设计进行系统反思和改进建议",
+      "steps": ["teaching-reflection"]
+    }
+  ],
+
+  "experts": [
+    { "id": "curriculum-expert", "name": "课程标准专家", "type": "analysis", "prompt": "experts/Curriculum_Expert.md" },
+    { "id": "textbook-expert", "name": "教材分析专家", "type": "analysis", "prompt": "experts/Textbook_Expert.md" },
+    { "id": "knowledge-expert", "name": "知识体系专家", "type": "analysis", "prompt": "experts/Knowledge_Expert.md" },
+    { "id": "student-expert", "name": "学情分析专家", "type": "analysis", "prompt": "experts/Student_Expert.md" },
+    { "id": "goal-expert", "name": "教学目标专家", "type": "design", "prompt": "experts/Goal_Expert.md" },
+    { "id": "strategy-expert", "name": "教学策略专家", "type": "design", "prompt": "experts/Strategy_Expert.md" },
+    { "id": "activity-expert", "name": "活动设计专家", "type": "design", "prompt": "experts/Activity_Expert.md" },
+    { "id": "assessment-expert", "name": "评价设计专家", "type": "design", "prompt": "experts/Assessment_Expert.md" },
+    { "id": "resource-expert", "name": "资源整合专家", "type": "curation", "prompt": "experts/Resource_Expert.md" },
+    { "id": "reflection-expert", "name": "教学反思专家", "type": "analysis", "prompt": "experts/Reflection_Expert.md" },
+    { "id": "review-expert", "name": "教学质量审核专家", "type": "review", "prompt": "experts/Teaching_Review_Expert.md" }
+  ],
+
+  "contexts": [
+    { "id": "TeachingContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/TeacherInput", "producer": "teacher", "readonly": true },
+    { "id": "CurriculumContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/CurriculumOutput", "producer": "curriculum-expert", "readonly": true },
+    { "id": "TextbookContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/TextbookOutput", "producer": "textbook-expert", "readonly": true },
+    { "id": "KnowledgeContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/KnowledgeOutput", "producer": "knowledge-expert", "readonly": true },
+    { "id": "StudentContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/StudentOutput", "producer": "student-expert", "readonly": true },
+    { "id": "GoalContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/GoalOutput", "producer": "goal-expert", "readonly": true },
+    { "id": "StrategyContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/StrategyOutput", "producer": "strategy-expert", "readonly": true },
+    { "id": "LearningActivityContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/ActivityOutput", "producer": "activity-expert", "readonly": true },
+    { "id": "AssessmentContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/AssessmentOutput", "producer": "assessment-expert", "readonly": true },
+    { "id": "ResourceContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/ResourceOutput", "producer": "resource-expert", "readonly": true },
+    { "id": "ReflectionContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/ReflectionOutput", "producer": "reflection-expert", "readonly": true },
+    { "id": "TeachingReviewContext", "schema": "contexts/TeachingDesignContext.schema.json#/$defs/ReviewOutput", "producer": "review-expert", "readonly": true }
+  ],
+
+  "outputs": [
+    { "format": "markdown", "template": "templates/markdown/lesson-plan.md", "default": true },
+    { "format": "json", "template": "templates/json/teaching-design.schema.json" },
+    { "format": "docx", "template": "templates/docx/lesson-plan.template.docx" },
+    { "format": "pptx", "template": "templates/ppt/lesson-plan.template.pptx" }
+  ],
+
+  "dependencies": {
+    "skills": [
+      { "id": "pptx", "purpose": "PPT 课件渲染", "required": false },
+      { "id": "web-design-engineer", "purpose": "互动教学网页生成", "required": false }
+    ],
+    "plugins": [],
+    "providers": ["default"]
+  },
+
+  "permissions": [
+    "runtime.read",
+    "runtime.write",
+    "context.read",
+    "context.write",
+    "file.read",
+    "file.write",
+    "provider.execute"
+  ],
+
+  "metadata": {
+    "language": "zh-CN",
+    "locale": "zh_CN",
+    "subject": "技术与工程",
+    "gradeLevels": ["高一", "高二", "高三"],
+    "keywords": ["教学设计", "技术与工程", "通用技术", "AI 教育", "项目式学习", "工程教育", "PPT 课件", "互动网页", "OpenLearn"],
+    "categories": ["education", "teaching-design", "k12", "engineering-education"],
+    "homepage": "https://openlearn.ai/skills/openlearnflow",
+    "repository": "https://github.com/openlearn/openlearnflow",
+    "icon": "assets/icon.svg"
+  }
+}

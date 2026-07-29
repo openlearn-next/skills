@@ -1,0 +1,46 @@
+{
+  "id": "assessment-expert",
+  "name": "评价方案设计专家（增强版）",
+  "base": "../assessment-expert.json",
+  "version": "1.1.0",
+  "description": "增强版评价方案设计专家，集成评价方法知识库和教-学-评一致性规则",
+
+  "knowledgeSources": [
+    { "source": "assessment-methods", "path": "knowledge/assessment/assessment-methods.json", "type": "json" },
+    { "source": "competency-mapping", "path": "knowledge/curriculum-standard/mappings/competency-objective-map.json", "type": "json" }
+  ],
+
+  "retrievalPolicy": {
+    "policyId": "assessment-policy",
+    "path": "knowledge/retrieval/policies/assessment-policy.json",
+    "strategy": "keyword",
+    "maxResults": 5,
+    "contextKey": "retrievedAssessment"
+  },
+
+  "reasoningRules": [
+    { "rule": "goal-assessment-alignment", "description": "每个教学目标必须有对应的评价方式" },
+    { "rule": "multi-method", "description": "评价必须包含形成性+终结性+表现性三种方式" },
+    { "rule": "rubric-standard", "description": "Rubric 必须包含维度/等级/描述/权重四要素" },
+    { "rule": "evidence-driven", "description": "评价必须明确需要收集的学习证据类型" },
+    { "rule": "competency-indicator", "description": "评价指标必须引用素养→评价映射中的 assessmentIndicators" }
+  ],
+
+  "rubricTemplate": {
+    "dimensions": ["知识理解", "技能操作", "创新设计", "团队协作", "表达展示"],
+    "levels": [
+      { "score": 4, "label": "优秀", "criteria": "超出预期,表现突出" },
+      { "score": 3, "label": "良好", "criteria": "达到预期,表现稳定" },
+      { "score": 2, "label": "合格", "criteria": "基本达到,有待提升" },
+      { "score": 1, "label": "待改进", "criteria": "未达预期,需要重做" }
+    ]
+  },
+
+  "outputSchema": {
+    "required": ["assessmentFramework", "assessmentMethods", "rubrics", "learningEvidence"],
+    "knowledgeInjected": {
+      "methodReference": "引用 assessment-methods 的评价方法定义",
+      "indicatorMapping": "引用 competency-mapping 的评价指标"
+    }
+  }
+}

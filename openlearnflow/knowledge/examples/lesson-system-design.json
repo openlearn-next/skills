@@ -1,0 +1,41 @@
+{
+  "id": "lesson-example-system-design",
+  "type": "example",
+  "title": "教学案例：系统与设计",
+  "description": "《系统的结构》教学设计知识参考 — 高一技术与工程课例",
+  "source": "教学实践案例",
+  "expertCompatibility": ["curriculum-expert", "pedagogy-expert", "activity-expert", "assessment-expert"],
+
+  "concepts": [
+    {
+      "name": "系统的基本概念",
+      "definition": "系统是由相互关联、相互作用的若干组成部分（元素）结合而成的具有特定功能的有机整体",
+      "applications": ["生活中的系统识别", "工程系统分析", "简单系统设计"],
+      "relatedConcepts": ["子系统", "系统边界", "系统功能", "系统优化"]
+    },
+    {
+      "name": "系统边界",
+      "definition": "界定系统内部与外部环境的界限，是系统分析的关键步骤",
+      "applications": ["问题定义", "需求分析", "范围确定"],
+      "relatedConcepts": ["系统", "环境", "输入输出"]
+    },
+    {
+      "name": "反馈机制",
+      "definition": "系统中输出信号的一部分返回到输入端，影响系统后续行为的过程",
+      "applications": ["自动控制", "恒温器", "自动驾驶"],
+      "relatedConcepts": ["控制系统", "闭环控制", "传感器"]
+    },
+    {
+      "name": "系统优化",
+      "definition": "在给定约束条件下，寻找使系统性能指标达到最优的方案",
+      "applications": ["参数调整", "结构改进", "算法优化"],
+      "relatedConcepts": ["约束条件", "目标函数", "迭代优化"]
+    }
+  ],
+
+  "applications": {
+    "teachingStrategies": ["从生活实例引入（空调系统、交通系统）", "使用可视化工具辅助分析", "安排动手搭建简单系统"],
+    "commonMisconceptions": ["将系统等同于简单零件堆砌", "忽视子系统间的相互作用", "不清楚如何确定系统边界"],
+    "projectIdeas": ["设计校园自动浇灌系统", "搭建智能垃圾分类装置", "优化教室照明控制系统"]
+  }
+}

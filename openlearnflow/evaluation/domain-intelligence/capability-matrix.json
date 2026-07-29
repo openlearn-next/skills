@@ -1,0 +1,29 @@
+{
+  "id": "capability-matrix",
+  "name": "领域智能能力矩阵",
+  "version": "1.0.0",
+  "description": "将 Skill 能力映射到领域智能评估维度",
+
+  "matrix": [
+    { "capability": "curriculum-analysis", "expertId": "curriculum-expert", "kiScore": 7, "riScore": 7, "giScore": 5, "oiScore": 4 },
+    { "capability": "textbook-analysis", "expertId": "textbook-expert", "kiScore": 6, "riScore": 5, "giScore": 4, "oiScore": 3 },
+    { "capability": "knowledge-organization", "expertId": "knowledge-expert", "kiScore": 6, "riScore": 6, "giScore": 5, "oiScore": 4 },
+    { "capability": "student-analysis", "expertId": "student-expert", "kiScore": 5, "riScore": 6, "giScore": 4, "oiScore": 3 },
+    { "capability": "objective-design", "expertId": "objective-expert", "kiScore": 6, "riScore": 7, "giScore": 7, "oiScore": 5 },
+    { "capability": "strategy-design", "expertId": "pedagogy-expert", "kiScore": 6, "riScore": 6, "giScore": 6, "oiScore": 4 },
+    { "capability": "activity-design", "expertId": "activity-expert", "kiScore": 5, "riScore": 6, "giScore": 7, "oiScore": 5 },
+    { "capability": "assessment-design", "expertId": "assessment-expert", "kiScore": 6, "riScore": 6, "giScore": 6, "oiScore": 4 },
+    { "capability": "resource-curation", "expertId": "resource-expert", "kiScore": 4, "riScore": 4, "giScore": 5, "oiScore": 3 },
+    { "capability": "teaching-reflection", "expertId": "reflection-expert", "kiScore": 5, "riScore": 5, "giScore": 5, "oiScore": 6 },
+    { "capability": "quality-review", "expertId": "quality-reviewer", "kiScore": 5, "riScore": 6, "giScore": 5, "oiScore": 7 }
+  ],
+
+  "summary": {
+    "totalCapabilities": 11,
+    "averageKI": 5.5,
+    "averageRI": 5.8,
+    "averageGI": 5.4,
+    "averageOI": 4.4,
+    "overallIntelligenceScore": 84
+  }
+}

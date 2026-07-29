@@ -1,0 +1,60 @@
+{
+  "id": "teaching-design-quality-optimization",
+  "name": "教学设计质量优化配置",
+  "version": "1.0.0",
+  "description": "定义教学设计质量优化的检查维度、规则和优化策略",
+
+  "optimizationDimensions": [
+    {
+      "id": "content-accuracy",
+      "name": "内容准确性",
+      "weight": 0.25,
+      "description": "检查教学设计内容的准确性、规范性和完整性",
+      "rules": ["content-standards-check", "terminology-check", "completeness-check"]
+    },
+    {
+      "id": "logical-consistency",
+      "name": "逻辑一致性",
+      "weight": 0.25,
+      "description": "检查各 Expert 输出之间的逻辑关系和一致性",
+      "rules": ["goal-activity-alignment", "activity-assessment-alignment", "cross-expert-conflict"]
+    },
+    {
+      "id": "educational-appropriateness",
+      "name": "教育适配性",
+      "weight": 0.20,
+      "description": "检查教学设计是否符合学情和教学规律",
+      "rules": ["difficulty-match", "student-profile-alignment", "time-allocation"]
+    },
+    {
+      "id": "engineering-fidelity",
+      "name": "工程实践忠实度",
+      "weight": 0.15,
+      "description": "检查工程实践设计的完整性和安全性",
+      "rules": ["edp-completeness", "safety-compliance", "tool-material-availability"]
+    },
+    {
+      "id": "output-quality",
+      "name": "输出质量",
+      "weight": 0.15,
+      "description": "检查最终输出的格式和质量",
+      "rules": ["format-compliance", "section-completeness", "readability"]
+    }
+  ],
+
+  "optimizationPipeline": {
+    "stages": [
+      { "stage": "detect", "description": "检测质量问题", "action": "scan-rules" },
+      { "stage": "classify", "description": "分类问题严重程度", "action": "severity-assessment" },
+      { "stage": "suggest", "description": "生成优化建议", "action": "strategy-matching" },
+      { "stage": "apply", "description": "自动修复可解决的问题", "action": "auto-fix" },
+      { "stage": "verify", "description": "验证修复效果", "action": "re-check" }
+    ]
+  },
+
+  "passThreshold": 70,
+  "autoFixLimits": {
+    "maxIterations": 3,
+    "maxAutoFixesPerDimension": 2
+  }
+}

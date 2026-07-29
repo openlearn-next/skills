@@ -1,0 +1,32 @@
+{
+  "id": "benchmark-engineering",
+  "name": "工程实践智能基准",
+  "description": "以系统与设计教学为核心,评估 Skill 的工程教育智能水平",
+  "version": "1.0.0",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "chapter": "第三章 系统与设计",
+    "topic": "系统的结构",
+    "knowledgePoints": ["系统", "子系统", "系统优化", "反馈"],
+    "classHours": 3,
+    "studentProfile": "基础较好,动手能力强,但系统思维较弱",
+    "teachingMode": "项目式学习",
+    "equipment": "Arduino套件、传感器、常用工具"
+  },
+
+  "expectedCapabilities": [
+    { "capability": "knowledge-organization", "expectation": "构建系统概念的层级网络和工程案例" },
+    { "capability": "activity-design", "expectation": "设计完整的EDP 7阶段工程实践流程" },
+    { "capability": "engineering-judgment", "expectation": "识别安全风险并给出防护措施" },
+    { "capability": "assessment-design", "expectation": "设计包含系统分析和实物制作的Rubric" }
+  ],
+
+  "evaluationCriteria": {
+    "knowledgeIntelligence": { "expected": "识别的工程案例真实且与技术标准对应" },
+    "reasoningIntelligence": { "expected": "策略选择回应了'系统思维较弱'的学情" },
+    "generationIntelligence": { "expected": "活动包含明确的 Arduino 实操和原型制作" },
+    "optimizationIntelligence": { "expected": "安全规范覆盖所有实践环节" }
+  }
+}

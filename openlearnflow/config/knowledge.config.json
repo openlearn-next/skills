@@ -1,0 +1,22 @@
+{
+  "id": "knowledge-config",
+  "name": "知识库配置",
+  "version": "1.0.0",
+  "description": "知识库索引、检索和缓存配置",
+
+  "sources": {
+    "pedagogy": { "enabled": true, "path": "knowledge/pedagogy/", "indexType": "keyword", "priority": 1 },
+    "curriculum": { "enabled": true, "path": "knowledge/curriculum/", "indexType": "keyword", "priority": 2 },
+    "assessment": { "enabled": true, "path": "knowledge/assessment/", "indexType": "keyword", "priority": 3 },
+    "engineering": { "enabled": true, "path": "knowledge/education/", "indexType": "keyword", "priority": 4 },
+    "standards": { "enabled": true, "path": "knowledge/curriculum-standard/", "indexType": "exact", "priority": 1 },
+    "subject-graph": { "enabled": true, "path": "knowledge/subject-graph/", "indexType": "hybrid", "priority": 5 },
+    "examples": { "enabled": true, "path": "knowledge/examples/", "indexType": "semantic", "priority": 6 }
+  },
+
+  "retrieval": {
+    "maxConcurrent": 3,
+    "timeoutMs": 5000,
+    "cacheTTL": 300000
+  }
+}

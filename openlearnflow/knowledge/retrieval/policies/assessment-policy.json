@@ -1,0 +1,29 @@
+{
+  "expertId": "assessment-expert",
+  "policyId": "assessment-policy",
+  "version": "1.0.0",
+  "description": "Assessment Expert 知识检索策略：精确匹配评价方法和量规设计",
+
+  "queryExpansion": {
+    "enabled": true,
+    "strategies": ["synonym", "concept-hierarchy"],
+    "keywordMapping": {
+      "评价": ["形成性评价", "终结性评价", "表现性评价", "Rubric"],
+      "量规": ["Rubric", "评分标准", "等级描述"],
+      "证据": ["学习证据", "工程日志", "设计文档", "测试报告"],
+      "反馈": ["同伴评价", "自我评价", "教师评价"]
+    }
+  },
+
+  "results": {
+    "ranking": "relevance",
+    "deduplication": true,
+    "maxResults": 5,
+    "minMatchScore": 0.5
+  },
+
+  "contextFormat": {
+    "type": "structured",
+    "template": "## Assessment Design Context\n\n### Assessment Methods\n{{ methods }}\n\n### Rubric Examples\n{{ rubrics }}\n\n### Assessment Indicators\n{{ indicators }}"
+  }
+}

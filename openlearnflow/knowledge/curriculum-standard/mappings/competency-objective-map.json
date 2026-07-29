@@ -1,0 +1,94 @@
+{
+  "id": "competency-objective-assessment-map",
+  "title": "核心素养 → 教学目标 → 评价指标 映射关系",
+  "description": "定义课程标准核心素养到具体教学目标和评价指标的映射关系，供 Objective Expert 和 Assessment Expert 使用",
+
+  "mappings": [
+    {
+      "competency": "技术意识",
+      "competencyId": "tech-awareness",
+      "objectives": [
+        { "level": "水平1", "objective": "了解技术的基本概念和发展历程" },
+        { "level": "水平2", "objective": "分析技术应用对社会和环境的影响" },
+        { "level": "水平3", "objective": "评价技术方案的合理性和创新性" },
+        { "level": "水平4", "objective": "提出技术改进方案并进行论证" }
+      ],
+      "assessmentIndicators": [
+        "能否列举生活中的技术实例并进行分析",
+        "能否识别技术发展中的人文、社会和环境影响",
+        "能否对给定技术方案进行多维度评价"
+      ]
+    },
+    {
+      "competency": "工程思维",
+      "competencyId": "engineering-thinking",
+      "objectives": [
+        { "level": "水平1", "objective": "识别简单系统的组成部分和关系" },
+        { "level": "水平2", "objective": "运用系统分析方法分析实际问题" },
+        { "level": "水平3", "objective": "对简单系统进行优化并验证效果" },
+        { "level": "水平4", "objective": "运用系统思维解决复杂工程问题" }
+      ],
+      "assessmentIndicators": [
+        "能否准确描述系统的组成和相互关系",
+        "能否正确运用系统分析方法完成分析报告",
+        "能否对系统优化提出合理方案"
+      ]
+    },
+    {
+      "competency": "创新设计",
+      "competencyId": "innovation-design",
+      "objectives": [
+        { "level": "水平1", "objective": "根据给定方案完成制作" },
+        { "level": "水平2", "objective": "设计符合基本要求的技术方案" },
+        { "level": "水平3", "objective": "独立完成创新方案的设计与实现" },
+        { "level": "水平4", "objective": "提出原创性方案并完成多次迭代优化" }
+      ],
+      "assessmentIndicators": [
+        "设计方案的创新程度和可行性",
+        "方案表达是否清晰规范",
+        "制作成品是否符合设计要求"
+      ]
+    },
+    {
+      "competency": "图样表达",
+      "competencyId": "graphic-expression",
+      "objectives": [
+        { "level": "水平1", "objective": "识读简单技术图样" },
+        { "level": "水平2", "objective": "用手绘方式表达设计意图" },
+        { "level": "水平3", "objective": "使用数字化工具绘制技术图样" },
+        { "level": "水平4", "objective": "综合运用多种表达方式完成技术交流" }
+      ],
+      "assessmentIndicators": [
+        "图样是否规范、清晰",
+        "能否正确使用技术符号和标注",
+        "表达方式是否适合交流对象"
+      ]
+    },
+    {
+      "competency": "物化能力",
+      "competencyId": "materialization",
+      "objectives": [
+        { "level": "水平1", "objective": "安全使用基本工具完成简单制作" },
+        { "level": "水平2", "objective": "选择合适的材料和工具完成作品" },
+        { "level": "水平3", "objective": "进行较复杂的加工制作和功能测试" },
+        { "level": "水平4", "objective": "综合运用多种工具和技术完成高质量作品" }
+      ],
+      "assessmentIndicators": [
+        "操作是否规范安全",
+        "材料和工具选择是否合理",
+        "作品质量和功能是否达到预期"
+      ]
+    }
+  ],
+
+  "usage": {
+    "for-objective-expert": "使用 objectives 字段设定对应水平的具体教学目标",
+    "for-assessment-expert": "使用 assessmentIndicators 字段设计评价标准和 Rubric",
+    "academic-quality-mapping": {
+      "水平1": "合格（学考水平）",
+      "水平2": "合格+",
+      "水平3": "良好（选考水平）",
+      "水平4": "优秀"
+    }
+  }
+}

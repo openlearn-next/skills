@@ -1,0 +1,44 @@
+{
+  "id": "python-basics",
+  "name": "Python 编程基础概念图",
+  "type": "topic",
+  "subject": "技术与工程",
+  "description": "信息科技课程中的 Python 编程核心知识点图谱",
+  "gradeLevels": ["高一"],
+
+  "nodes": [
+    { "id": "py-variables", "name": "变量", "type": "concept", "difficulty": "basic", "description": "存储数据的命名容器", "prerequisites": [] },
+    { "id": "py-datatypes", "name": "数据类型", "type": "concept", "difficulty": "basic", "description": "整数/浮点数/字符串/布尔值", "prerequisites": ["py-variables"] },
+    { "id": "py-operators", "name": "运算符", "type": "concept", "difficulty": "basic", "description": "算术/比较/逻辑运算符", "prerequisites": ["py-datatypes"] },
+    { "id": "py-conditionals", "name": "条件判断", "type": "concept", "difficulty": "basic", "description": "if-elif-else 控制流", "prerequisites": ["py-operators"] },
+    { "id": "py-loops", "name": "循环", "type": "concept", "difficulty": "intermediate", "description": "for/while 循环控制", "prerequisites": ["py-conditionals"] },
+    { "id": "py-functions", "name": "函数", "type": "concept", "difficulty": "intermediate", "description": "封装可复用的代码块", "prerequisites": ["py-loops"] },
+    { "id": "py-lists", "name": "列表", "type": "concept", "difficulty": "intermediate", "description": "有序可变序列容器", "prerequisites": ["py-loops"] },
+
+    { "id": "py-debug", "name": "调试", "type": "skill", "difficulty": "basic", "description": "定位和修复程序错误", "prerequisites": ["py-conditionals"] },
+    { "id": "py-design", "name": "程序设计", "type": "skill", "difficulty": "intermediate", "description": "分解问题并设计算法方案", "prerequisites": ["py-functions"] },
+
+    { "id": "py-led", "name": "LED控制", "type": "application", "difficulty": "basic", "description": "使用Python GPIO控制LED灯", "prerequisites": ["py-conditionals"] },
+    { "id": "py-sensor", "name": "传感器读取", "type": "application", "difficulty": "intermediate", "description": "使用Python读取传感器数据", "prerequisites": ["py-loops", "py-lists"] }
+  ],
+
+  "relations": [
+    { "from": "py-datatypes", "to": "py-variables", "type": "extends", "strength": "strong" },
+    { "from": "py-operators", "to": "py-datatypes", "type": "extends", "strength": "strong" },
+    { "from": "py-conditionals", "to": "py-operators", "type": "extends", "strength": "strong" },
+    { "from": "py-loops", "to": "py-conditionals", "type": "extends", "strength": "strong" },
+    { "from": "py-functions", "to": "py-loops", "type": "extends", "strength": "strong" },
+    { "from": "py-lists", "to": "py-loops", "type": "extends", "strength": "moderate" },
+    { "from": "py-debug", "to": "py-conditionals", "type": "supports", "strength": "strong" },
+    { "from": "py-design", "to": "py-functions", "type": "supports", "strength": "strong" },
+    { "from": "py-led", "to": "py-conditionals", "type": "supports", "strength": "strong" },
+    { "from": "py-sensor", "to": "py-loops", "type": "supports", "strength": "strong" },
+    { "from": "py-sensor", "to": "py-lists", "type": "supports", "strength": "moderate" }
+  ],
+
+  "learningPaths": [
+    { "id": "py-basic", "name": "入门", "level": "basic", "nodes": ["py-variables", "py-datatypes", "py-operators", "py-conditionals"] },
+    { "id": "py-intermediate", "name": "进阶", "level": "intermediate", "nodes": ["py-loops", "py-lists", "py-functions", "py-debug", "py-sensor"] },
+    { "id": "py-advanced", "name": "应用", "level": "advanced", "nodes": ["py-design", "py-sensor", "py-led"] }
+  ]
+}

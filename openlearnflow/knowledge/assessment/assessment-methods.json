@@ -1,0 +1,54 @@
+{
+  "id": "assessment-methods",
+  "type": "assessment",
+  "title": "教学评价方法体系",
+  "description": "适用于技术与工程课程的评价方法和量规设计原则",
+  "source": "教育评价理论与实践",
+  "expertCompatibility": ["assessment-expert", "reflection-expert"],
+
+  "concepts": [
+    {
+      "name": "形成性评价",
+      "definition": "在教学过程中进行的持续性评价，目的是监控学习进展、诊断学习困难、调整教学策略",
+      "applications": ["课堂提问", "随堂练习", "学习日志", "过程观察", "阶段性检查"],
+      "relatedConcepts": ["过程性评价", "反馈", "学习证据"]
+    },
+    {
+      "name": "终结性评价",
+      "definition": "在教学阶段结束后进行的总结性评价，目的是判断学习成果是否达到预期目标",
+      "applications": ["作品评价", "测试", "项目答辩", "成果展示"],
+      "relatedConcepts": ["教学目标", "评价标准", "Rubric"]
+    },
+    {
+      "name": "表现性评价",
+      "definition": "通过学生在真实情境中完成具体任务的表现来评估其能力和素养的评价方式",
+      "applications": ["工程设计作品", "技术操作演示", "项目报告", "口头答辩"],
+      "relatedConcepts": ["真实情境", "Rubric", "核心素养"]
+    },
+    {
+      "name": "Rubric（评价量规）",
+      "definition": "一个包含评价维度、等级水平和具体描述的系统化评分工具",
+      "applications": ["作品评价", "过程评价", "小组协作评价"],
+      "relatedConcepts": ["表现性评价", "评价标准"]
+    },
+    {
+      "name": "同伴评价",
+      "definition": "学生相互对学习成果和学习过程进行评价，培养批判思维和自我反思能力",
+      "applications": ["小组互评", "作品评审", "口头反馈"],
+      "relatedConcepts": ["合作学习", "自我评价"]
+    },
+    {
+      "name": "学习证据",
+      "definition": "能够证明学生学习过程和成果的具体材料，包括作品、记录、反思等",
+      "applications": ["工程日志", "设计文档", "测试报告", "原型照片", "反思论文"],
+      "relatedConcepts": ["形成性评价", "过程评价"]
+    }
+  ],
+
+  "relations": [
+    { "from": "形成性评价", "to": "学习证据", "type": "requires" },
+    { "from": "终结性评价", "to": "表现性评价", "type": "extends" },
+    { "from": "表现性评价", "to": "Rubric", "type": "requires" },
+    { "from": "同伴评价", "to": "合作学习", "type": "supports" }
+  ]
+}

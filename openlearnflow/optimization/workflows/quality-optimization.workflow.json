@@ -1,0 +1,77 @@
+{
+  "id": "quality-optimization",
+  "name": "教学设计质量优化工作流",
+  "version": "1.0.0",
+  "description": "自动检测、诊断和优化教学设计质量的完整工作流",
+
+  "steps": [
+    {
+      "id": "step-generate",
+      "name": "初始生成",
+      "type": "workflow",
+      "workflowId": "lesson-plan",
+      "description": "执行标准教学设计工作流",
+      "dependsOn": []
+    },
+    {
+      "id": "step-evaluate",
+      "name": "质量评估",
+      "type": "evaluation",
+      "evaluator": "teaching-quality-evaluator.json",
+      "description": "使用 6 维评分体系评估教学质量",
+      "dependsOn": ["step-generate"],
+      "output": "QualityScore"
+    },
+    {
+      "id": "step-check-threshold",
+      "name": "阈值检查",
+      "type": "condition",
+      "condition": "QualityScore >= 70",
+      "description": "检查是否达到合格线",
+      "dependsOn": ["step-evaluate"],
+      "onPass": "step-finalize",
+      "onFail": "step-diagnose"
+    },
+    {
+      "id": "step-diagnose",
+      "name": "问题诊断",
+      "type": "diagnosis",
+      "diagnostics": "common-issues.json",
+      "description": "扫描输出并匹配已知问题模式",
+      "dependsOn": ["step-check-threshold"],
+      "output": "DiagnosisReport"
+    },
+    {
+      "id": "step-optimize",
+      "name": "自动优化",
+      "type": "optimization",
+      "strategies": ["improvement-strategies.json", "optimization-strategies.json"],
+      "description": "自动修复可修复的问题,标记需人工处理的问题",
+      "dependsOn": ["step-diagnose"],
+      "maxIterations": 3,
+      "output": "OptimizationReport"
+    },
+    {
+      "id": "step-re-evaluate",
+      "name": "重新评估",
+      "type": "evaluation",
+      "evaluator": "teaching-quality-evaluator.json",
+      "description": "对优化后的设计重新评分",
+      "dependsOn": ["step-optimize"]
+    },
+    {
+      "id": "step-finalize",
+      "name": "最终输出",
+      "type": "output",
+      "description": "合并优化记录并输出最终教学设计",
+      "dependsOn": ["step-check-threshold", "step-re-evaluate"],
+      "output": "FinalTeachingDesign + OptimizationReport"
+    }
+  ],
+
+  "failureHandling": {
+    "maxOptimizationLoops": 3,
+    "onExhausted": "flag-human-review",
+    "fallbackAction": "输出当前最佳版本 + 诊断报告"
+  }
+}

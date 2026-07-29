@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Curriculum Standard Knowledge Schema",
+  "description": "课程标准知识模型 Schema 定义",
+
+  "type": "object",
+  "required": ["id", "subject", "standardVersion", "coreCompetencies", "contentDomains"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "subject": { "type": "string" },
+    "educationStage": { "type": "string", "enum": ["高中", "初中", "小学"] },
+    "gradeRange": { "type": "array", "items": { "type": "string" } },
+    "standardVersion": { "type": "string" },
+    "description": { "type": "string" },
+
+    "coreCompetencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "dimensions"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["level", "description"],
+              "properties": {
+                "level": { "type": "string", "enum": ["水平1", "水平2", "水平3", "水平4"] },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "contentDomains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "topics"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name"],
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "contentStandards": { "type": "array", "items": { "type": "string" } },
+                "teachingSuggestions": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "learningRequirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["knowledge", "skill", "competency", "engineering"] },
+          "description": { "type": "string" },
+          "academicQualityLevel": { "type": "string", "enum": ["1", "2", "3", "4"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "resource-expert",
+  "name": "资源整合专家",
+  "version": "1.0.0",
+  "role": "resource-curator",
+  "type": "curation",
+  "description": "整合教学案例、素材、学习单、板书设计和 PPT 大纲",
+
+  "input": {
+    "required": ["activityOutput", "assessmentOutput"],
+    "optional": ["goalOutput", "strategyOutput"],
+    "contexts": ["GoalContext", "StrategyContext", "LearningActivityContext", "AssessmentContext"]
+  },
+
+  "output": {
+    "context": "ResourceContext",
+    "fields": {
+      "required": ["teachingResources", "worksheet", "pptOutline", "boardDesign"],
+      "optional": ["multimediaResources", "toolList", "readingMaterials", "safetyGuide"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Resource_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "技术与工程教学资源库",
+      "工程实践工具和材料",
+      "安全教育资源",
+      "多媒体教学素材"
+    ],
+    "references": [
+      "教学资源目录",
+      "实验器材清单",
+      "安全教育手册",
+      "PPT 设计规范"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must", "description": "必须包含安全注意事项", "severity": "critical" },
+    { "type": "must", "description": "必须匹配活动设计对应的资源", "severity": "critical" },
+    { "type": "must_not", "description": "不得重复已经完成的评价方案", "severity": "warning" }
+  ],
+
+  "thinking": {
+    "framework": "资源整合框架（需求分析→资源匹配→工具准备→安全审查→成果物设计）",
+    "steps": [
+      "基于活动设计分析资源需求",
+      "匹配教学案例和工程素材",
+      "设计和准备学习单/工作纸",
+      "规划板书结构",
+      "编制 PPT 内容大纲",
+      "安全检查与风险提示"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "资源准备是否完整" },
+    { "id": "QC02", "category": "safety", "description": "安全事项是否覆盖" },
+    { "id": "QC03", "category": "alignment", "description": "资源是否匹配活动设计" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": {
+    "category": "curation",
+    "priority": 9,
+    "language": "zh-CN"
+  }
+}

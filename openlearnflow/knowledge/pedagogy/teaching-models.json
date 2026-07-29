@@ -1,0 +1,61 @@
+{
+  "id": "teaching-models",
+  "type": "pedagogy",
+  "title": "教学模式理论基础",
+  "description": "适用于技术与工程课程的核心教学理论和模式",
+  "source": "教育心理学与教学论",
+  "expertCompatibility": ["pedagogy-expert", "strategy-expert"],
+
+  "concepts": [
+    {
+      "name": "建构主义",
+      "definition": "知识不是被动接受而是主动建构的过程，学习者在已有经验基础上通过与环境互动构建新知识",
+      "applications": ["项目式学习", "探究式学习", "情境教学"],
+      "relatedConcepts": ["最近发展区", "支架式教学", "情境认知"]
+    },
+    {
+      "name": "最近发展区",
+      "definition": "学生独立解决问题的实际发展水平与在成人指导下或与能力更强的同伴合作中解决问题的潜在发展水平之间的差距",
+      "applications": ["支架式教学", "分层教学", "合作学习"],
+      "relatedConcepts": ["建构主义", "支架式教学"]
+    },
+    {
+      "name": "项目式学习 (PBL)",
+      "definition": "以真实项目为驱动，学生在完成项目的过程中主动探究、解决问题并建构知识的教学模式",
+      "applications": ["技术与工程课程", "工程设计项目", "跨学科综合实践"],
+      "relatedConcepts": ["工程设计流程", "真实情境", "合作学习"]
+    },
+    {
+      "name": "工程设计流程 (EDP)",
+      "definition": "工程师解决实际问题的系统化流程：定义问题→研究→设计→建造→测试→改进→展示",
+      "applications": ["工程实践教学", "产品设计", "系统优化"],
+      "relatedConcepts": ["项目式学习", "设计思维", "系统思维"]
+    },
+    {
+      "name": "探究式学习",
+      "definition": "学生通过提出问题、收集证据、形成解释、评价结论等科学探究过程来学习知识和发展能力",
+      "applications": ["实验教学", "技术探究", "问题解决"],
+      "relatedConcepts": ["建构主义", "科学方法"]
+    },
+    {
+      "name": "合作学习",
+      "definition": "以小组为基本组织形式，通过同伴互助和协作共同完成学习任务的教学策略",
+      "applications": ["工程项目", "实验操作", "方案设计"],
+      "relatedConcepts": ["最近发展区", "社会建构主义"]
+    },
+    {
+      "name": "情境教学",
+      "definition": "将学习内容嵌入真实的或模拟的情境中，使学生在有意义的环境中主动学习",
+      "applications": ["工程案例分析", "真实问题解决", "角色扮演"],
+      "relatedConcepts": ["建构主义", "真实情境"]
+    }
+  ],
+
+  "relations": [
+    { "from": "建构主义", "to": "项目式学习", "type": "supports" },
+    { "from": "建构主义", "to": "探究式学习", "type": "supports" },
+    { "from": "最近发展区", "to": "合作学习", "type": "supports" },
+    { "from": "项目式学习", "to": "工程设计流程", "type": "extends" },
+    { "from": "探究式学习", "to": "科学方法", "type": "requires" }
+  ]
+}

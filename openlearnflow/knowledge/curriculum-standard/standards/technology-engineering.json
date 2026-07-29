@@ -1,0 +1,148 @@
+{
+  "id": "technology-engineering-senior-high",
+  "subject": "技术与工程",
+  "educationStage": "高中",
+  "gradeRange": ["高一", "高二", "高三"],
+  "standardVersion": "2017年版2020年修订",
+  "description": "《普通高中技术课程标准》技术与工程部分核心内容知识模型",
+
+  "coreCompetencies": [
+    {
+      "id": "tech-awareness",
+      "name": "技术意识",
+      "description": "对技术现象的关注、对技术价值的理解和对技术发展规律的认识",
+      "dimensions": [
+        { "level": "水平1", "description": "能列举生活中的技术实例" },
+        { "level": "水平2", "description": "能分析技术应用对社会的影响" },
+        { "level": "水平3", "description": "能评价技术方案的合理性" },
+        { "level": "水平4", "description": "能提出技术改进的创新方案" }
+      ]
+    },
+    {
+      "id": "engineering-thinking",
+      "name": "工程思维",
+      "description": "系统分析、方案设计、优化决策和技术评估的思维方法",
+      "dimensions": [
+        { "level": "水平1", "description": "能识别简单系统的组成部分" },
+        { "level": "水平2", "description": "能描述系统的组成和相互关系" },
+        { "level": "水平3", "description": "能对简单系统进行分析和优化" },
+        { "level": "水平4", "description": "能运用系统思维解决复杂工程问题" }
+      ]
+    },
+    {
+      "id": "innovation-design",
+      "name": "创新设计",
+      "description": "发现问题、构思方案、物化实现的创造性活动",
+      "dimensions": [
+        { "level": "水平1", "description": "能根据给定方案完成制作" },
+        { "level": "水平2", "description": "能在教师指导下进行简单设计" },
+        { "level": "水平3", "description": "能独立完成方案设计并物化实现" },
+        { "level": "水平4", "description": "能提出创新方案并完成优化迭代" }
+      ]
+    },
+    {
+      "id": "graphic-expression",
+      "name": "图样表达",
+      "description": "识读和绘制技术图样、进行技术交流的能力",
+      "dimensions": [
+        { "level": "水平1", "description": "能识读简单的技术图样" },
+        { "level": "水平2", "description": "能用手绘方式表达设计思想" },
+        { "level": "水平3", "description": "能使用CAD工具绘制设计图" },
+        { "level": "水平4", "description": "能综合运用多种表达方式进行技术交流" }
+      ]
+    },
+    {
+      "id": "materialization",
+      "name": "物化能力",
+      "description": "使用工具、材料和技术手段将设计方案转化为实物作品的能力",
+      "dimensions": [
+        { "level": "水平1", "description": "能安全使用基本工具完成简单制作" },
+        { "level": "水平2", "description": "能选择合适的材料工具完成作品" },
+        { "level": "水平3", "description": "能进行较复杂的加工制作和测试" },
+        { "level": "水平4", "description": "能综合运用数字化工具完成高质量作品" }
+      ]
+    }
+  ],
+
+  "contentDomains": [
+    {
+      "id": "technology-design",
+      "name": "技术与设计",
+      "description": "技术设计的基本过程和方法",
+      "topics": [
+        {
+          "id": "design-process",
+          "name": "设计的一般过程",
+          "contentStandards": [
+            "了解设计的一般过程（发现与明确问题→制定设计方案→制作模型或原型→测试评估及优化→编写技术作品说明书）",
+            "理解在设计过程中需要不断进行评价和优化"
+          ]
+        },
+        {
+          "id": "design-principles",
+          "name": "设计的基本原则",
+          "contentStandards": [
+            "理解创新原则、实用原则、经济原则、美观原则、道德原则、技术规范原则",
+            "能运用设计的基本原则对设计方案进行分析评价"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system-design",
+      "name": "系统与设计",
+      "description": "系统的概念、分析和设计方法",
+      "topics": [
+        {
+          "id": "system-concepts",
+          "name": "系统的概念与特征",
+          "contentStandards": [
+            "理解系统是由相互关联的组成部分构成的有机整体",
+            "了解系统的整体性、相关性、目的性、动态性和环境适应性等基本特性"
+          ]
+        },
+        {
+          "id": "system-analysis",
+          "name": "系统分析",
+          "contentStandards": [
+            "理解系统分析的基本方法",
+            "能运用系统分析方法分析简单系统",
+            "了解系统优化的基本概念和一般步骤"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "control-design",
+      "name": "控制与设计",
+      "description": "控制系统的概念、分析和实现",
+      "topics": [
+        {
+          "id": "control-concepts",
+          "name": "控制的基本概念",
+          "contentStandards": [
+            "理解开环控制和闭环控制的区别",
+            "了解控制系统的基本组成（传感器、控制器、执行器）"
+          ]
+        },
+        {
+          "id": "control-implementation",
+          "name": "简单控制系统的实现",
+          "contentStandards": [
+            "能设计和搭建简单的电子控制系统",
+            "了解单片机或Arduino等开发平台的基本使用方法"
+          ]
+        }
+      ]
+    }
+  ],
+
+  "learningRequirements": [
+    { "id": "LR-K01", "type": "knowledge", "description": "理解技术的定义、特征和发展历程", "academicQualityLevel": "2" },
+    { "id": "LR-K02", "type": "knowledge", "description": "掌握设计的一般过程和方法", "academicQualityLevel": "2" },
+    { "id": "LR-S01", "type": "skill", "description": "能使用常用工具进行简单加工制作", "academicQualityLevel": "2" },
+    { "id": "LR-S02", "type": "skill", "description": "能绘制简单的设计草图和结构图", "academicQualityLevel": "2" },
+    { "id": "LR-C01", "type": "competency", "description": "能对简单技术问题进行系统分析", "academicQualityLevel": "3" },
+    { "id": "LR-E01", "type": "engineering", "description": "能完成简单的工程设计项目", "academicQualityLevel": "3" }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "model-config",
+  "name": "模型配置",
+  "version": "1.0.0",
+  "description": "AI 模型调用参数和 Provider 配置",
+
+  "defaultProvider": "openai",
+  "providers": {
+    "mock": {
+      "enabled": true,
+      "timeoutMs": 5000,
+      "fallback": null
+    },
+    "openai": {
+      "enabled": false,
+      "model": "gpt-4o",
+      "temperature": 0.4,
+      "maxTokens": 4096,
+      "timeoutMs": 60000,
+      "retryMax": 2,
+      "fallback": "mock"
+    },
+    "ollama": {
+      "enabled": false,
+      "model": "qwen2.5:7b",
+      "temperature": 0.4,
+      "maxTokens": 4096,
+      "timeoutMs": 120000,
+      "retryMax": 2,
+      "fallback": "mock"
+    }
+  },
+
+  "expertModelMapping": {
+    "curriculum-expert": "default",
+    "textbook-expert": "default",
+    "knowledge-expert": "default",
+    "student-expert": "default",
+    "pedagogy-expert": "default",
+    "objective-expert": "default",
+    "activity-expert": "default",
+    "assessment-expert": "default",
+    "resource-expert": "default",
+    "reflection-expert": "default",
+    "quality-reviewer": "default"
+  },
+
+  "tokenBudget": {
+    "total": 128000,
+    "reservedOutput": 4096,
+    "perExpertLimit": 8192
+  }
+}

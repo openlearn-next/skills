@@ -1,0 +1,48 @@
+{
+  "id": "activity-expert",
+  "name": "学习活动设计专家（增强版）",
+  "base": "../activity-expert.json",
+  "version": "1.1.0",
+  "description": "增强版学习活动设计专家，集成知识图谱、学习路径和工程教育知识",
+
+  "knowledgeSources": [
+    { "source": "engineering-education", "path": "knowledge/education/engineering-education.json", "type": "json" },
+    { "source": "subject-graph", "path": "knowledge/subject-graph/nodes/technology-engineering-core.json", "type": "json" },
+    { "source": "lesson-examples", "path": "knowledge/examples/", "type": "json" }
+  ],
+
+  "retrievalPolicy": {
+    "policyId": "activity-policy",
+    "path": "knowledge/retrieval/policies/activity-policy.json",
+    "strategy": "hybrid",
+    "maxResults": 8,
+    "contextKey": "retrievedActivity"
+  },
+
+  "reasoningRules": [
+    { "rule": "edp-mandatory", "description": "活动设计必须体现完整的工程设计流程(7阶段)" },
+    { "rule": "real-context", "description": "每个任务必须包含真实情境和驱动问题" },
+    { "rule": "no-traditional", "description": "禁止使用导入→讲授→练习→总结传统模板" },
+    { "rule": "concept-driven", "description": "活动内容必须基于教学目标和知识图谱的概念层级" },
+    { "rule": "learning-path-aligned", "description": "活动难度递进匹配学习路径(basic→intermediate→advanced)" }
+  ],
+
+  "edpPhaseMapping": {
+    "define": { "activities": ["问题识别", "需求分析", "约束条件"], "knowledgeRef": "系统分析" },
+    "research": { "activities": ["资料收集", "案例分析", "技术调研"], "knowledgeRef": "研究能力" },
+    "design": { "activities": ["方案构思", "草图绘制", "方案选择"], "knowledgeRef": "创新设计" },
+    "build": { "activities": ["材料准备", "原型制作", "工具使用"], "knowledgeRef": "物化能力" },
+    "test": { "activities": ["功能测试", "数据采集", "问题记录"], "knowledgeRef": "测试评估" },
+    "improve": { "activities": ["数据分析", "方案优化", "迭代更新"], "knowledgeRef": "迭代优化" },
+    "present": { "activities": ["成果展示", "答辩汇报", "技术文档"], "knowledgeRef": "图样表达" }
+  },
+
+  "outputSchema": {
+    "required": ["learningTasks", "designRationale"],
+    "knowledgeInjected": {
+      "conceptMapping": "引用 subject-graph 的概念层级",
+      "engineeringKnowledge": "引用 engineering-education 的 EDP 流程",
+      "caseReferences": "引用 lesson-examples 的相关案例"
+    }
+  }
+}

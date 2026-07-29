@@ -1,0 +1,32 @@
+{
+  "id": "benchmark-it",
+  "name": "信息科技领域智能基准测试",
+  "description": "以 Python 条件判断教学为测试场景,评估 Skill 在信息科技领域的智能水平",
+  "version": "1.0.0",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "chapter": "第二章 程序设计基础",
+    "topic": "Python 条件判断语句",
+    "knowledgePoints": ["条件判断", "if-elif-else", "比较运算符"],
+    "classHours": 2,
+    "studentProfile": "学生已掌握Python基本语法,具备简单编程能力",
+    "teachingMode": "项目式学习",
+    "equipment": "计算机教室、Python IDE"
+  },
+
+  "expectedCapabilities": [
+    { "capability": "curriculum-analysis", "expectation": "应识别信息科技课标中的程序设计要求" },
+    { "capability": "objective-design", "expectation": "目标应包含理解条件判断语法和应用编程解决问题" },
+    { "capability": "activity-design", "expectation": "活动设计应包含真实的编程问题情境和EDP流程" },
+    { "capability": "assessment-design", "expectation": "评价应包含编程练习和项目作品评价" }
+  ],
+
+  "evaluationCriteria": {
+    "knowledgeIntelligence": { "expected": "正确引用信息科技课标中的编程要求" },
+    "reasoningIntelligence": { "expected": "从学生编程基础推导出合适的教学难度" },
+    "generationIntelligence": { "expected": "生成包含具体代码示例的教学活动" },
+    "optimizationIntelligence": { "expected": "检测时间分配是否合理并自动调整" }
+  }
+}

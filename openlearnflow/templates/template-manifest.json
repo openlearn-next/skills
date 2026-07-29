@@ -1,0 +1,68 @@
+{
+  "id": "teaching-design-templates",
+  "name": "教学设计模板集",
+  "version": "1.0.0",
+  "description": "Teaching Design Skill 的多格式输出模板",
+
+  "templates": [
+    {
+      "id": "lesson-plan-markdown",
+      "name": "课时教学设计 (Markdown)",
+      "format": "markdown",
+      "path": "markdown/lesson-plan.md",
+      "sections": [
+        "教学设计概览",
+        "课程标准分析",
+        "教材分析",
+        "知识图谱",
+        "学情分析",
+        "教学目标",
+        "教学策略",
+        "教学过程",
+        "学习活动",
+        "工程实践",
+        "评价方案",
+        "教学资源",
+        "教学反思",
+        "质量审核报告"
+      ],
+      "default": true
+    },
+    {
+      "id": "lesson-plan-docx",
+      "name": "课时教学设计 (Word)",
+      "format": "docx",
+      "path": "docx/lesson-plan.template.docx",
+      "sections": [
+        "封面", "基本信息", "课标分析", "教材分析",
+        "学情分析", "教学目标", "教学过程",
+        "评价方案", "教学反思", "附录"
+      ]
+    },
+    {
+      "id": "lesson-plan-pptx",
+      "name": "课时教学设计 (PPT)",
+      "format": "pptx",
+      "path": "ppt/lesson-plan.template.pptx",
+      "slides": [
+        "封面", "目录", "教学概览", "课标分析",
+        "学情分析", "教学目标", "教学策略",
+        "教学过程", "学习活动", "评价方案",
+        "教学反思", "总结"
+      ]
+    },
+    {
+      "id": "teaching-design-json",
+      "name": "教学设计 (JSON)",
+      "format": "json",
+      "path": "json/teaching-design.schema.json",
+      "pretty": true
+    }
+  ],
+
+  "metadata": {
+    "author": "OpenLearn AI Team",
+    "language": "zh-CN",
+    "compatibleRuntimes": [">=1.0.0"]
+  }
+}

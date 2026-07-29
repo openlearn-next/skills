@@ -1,0 +1,60 @@
+{
+  "id": "activity-expert",
+  "name": "学习活动设计专家",
+  "version": "1.0.0",
+  "role": "activity-designer",
+  "type": "design",
+  "description": "基于工程设计流程设计学习任务序列。禁止使用导入→讲授→练习→总结传统模板，必须体现 EDP 流程。",
+
+  "input": {
+    "required": ["StrategyContext", "GoalContext", "StudentContext", "KnowledgeContext"],
+    "contexts": ["StrategyContext", "GoalContext", "StudentContext", "KnowledgeContext"]
+  },
+
+  "output": {
+    "context": "LearningActivityContext",
+    "schema": "LearningActivityContext.schema.json",
+    "fields": {
+      "required": ["learningTasks", "designRationale", "timeAllocation"],
+      "optional": ["engineeringTasks", "experimentTasks"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Activity_Expert.md",
+    "temperature": 0.6,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "工程设计流程（定义→研究→设计→建造→测试→改进→展示）",
+      "项目式学习活动设计",
+      "真实情境教学设计",
+      "AI 增强学习"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得使用导入→讲授→练习→总结传统模板", "severity": "critical" },
+    { "type": "must_not", "description": "不得设计评价量规", "severity": "critical" },
+    { "type": "must", "description": "每个任务必须包含真实情境和驱动问题", "severity": "critical" },
+    { "type": "must", "description": "活动设计必须体现工程设计流程", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "EDP 活动设计框架",
+    "steps": [
+      "分析教学策略（EDP/PBL/探究）",
+      "确定活动序列（定义→研究→设计→建造→测试→改进→展示）",
+      "设计真实情境和驱动问题",
+      "明确教师角色（引导者/教练）和学生角色（设计师/工程师）",
+      "标注 AI 支持点",
+      "分配时间"
+    ]
+  },
+
+  "workflow": { "compatible": ["lesson-plan", "project-design", "engineering-design"], "timeout": 120000, "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 } },
+  "metadata": { "category": "design", "priority": 7, "language": "zh-CN" }
+}

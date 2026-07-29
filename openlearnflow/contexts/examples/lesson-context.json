@@ -1,0 +1,16 @@
+{
+  "teacherInput": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "semester": "上",
+    "textbookVersion": "苏教版",
+    "chapter": "第三章 系统与设计",
+    "topic": "系统的结构",
+    "knowledgePoints": ["系统", "子系统", "系统优化", "反馈", "控制系统"],
+    "classHours": 3,
+    "studentProfile": "学生对技术课程兴趣较高，已学习过技术与设计基础，动手能力较强，但系统思维较弱，需要加强系统分析能力培养",
+    "teachingMode": "项目式学习",
+    "equipment": "多媒体教室、Arduino套件×15、常用工具套件、3D打印机×1",
+    "additionalRequirements": "需要为随班就读学生提供简化版学习单"
+  }
+}

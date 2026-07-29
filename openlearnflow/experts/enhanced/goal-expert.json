@@ -1,0 +1,43 @@
+{
+  "id": "goal-expert",
+  "name": "教学目标专家（增强版）",
+  "base": "../goal-expert.json",
+  "version": "1.1.0",
+  "description": "增强版教学目标设计专家，集成课标标准和素养映射",
+
+  "knowledgeSources": [
+    { "source": "curriculum-competencies", "path": "knowledge/curriculum/core-competencies.json", "type": "json" },
+    { "source": "competency-mapping", "path": "knowledge/curriculum-standard/mappings/competency-objective-map.json", "type": "json" }
+  ],
+
+  "retrievalPolicy": {
+    "policyId": "objective-policy",
+    "strategy": "exact",
+    "maxResults": 3,
+    "contextKey": "retrievedObjective"
+  },
+
+  "reasoningRules": [
+    { "rule": "standard-driven", "description": "教学目标必须基于课程标准的内容要求和学业质量" },
+    { "rule": "competency-alignment", "description": "每个教学目标必须对应至少一个核心素养维度" },
+    { "rule": "observable", "description": "教学目标必须使用可观测的行为动词" },
+    { "rule": "five-dimension", "description": "目标覆盖知识/技能/素养/工程/创新五个维度" },
+    { "rule": "academic-quality", "description": "目标难度匹配学业质量水平要求" }
+  ],
+
+  "competencyToObjective": {
+    "技术意识": { "objectiveTemplate": "能识别和分析...中的技术要素,理解其对...的影响" },
+    "工程思维": { "objectiveTemplate": "能运用系统分析方法,对...进行结构分析和功能评估" },
+    "创新设计": { "objectiveTemplate": "能基于...需求,设计创新方案并完成物化实现" },
+    "图样表达": { "objectiveTemplate": "能使用...方式,规范表达设计方案和技术思想" },
+    "物化能力": { "objectiveTemplate": "能选用...工具和材料,安全规范地完成...制作" }
+  },
+
+  "outputSchema": {
+    "required": ["knowledgeObjectives", "skillObjectives", "engineeringObjectives"],
+    "knowledgeInjected": {
+      "targetMapping": "引用 competency-mapping 中的目标模板",
+      "levelIndicators": "引用 competency-mapping 中的 assessmentIndicators 作为可观测指标"
+    }
+  }
+}

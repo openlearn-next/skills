@@ -1,0 +1,26 @@
+{
+  "id": "project-learning",
+  "name": "项目式学习设计示例",
+  "description": "PBL 项目：智能校园浇灌系统设计",
+  "workflowId": "project-design",
+  "version": "1.0.0",
+
+  "input": {
+    "subject": "技术与工程",
+    "grade": "高一",
+    "chapter": "控制系统",
+    "topic": "智能浇灌系统设计",
+    "knowledgePoints": ["控制系统", "传感器", "Arduino", "反馈"],
+    "classHours": 8,
+    "studentProfile": "已完成系统与设计、控制与设计单元学习，具备基础编程能力",
+    "teachingMode": "项目式学习",
+    "equipment": "Arduino套件、土壤湿度传感器、水泵、3D打印机"
+  },
+
+  "projectConfig": {
+    "drivingQuestion": "如何设计一个智能校园浇灌系统来节约水资源？",
+    "realWorldContext": "学校花园植物因假期无人浇水而枯死，需要设计自动解决方案",
+    "edpStages": ["define", "research", "design", "build", "test", "improve", "present"],
+    "deliverables": ["系统设计方案", "原型作品", "测试报告", "成果展示"]
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openlearn.ai/schemas/TeachingDesignContext.schema.json",
+  "title": "TeachingDesignContext",
+  "description": "Teaching Design Skill 的聚合上下文，包含教师输入和各 Expert 分析输出",
+  "type": "object",
+
+  "properties": {
+    "teacherInput": {
+      "$ref": "#/$defs/TeacherInput"
+    },
+    "curriculum": {
+      "$ref": "#/$defs/CurriculumOutput"
+    },
+    "textbook": {
+      "$ref": "#/$defs/TextbookOutput"
+    },
+    "knowledge": {
+      "$ref": "#/$defs/KnowledgeOutput"
+    },
+    "student": {
+      "$ref": "#/$defs/StudentOutput"
+    },
+    "goal": {
+      "$ref": "#/$defs/GoalOutput"
+    },
+    "strategy": {
+      "$ref": "#/$defs/StrategyOutput"
+    },
+    "activity": {
+      "$ref": "#/$defs/ActivityOutput"
+    },
+    "assessment": {
+      "$ref": "#/$defs/AssessmentOutput"
+    },
+    "resource": {
+      "$ref": "#/$defs/ResourceOutput"
+    },
+    "reflection": {
+      "$ref": "#/$defs/ReflectionOutput"
+    },
+    "review": {
+      "$ref": "#/$defs/ReviewOutput"
+    }
+  },
+
+  "required": [
+    "teacherInput"
+  ],
+
+  "additionalProperties": false,
+
+  "$defs": {
+    "TeacherInput": {
+      "type": "object",
+      "required": ["subject", "grade", "chapter", "topic", "classHours"],
+      "properties": {
+        "subject": { "type": "string", "const": "技术与工程" },
+        "grade": { "type": "string", "enum": ["高一", "高二", "高三"] },
+        "semester": { "type": "string", "enum": ["上", "下"] },
+        "textbookVersion": { "type": "string" },
+        "chapter": { "type": "string", "minLength": 1 },
+        "topic": { "type": "string", "minLength": 1 },
+        "knowledgePoints": { "type": "array", "items": { "type": "string" } },
+        "classHours": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "studentProfile": { "type": "string" },
+        "teachingMode": { "type": "string", "enum": ["项目式学习", "探究式学习", "合作学习", "情境教学", "传统讲授"] },
+        "equipment": { "type": "string" },
+        "additionalRequirements": { "type": "string" }
+      }
+    },
+    "CurriculumOutput": {
+      "type": "object",
+      "description": "Curriculum Expert 输出",
+      "required": ["coursePosition", "contentRequirements", "coreCompetencies"],
+      "properties": {
+        "coursePosition": { "type": "string" },
+        "contentRequirements": { "type": "array", "items": { "type": "string" } },
+        "coreCompetencies": { "type": "array", "items": { "type": "object" } },
+        "academicQuality": { "type": "object" },
+        "teachingSuggestions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "TextbookOutput": {
+      "type": "object",
+      "required": ["chapterPosition", "knowledgeStructure", "keyPoints", "difficultPoints"],
+      "properties": {
+        "chapterPosition": { "type": "string" },
+        "knowledgeStructure": { "type": "string" },
+        "keyPoints": { "type": "array", "items": { "type": "string" } },
+        "difficultPoints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "KnowledgeOutput": {
+      "type": "object",
+      "required": ["coreConcepts", "knowledgeNetwork"],
+      "properties": {
+        "coreConcepts": { "type": "array", "items": { "type": "object" } },
+        "knowledgeNetwork": { "type": "string" },
+        "engineeringCases": { "type": "array", "items": { "type": "string" } },
+        "crossDisciplinary": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "StudentOutput": {
+      "type": "object",
+      "required": ["existingExperience", "learningDifficulties"],
+      "properties": {
+        "existingExperience": { "type": "string" },
+        "learningDifficulties": { "type": "array", "items": { "type": "string" } },
+        "tieredStrategy": { "type": "string" }
+      }
+    },
+    "GoalOutput": {
+      "type": "object",
+      "required": ["knowledgeObjectives", "skillObjectives", "engineeringObjectives"],
+      "properties": {
+        "knowledgeObjectives": { "type": "array", "items": { "type": "string" } },
+        "skillObjectives": { "type": "array", "items": { "type": "string" } },
+        "engineeringObjectives": { "type": "array", "items": { "type": "string" } },
+        "innovationObjectives": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "StrategyOutput": {
+      "type": "object",
+      "required": ["teachingModel", "teachingMethods", "selectionRationale"],
+      "properties": {
+        "teachingModel": { "type": "string" },
+        "teachingMethods": { "type": "array", "items": { "type": "string" } },
+        "selectionRationale": { "type": "string" }
+      }
+    },
+    "ActivityOutput": {
+      "type": "object",
+      "required": ["learningTasks", "designRationale", "timeAllocation"],
+      "properties": {
+        "learningTasks": { "type": "array", "items": { "type": "object" } },
+        "designRationale": { "type": "string" },
+        "timeAllocation": { "type": "string" }
+      }
+    },
+    "AssessmentOutput": {
+      "type": "object",
+      "required": ["assessmentFramework", "assessmentMethods", "rubrics"],
+      "properties": {
+        "assessmentFramework": { "type": "string" },
+        "assessmentMethods": { "type": "array", "items": { "type": "string" } },
+        "rubrics": { "type": "array", "items": { "type": "object" } },
+        "learningEvidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ResourceOutput": {
+      "type": "object",
+      "required": ["teachingResources"],
+      "properties": {
+        "teachingResources": { "type": "array", "items": { "type": "string" } },
+        "worksheet": { "type": "string" },
+        "pptOutline": { "type": "string" },
+        "boardDesign": { "type": "string" }
+      }
+    },
+    "ReflectionOutput": {
+      "type": "object",
+      "required": ["reflectionFramework", "improvementSuggestions"],
+      "properties": {
+        "reflectionFramework": { "type": "string" },
+        "presetQuestions": { "type": "array", "items": { "type": "string" } },
+        "improvementSuggestions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ReviewOutput": {
+      "type": "object",
+      "required": ["overallScore", "readyToPublish"],
+      "properties": {
+        "overallScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "dimensionScores": { "type": "object" },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "revisionSuggestions": { "type": "array", "items": { "type": "string" } },
+        "readyToPublish": { "type": "boolean" }
+      }
+    }
+  }
+}

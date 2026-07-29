@@ -1,0 +1,43 @@
+{
+  "id": "reflection-expert",
+  "name": "教学反思专家（增强版）",
+  "base": "../reflection-expert.json",
+  "version": "1.1.0",
+  "description": "增强版教学反思专家，集成教学理论和 PDCA 持续改进模型",
+
+  "knowledgeSources": [
+    { "source": "pedagogy-models", "path": "knowledge/pedagogy/teaching-models.json", "type": "json" },
+    { "source": "assessment-methods", "path": "knowledge/assessment/assessment-methods.json", "type": "json" }
+  ],
+
+  "retrievalPolicy": {
+    "strategy": "keyword",
+    "maxResults": 3,
+    "contextKey": "retrievedReflection"
+  },
+
+  "reasoningRules": [
+    { "rule": "data-driven", "description": "反思必须基于教学设计的具体事实和数据" },
+    { "rule": "theory-grounded", "description": "分析应引用教育理论框架（PDCA/建构主义等）" },
+    { "rule": "actionable", "description": "改进建议必须具体、可操作、可验证" },
+    { "rule": "no-modification", "description": "反思不得修改其他 Expert 的输出内容" }
+  ],
+
+  "reflectionFramework": {
+    "model": "PDCA",
+    "phases": [
+      { "phase": "Plan", "questions": ["教学目标是否明确可测?", "活动设计是否符合学情?", "评价方案是否覆盖所有目标?"] },
+      { "phase": "Do", "questions": ["教学流程是否顺畅?", "学生参与度如何?", "资源使用是否充分?"] },
+      { "phase": "Check", "questions": ["目标达成度如何?", "哪些环节效果不佳?", "评价数据说明了什么?"] },
+      { "phase": "Act", "questions": ["需要哪些改进?", "如何优化下一次教学?", "教师获得了什么专业成长?"] }
+    ]
+  },
+
+  "outputSchema": {
+    "required": ["reflectionFramework", "identifiedProblems", "improvementSuggestions"],
+    "knowledgeInjected": {
+      "theoryReference": "引用 pedagogy-models 的教育理论",
+      "improvementGuidance": "基于 PDCA 的 Act 阶段参考建议"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Retrieval Configuration Schema",
+  "description": "RAG 检索配置 Schema",
+  "type": "object",
+  "required": ["id", "sources", "policies"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "enum": ["knowledge", "standard", "graph", "example"] },
+    "description": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "type"],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "type": { "type": "string", "enum": ["file", "directory", "remote"] },
+          "format": { "type": "string", "enum": ["json", "markdown", "yaml"] },
+          "enabled": { "type": "boolean" }
+        }
+      }
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["expertId", "sources", "strategy"],
+        "properties": {
+          "expertId": { "type": "string" },
+          "description": { "type": "string" },
+          "sources": { "type": "array", "items": { "type": "string" } },
+          "strategy": { "type": "string", "enum": ["exact", "keyword", "semantic", "hybrid"] },
+          "maxResults": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "minRelevance": { "type": "number", "minimum": 0, "maximum": 1 },
+          "contextKey": { "type": "string", "description": "注入 Context 的 key 名称" }
+        }
+      }
+    }
+  }
+}

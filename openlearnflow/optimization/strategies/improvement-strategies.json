@@ -1,0 +1,65 @@
+{
+  "id": "improvement-strategies",
+  "name": "问题→策略→操作 映射表",
+  "version": "1.0.0",
+  "description": "将诊断出的问题映射到具体的优化策略和操作步骤",
+
+  "mappings": [
+    {
+      "issueId": "DIAG-001",
+      "strategy": "strategy-regenerate",
+      "action": "重新调用 Objective Expert,确保输入 Context 完整",
+      "autoApplicable": false,
+      "estimatedCost": "1 Expert call",
+      "prerequisite": "CurriculumContext + KnowledgeContext 已填充"
+    },
+    {
+      "issueId": "DIAG-002",
+      "strategy": "strategy-regenerate",
+      "action": "使用 enhanced activity-expert 重新生成,注入 EDP 约束",
+      "autoApplicable": false,
+      "estimatedCost": "1 Expert call",
+      "prerequisite": "engineering-education 知识源可用"
+    },
+    {
+      "issueId": "DIAG-003",
+      "strategy": "strategy-regenerate",
+      "action": "重新调用 Assessment Expert,强制对齐 GoalContext",
+      "autoApplicable": false,
+      "estimatedCost": "1 Expert call",
+      "prerequisite": "GoalContext 完整"
+    },
+    {
+      "issueId": "DIAG-004",
+      "strategy": "strategy-enrich",
+      "action": "从 curriculum-standard 知识源检索补充核心素养",
+      "autoApplicable": false,
+      "estimatedCost": "1 retrieval call",
+      "prerequisite": "curriculum-standard 索引可用"
+    },
+    {
+      "issueId": "DIAG-005",
+      "strategy": "strategy-adjust",
+      "action": "按比例压缩各活动时长 (proportional-scale)",
+      "autoApplicable": true,
+      "estimatedCost": "0 (auto)",
+      "prerequisite": "无"
+    },
+    {
+      "issueId": "DIAG-006",
+      "strategy": "strategy-human-review",
+      "action": "标记冲突位置,生成对比报告,等待教师确认",
+      "autoApplicable": false,
+      "estimatedCost": "人工",
+      "prerequisite": "无"
+    },
+    {
+      "issueId": "DIAG-007",
+      "strategy": "strategy-refine",
+      "action": "在 Strategy Expert 的 Prompt 中注入学情分析摘要,要求回应",
+      "autoApplicable": false,
+      "estimatedCost": "1 Expert call",
+      "prerequisite": "StudentContext 完整"
+    }
+  ]
+}

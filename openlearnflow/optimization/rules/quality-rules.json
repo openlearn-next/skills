@@ -1,0 +1,153 @@
+{
+  "id": "quality-rules",
+  "name": "教学设计质量检查规则集",
+  "version": "1.0.0",
+  "description": "20 条质量检查规则，覆盖内容准确性、逻辑一致性、教育适配性、工程忠实度和输出质量",
+
+  "rules": {
+    "content-standards-check": {
+      "id": "R01", "category": "content-accuracy", "severity": "critical",
+      "description": "检查是否引用了课程标准原文条目",
+      "check": "curriculumContext.contentRequirements.length > 0",
+      "failureMessage": "未引用课程标准原文条目",
+      "autoFix": false
+    },
+    "terminology-check": {
+      "id": "R02", "category": "content-accuracy", "severity": "warning",
+      "description": "检查是否使用了规范的专业术语",
+      "check": "术语一致性检查",
+      "failureMessage": "存在不规范的术语使用",
+      "autoFix": true
+    },
+    "completeness-check": {
+      "id": "R03", "category": "content-accuracy", "severity": "critical",
+      "description": "检查所有必需字段是否完整填充",
+      "check": "所有 required 字段非空",
+      "failureMessage": "部分必需字段缺失内容",
+      "autoFix": false
+    },
+    "deep-analysis-check": {
+      "id": "R04", "category": "content-accuracy", "severity": "warning",
+      "description": "检查分析是否有深度（非表面描述）",
+      "check": "文本长度 > 50 且包含具体分析",
+      "failureMessage": "分析内容过于简略",
+      "autoFix": false
+    },
+
+    "goal-activity-alignment": {
+      "id": "R05", "category": "logical-consistency", "severity": "critical",
+      "description": "检查教学目标与学习活动是否一一对应",
+      "check": "每个目标有对应的活动",
+      "failureMessage": "存在无对应活动的教学目标",
+      "autoFix": false
+    },
+    "activity-assessment-alignment": {
+      "id": "R06", "category": "logical-consistency", "severity": "critical",
+      "description": "检查学习活动与评价方案是否对齐",
+      "check": "活动中的输出物对应评价证据",
+      "failureMessage": "活动产出与评价证据不匹配",
+      "autoFix": false
+    },
+    "cross-expert-conflict": {
+      "id": "R07", "category": "logical-consistency", "severity": "high",
+      "description": "检查跨 Expert 输出是否存在逻辑矛盾",
+      "check": "无矛盾表述",
+      "failureMessage": "存在跨 Expert 逻辑矛盾",
+      "autoFix": false
+    },
+    "sequence-logic": {
+      "id": "R08", "category": "logical-consistency", "severity": "warning",
+      "description": "检查教学流程是否遵循合理的认知逻辑",
+      "check": "由浅入深, 先概念后实践",
+      "failureMessage": "教学流程认知顺序不合理",
+      "autoFix": false
+    },
+
+    "difficulty-match": {
+      "id": "R09", "category": "educational-appropriateness", "severity": "high",
+      "description": "检查难度是否匹配学情分析",
+      "check": "活动难度 ≤ 学情分析的最高能力水平",
+      "failureMessage": "活动难度超出学生当前水平",
+      "autoFix": false
+    },
+    "student-profile-alignment": {
+      "id": "R10", "category": "educational-appropriateness", "severity": "high",
+      "description": "检查策略和活动是否回应了学情",
+      "check": "教学策略选择依据包含学情分析",
+      "failureMessage": "教学策略未基于学情分析",
+      "autoFix": false
+    },
+    "time-allocation": {
+      "id": "R11", "category": "educational-appropriateness", "severity": "critical",
+      "description": "检查活动总时长是否在课时范围内",
+      "check": "sum(activity.duration) <= totalPeriods * durationMinutes",
+      "failureMessage": "活动总时长超出课时",
+      "autoFix": true
+    },
+    "tiered-support": {
+      "id": "R12", "category": "educational-appropriateness", "severity": "warning",
+      "description": "检查是否提供了分层支持策略",
+      "check": "存在针对不同水平学生的差异化设计",
+      "failureMessage": "未提供分层教学支持",
+      "autoFix": false
+    },
+
+    "edp-completeness": {
+      "id": "R13", "category": "engineering-fidelity", "severity": "critical",
+      "description": "检查 EDP 7阶段是否完整",
+      "check": "define/research/design/build/test/improve/present 全部出现",
+      "failureMessage": "工程设计流程不完整",
+      "autoFix": false
+    },
+    "safety-compliance": {
+      "id": "R14", "category": "engineering-fidelity", "severity": "critical",
+      "description": "检查是否包含安全规范",
+      "check": "存在安全相关描述",
+      "failureMessage": "缺少安全操作规范",
+      "autoFix": false
+    },
+    "tool-material-availability": {
+      "id": "R15", "category": "engineering-fidelity", "severity": "high",
+      "description": "检查所需工具材料是否在可用范围内",
+      "check": "工具材料列表与 equipment 声明匹配",
+      "failureMessage": "所需工具超出可用范围",
+      "autoFix": true
+    },
+
+    "format-compliance": {
+      "id": "R16", "category": "output-quality", "severity": "warning",
+      "description": "检查输出格式是否符合模板",
+      "check": "章节顺序匹配 template-manifest",
+      "failureMessage": "输出格式不符合模板要求",
+      "autoFix": true
+    },
+    "section-completeness": {
+      "id": "R17", "category": "output-quality", "severity": "critical",
+      "description": "检查输出是否包含所有必需章节",
+      "check": "所有 template sections 非空",
+      "failureMessage": "部分章节缺失",
+      "autoFix": false
+    },
+    "readability": {
+      "id": "R18", "category": "output-quality", "severity": "warning",
+      "description": "检查文字可读性",
+      "check": "段落长度 < 500 字符, 无连续单句",
+      "failureMessage": "文字可读性不佳",
+      "autoFix": false
+    },
+    "persistent-id": {
+      "id": "R19", "category": "output-quality", "severity": "warning",
+      "description": "检查 Entity ID 是否跨生成一致",
+      "check": "taskId、stageId 保持稳定",
+      "failureMessage": "Entity ID 不一致",
+      "autoFix": true
+    },
+    "reference-completeness": {
+      "id": "R20", "category": "output-quality", "severity": "warning",
+      "description": "检查引用和附录是否完整",
+      "check": "课标引用编号、资源链接有效",
+      "failureMessage": "引用不完整",
+      "autoFix": false
+    }
+  }
+}

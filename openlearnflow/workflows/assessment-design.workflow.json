@@ -1,0 +1,83 @@
+{
+  "id": "assessment-design",
+  "name": "评价方案设计",
+  "description": "基于教学目标和活动设计，生成完整的评价方案（形成性/终结性/表现性 + Rubric）",
+  "version": "1.0.0",
+  "type": "design",
+
+  "input": {
+    "required": ["GoalContext", "LearningActivityContext"],
+    "optional": ["EngineeringContext"]
+  },
+
+  "output": {
+    "format": "AssessmentContext",
+    "schema": "AssessmentContext.schema.json"
+  },
+
+  "steps": [
+    {
+      "id": "step-validate",
+      "name": "输入校验",
+      "type": "system",
+      "expert": "system",
+      "description": "校验输入上下文完整性和目标-活动对齐度",
+      "input": ["GoalContext", "LearningActivityContext"],
+      "output": ["ValidatedInput"],
+      "dependsOn": []
+    },
+    {
+      "id": "step-formative",
+      "name": "形成性评价设计",
+      "type": "design",
+      "expert": "assessment-expert",
+      "description": "设计课堂观察、提问、练习等形成性评价方式",
+      "input": ["GoalContext", "LearningActivityContext"],
+      "output": ["FormativeAssessment"],
+      "dependsOn": ["step-validate"],
+      "timeout": 45000
+    },
+    {
+      "id": "step-summative",
+      "name": "终结性评价设计",
+      "type": "design",
+      "expert": "assessment-expert",
+      "description": "设计作品评价、测试等终结性评价方式",
+      "input": ["GoalContext", "LearningActivityContext"],
+      "output": ["SummativeAssessment"],
+      "dependsOn": ["step-validate"],
+      "timeout": 45000
+    },
+    {
+      "id": "step-rubric",
+      "name": "Rubric 量规设计",
+      "type": "design",
+      "expert": "assessment-expert",
+      "description": "设计多维度评价量规（等级描述+权重）",
+      "input": ["GoalContext", "FormativeAssessment", "SummativeAssessment"],
+      "output": ["Rubric"],
+      "dependsOn": ["step-formative", "step-summative"],
+      "timeout": 60000,
+      "critical": true
+    },
+    {
+      "id": "step-compile",
+      "name": "评价方案汇编",
+      "type": "system",
+      "expert": "system",
+      "description": "汇编完整的 AssessmentContext",
+      "input": ["FormativeAssessment", "SummativeAssessment", "Rubric"],
+      "output": ["AssessmentContext"],
+      "dependsOn": ["step-formative", "step-summative", "step-rubric"]
+    }
+  ],
+
+  "parallelGroups": [
+    ["step-formative", "step-summative"]
+  ],
+
+  "failure": {
+    "strategy": "abort_on_critical",
+    "criticalSteps": ["step-rubric"]
+  }
+}

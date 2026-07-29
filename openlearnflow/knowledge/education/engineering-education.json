@@ -1,0 +1,41 @@
+{
+  "id": "engineering-education",
+  "type": "education",
+  "title": "工程教育基础",
+  "description": "K-12 工程教育的核心理念和实践方法",
+  "source": "工程教育研究",
+  "expertCompatibility": ["curriculum-expert", "activity-expert", "pedagogy-expert"],
+
+  "concepts": [
+    {
+      "name": "工程设计过程 (EDP)",
+      "definition": "工程师解决实际问题的标准流程：定义问题→背景研究→方案设计→建造原型→测试评估→优化改进→成果展示",
+      "applications": ["产品设计", "系统优化", "制作实践"],
+      "relatedConcepts": ["系统思维", "创新设计", "物化能力"]
+    },
+    {
+      "name": "系统思维",
+      "definition": "将对象视为由相互关联的部分组成的整体，分析其结构、功能和行为的思维方式",
+      "applications": ["系统分析", "建模", "优化决策"],
+      "relatedConcepts": ["工程思维", "整体论"]
+    },
+    {
+      "name": "迭代优化",
+      "definition": "通过反复测试、评估和改进不断完善设计方案或产品的方法",
+      "applications": ["原型迭代", "性能优化", "设计改进"],
+      "relatedConcepts": ["工程设计过程", "测试评估"]
+    },
+    {
+      "name": "安全规范",
+      "definition": "在工程实践活动中必须遵守的安全操作规则和防护措施",
+      "applications": ["工具使用", "材料处理", "电子制作", "实验操作"],
+      "relatedConcepts": ["操作规范", "风险评估"]
+    }
+  ],
+
+  "relations": [
+    { "from": "工程设计过程", "to": "系统思维", "type": "requires" },
+    { "from": "工程设计过程", "to": "迭代优化", "type": "extends" },
+    { "from": "迭代优化", "to": "测试评估", "type": "requires" }
+  ]
+}

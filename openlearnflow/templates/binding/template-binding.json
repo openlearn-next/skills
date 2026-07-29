@@ -1,0 +1,46 @@
+{
+  "id": "template-binding",
+  "name": "模板绑定配置",
+  "version": "1.0.0",
+  "description": "将模板目录与 Skill 输出格式绑定",
+
+  "bindings": [
+    {
+      "format": "markdown",
+      "templateDir": "templates/markdown/",
+      "exporter": "MarkdownGenerator",
+      "defaultTemplate": "lesson-plan.md",
+      "sectionMap": {
+        "overview": "## 教学概览",
+        "curriculumDesign": "## 课程标准分析",
+        "objectives": "## 教学目标",
+        "teachingProcess": "## 教学过程",
+        "assessment": "## 评价方案"
+      }
+    },
+    {
+      "format": "json",
+      "templateDir": "templates/json/",
+      "exporter": "JsonExporter",
+      "schema": "teaching-design.schema.json"
+    },
+    {
+      "format": "docx",
+      "templateDir": "templates/docx/",
+      "exporter": "DocxGenerator",
+      "defaultTemplate": "lesson-plan.template.docx"
+    },
+    {
+      "format": "pptx",
+      "templateDir": "templates/ppt/",
+      "exporter": "PPTGenerator",
+      "defaultTemplate": "lesson-plan.template.pptx"
+    }
+  ],
+
+  "dynamicSections": {
+    "teachingProcess": { "variable": "stages", "template": "stage-item" },
+    "learningTasks": { "variable": "tasks", "template": "task-item" },
+    "rubric": { "variable": "rubrics", "template": "rubric-table" }
+  }
+}

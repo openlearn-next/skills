@@ -1,0 +1,86 @@
+{
+  "id": "optimization-strategies",
+  "name": "教学设计优化策略集",
+  "version": "1.0.0",
+  "description": "针对各类质量问题的优化策略和自动修复方法",
+
+  "strategies": [
+    {
+      "id": "strategy-regenerate",
+      "name": "重新生成",
+      "description": "要求对应 Expert 重新生成输出",
+      "applicableRules": ["R01", "R03", "R05", "R06", "R13", "R17"],
+      "cost": "high",
+      "effectiveness": "high",
+      "autoApplicable": false
+    },
+    {
+      "id": "strategy-refine",
+      "name": "局部优化",
+      "description": "对特定字段进行修补和完善",
+      "applicableRules": ["R02", "R04", "R08", "R18"],
+      "cost": "medium",
+      "effectiveness": "medium",
+      "autoApplicable": true
+    },
+    {
+      "id": "strategy-adjust",
+      "name": "参数调整",
+      "description": "调整数值参数使其满足约束",
+      "applicableRules": ["R11", "R15"],
+      "cost": "low",
+      "effectiveness": "high",
+      "autoApplicable": true
+    },
+    {
+      "id": "strategy-format",
+      "name": "格式修正",
+      "description": "修正输出格式和章节顺序",
+      "applicableRules": ["R16", "R19"],
+      "cost": "low",
+      "effectiveness": "high",
+      "autoApplicable": true
+    },
+    {
+      "id": "strategy-enrich",
+      "name": "内容补充",
+      "description": "从知识库检索补充缺失内容",
+      "applicableRules": ["R03", "R12", "R20"],
+      "cost": "medium",
+      "effectiveness": "medium",
+      "autoApplicable": false
+    },
+    {
+      "id": "strategy-human-review",
+      "name": "人工审核",
+      "description": "标记为需要教师人工审核的问题",
+      "applicableRules": ["R07", "R09", "R10", "R14"],
+      "cost": "high",
+      "effectiveness": "high",
+      "autoApplicable": false
+    }
+  ],
+
+  "autoFixRules": {
+    "R11-time-allocation": {
+      "trigger": "sum(activity.duration) > totalMinutes",
+      "action": "proportional-scale",
+      "description": "按比例压缩各活动时长使其适应总课时"
+    },
+    "R15-tool-material": {
+      "trigger": "requiredTools ⊄ availableEquipment",
+      "action": "suggest-alternative",
+      "description": "将超范围工具替换为可用范围内的替代方案"
+    },
+    "R16-format-compliance": {
+      "trigger": "sectionOrder != templateSectionOrder",
+      "action": "reorder",
+      "description": "按模板顺序重排章节"
+    },
+    "R19-persistent-id": {
+      "trigger": "ID mismatch across regenerations",
+      "action": "stabilize",
+      "description": "基于 content hash 生成稳定 ID"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Domain Intelligence Evaluation Schema",
+  "description": "领域智能评估 Schema — 评估 Skill 是否具备教学设计领域智能",
+  "type": "object",
+  "required": ["skillId", "version", "dimensions", "overallScore"],
+  "properties": {
+    "skillId": { "type": "string" },
+    "version": { "type": "string" },
+    "evaluatedAt": { "type": "string", "format": "date-time" },
+    "overallScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "level": { "type": "string", "enum": ["basic", "competent", "advanced", "expert"] },
+    "certified": { "type": "boolean" },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "knowledgeIntelligence": { "$ref": "#/$defs/DimensionScore" },
+        "reasoningIntelligence": { "$ref": "#/$defs/DimensionScore" },
+        "generationIntelligence": { "$ref": "#/$defs/DimensionScore" },
+        "optimizationIntelligence": { "$ref": "#/$defs/DimensionScore" }
+      }
+    }
+  },
+  "$defs": {
+    "DimensionScore": {
+      "type": "object",
+      "required": ["score", "maxScore", "criteriaScores"],
+      "properties": {
+        "score": { "type": "integer" },
+        "maxScore": { "type": "integer" },
+        "percentage": { "type": "number" },
+        "criteriaScores": { "type": "array", "items": { "type": "object" } }
+      }
+    }
+  }
+}

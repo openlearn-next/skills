@@ -1,0 +1,54 @@
+{
+  "id": "curriculum-standards",
+  "type": "curriculum",
+  "title": "课程标准关键词体系",
+  "description": "《普通高中技术课程标准》中的核心概念和素养维度",
+  "source": "普通高中技术课程标准（2017年版2020年修订）",
+  "expertCompatibility": ["curriculum-expert", "objective-expert"],
+
+  "concepts": [
+    {
+      "name": "技术意识",
+      "definition": "对技术现象的关注和理解，认识到技术对社会发展和人类生活的影响",
+      "applications": ["技术与社会案例教学", "技术伦理讨论"],
+      "relatedConcepts": ["技术创新", "技术评价"]
+    },
+    {
+      "name": "工程思维",
+      "definition": "系统思考、整体分析和优化决策的思维方式，包括工程分析、设计和评估能力",
+      "applications": ["系统分析", "方案设计", "工程评价"],
+      "relatedConcepts": ["系统思维", "设计思维", "创新设计"]
+    },
+    {
+      "name": "创新设计",
+      "definition": "发现问题、构思方案、物化实现的创造性活动，包括创新思维和创新方法",
+      "applications": ["方案构思", "原型制作", "产品优化"],
+      "relatedConcepts": ["工程思维", "设计思维", "物化能力"]
+    },
+    {
+      "name": "图样表达",
+      "definition": "使用图形、符号、文字等方式表达技术思想和设计方案的能力",
+      "applications": ["设计草图", "三视图", "系统框图", "CAD制图"],
+      "relatedConcepts": ["设计交流", "技术语言"]
+    },
+    {
+      "name": "物化能力",
+      "definition": "使用工具、材料和技术手段将设计方案转化为实物作品的能力",
+      "applications": ["工具使用", "材料加工", "作品制作", "测试调试"],
+      "relatedConcepts": ["原型制作", "3D打印", "电子制作"]
+    },
+    {
+      "name": "学业质量",
+      "definition": "学生在完成课程学习后的学业成就表现，分为4个水平等级",
+      "applications": ["教学目标设定", "评价标准制定"],
+      "relatedConcepts": ["核心素养", "教学目标", "评价标准"]
+    }
+  ],
+
+  "relations": [
+    { "from": "工程思维", "to": "系统思维", "type": "requires" },
+    { "from": "创新设计", "to": "工程思维", "type": "requires" },
+    { "from": "创新设计", "to": "物化能力", "type": "extends" },
+    { "from": "图样表达", "to": "物化能力", "type": "supports" }
+  ]
+}

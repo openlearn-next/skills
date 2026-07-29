@@ -1,0 +1,78 @@
+{
+  "id": "knowledge-expert",
+  "name": "知识体系专家",
+  "version": "1.0.0",
+  "role": "knowledge-organizer",
+  "type": "analysis",
+  "description": "构建知识图谱，梳理核心概念、工程案例和跨学科联系",
+
+  "input": {
+    "required": ["topic", "knowledgePoints"],
+    "optional": ["curriculumOutput", "textbookOutput"],
+    "contexts": ["TeachingContext", "CurriculumContext", "TextbookContext"]
+  },
+
+  "output": {
+    "context": "KnowledgeContext",
+    "fields": {
+      "required": ["coreConcepts", "knowledgeNetwork", "engineeringCases", "crossDisciplinary"],
+      "optional": ["conceptMap", "prerequisiteKnowledge", "extensionTopics"]
+    }
+  },
+
+  "prompt": {
+    "template": "experts/Knowledge_Expert.md",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "model": "default"
+  },
+
+  "knowledge": {
+    "domains": [
+      "技术与工程学科知识图谱",
+      "工程设计流程（EDP）",
+      "系统论、控制论、信息论基础",
+      "跨学科 STEM 知识网络"
+    ],
+    "references": [
+      "学科知识图谱",
+      "工程案例库",
+      "跨学科知识映射表"
+    ]
+  },
+
+  "constraints": [
+    { "type": "must_not", "description": "不得设计教学活动", "severity": "critical" },
+    { "type": "must", "description": "必须构建结构化知识图谱", "severity": "critical" },
+    { "type": "must", "description": "必须包含工程案例", "severity": "critical" }
+  ],
+
+  "thinking": {
+    "framework": "知识体系分析框架（概念提取→关系建模→工程映射→跨学科连接）",
+    "steps": [
+      "提取核心概念和知识点",
+      "构建概念间的关系网络",
+      "匹配相关工程案例和实践项目",
+      "识别跨学科联系（数学/物理/信息）",
+      "绘制知识结构图"
+    ]
+  },
+
+  "qualityChecklist": [
+    { "id": "QC01", "category": "completeness", "description": "核心概念是否完整" },
+    { "id": "QC02", "category": "accuracy", "description": "概念关系是否准确" },
+    { "id": "QC03", "category": "relevance", "description": "工程案例是否贴切" }
+  ],
+
+  "workflow": {
+    "compatible": ["lesson-plan", "project-design", "engineering-design"],
+    "timeout": 90000,
+    "retry": { "maxAttempts": 3, "strategy": "exponential", "baseDelayMs": 1000, "maxDelayMs": 30000 }
+  },
+
+  "metadata": {
+    "category": "analysis",
+    "priority": 3,
+    "language": "zh-CN"
+  }
+}
