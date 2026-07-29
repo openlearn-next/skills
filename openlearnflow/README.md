@@ -13,30 +13,33 @@ OpenLearn Flow 通过 **Chief Expert + 11 领域 Expert** 协作生成结构化�
   │
   ├─ Phase 1: 教学设计流水线（11 Expert 顺序执行）
   │   │
-  │   ├─ 1. Curriculum Expert   → 课程标准分析
-  │   ├─ 2. Textbook Expert     → 教材章节分析
-  │   ├─ 3. Knowledge Expert    → 知识体系 + 工程案例
-  │   ├─ 4. Student Expert      → 学情分析 + 分层策略
-  │   ├─ 5. Goal Expert         → 五维教学目标
-  │   ├─ 6. Strategy Expert     → 教学策略 + 模式选择
-  │   ├─ 7. Activity Expert     → 学习活动设计 + 交互模拟规格
-  │   ├─ 8. Assessment Expert   → 评价方案 + Rubric
-  │   ├─ 9. Resource Expert     → 教学资源 + 素材标注
-  │   ├─ 10. Reflection Expert  → 教学反思框架
-  │   └─ 11. Review Expert      → 9 项质量审核
+  │   ├─ 1. Curriculum Expert（课程标准专家）      → 课标解读，回答"为什么教"
+  │   ├─ 2. Textbook Expert（教材分析专家）        → 章节定位、重难点分析
+  │   ├─ 3. Knowledge Expert（知识体系专家）       → 核心概念图谱 + 工程案例 + 跨学科连接
+  │   ├─ 4. Student Expert（学情分析专家）         → 已有基础、认知困难、分层策略
+  │   ├─ 5. Goal Expert（教学目标专家）            → 五维目标（知识/技能/工程思维/创新/态度）
+  │   ├─ 6. Strategy Expert（教学策略专家）        → 教学模式、课堂组织、技术工具
+  │   ├─ 7. Activity Expert（活动设计专家）        → 按课时设计学习活动 + 交互模拟规格
+  │   ├─ 8. Assessment Expert（评价设计专家）      → 形成性/表现性/终结性评价 + Rubric
+  │   ├─ 9. Resource Expert（资源整合专家）        → 教学材料 + 素材来源标注
+  │   ├─ 10. Reflection Expert（教学反思专家）     → 反思框架 + 预设问题 + 改进方向
+  │   └─ 11. Review Expert（质量审核专家）         → 9 项标准审核 + PPT/网页审核
   │
-  ├─ Phase 2: 教学文档（落盘）
-  │   └─ workspace/{项目}/{课题}-教学设计.md
+  ├─ Phase 2: 教学文档输出（必须，自动落盘）
+  │   └─ 保存为 workspace/{项目}/{课题}-教学设计.md
+  │       对话中仅输出摘要，完整内容见文件
   │
-  ├─ Phase 3: PPT 课件（可选）
-  │   ├─ 外部 skill 检测
-  │   ├─ pptx 可用 → layout-catalog 模板系统 → .pptx
-  │   └─ pptx 不可用 → 手写 16:9 HTML 幻灯片
+  ├─ Phase 3: PPT 课件生成（可选）
+  │   ├─ 自动检测 pptx skill 是否可用
+  │   ├─ 可用 → layout-catalog 11 种布局模板 → 渲染 .pptx
+  │   └─ 不可用 → 降级为手写 16:9 HTML 幻灯片（浏览器全屏演示）
   │
-  └─ Phase 4: 互动网页（可选）
-      ├─ 外部 skill 检测
-      ├─ 全部可用 → design-taste-frontend（方向）→ web-design-engineer（生成）→ web-design-guidelines（审查）
-      └─ 不可用 → 手写 Canvas + CSS + JS 自包含页面
+  └─ Phase 4: 互动网页生成（可选，四步协作链）
+      ├─ Step 1: design-taste-frontend → 确定视觉方向（3 选 1）
+      ├─ Step 2: web-design-engineer → System → v0 → Build → Critique
+      ├─ Step 3: web-design-guidelines → UI 合规审查（对比度/触控/响应式/无障碍）
+      └─ Step 4: Review Expert → WC01–WC04 教学合规审查
+          所有外部 skill 不可用时 → 降级为手写 Canvas + CSS + JS 页面
 ```
 
 ## 目录结构
