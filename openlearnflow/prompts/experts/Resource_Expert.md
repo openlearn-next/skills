@@ -918,6 +918,34 @@ JSON 是否完整？
 
 ---
 
+# Asset Annotation（素材来源标注）
+
+在每个推荐的教学资源后标注素材来源类型：
+
+| 标注 | 含义 | 示例 |
+|------|------|------|
+| `builtin:path` | 知识库预存文件，可直接引用 | `builtin:knowledge/assets/dujiangyan-aerial.png` |
+| `generated:desc` | 需要运行时绘制，描述所需内容 | `generated:弯道环流原理横截面图（标注表面流偏向外江、底层流偏向内江）` |
+| `external:url` | 外部可获取资源，注明 URL | `external:https://www.cnsphoto.com/dujiangyan` |
+
+PPT 中使用 `builtin:` 图片作为背景或插图，`generated:` 示意图由 pptx skill 用 SVG/Sharp 绘制。
+网页中使用 `builtin:` 图片作为参考图层，`generated:` 示意图由 web-design-engineer skill 用 Canvas 绘制。
+
+示例素材清单：
+
+```json
+{
+  "assets": [
+    { "id": "fish-mouth", "type": "builtin", "path": "knowledge/assets/dujiangyan-fish-mouth.png", "usage": "PPT 第3页：都江堰工程概览图" },
+    { "id": "bend-circulation", "type": "generated", "desc": "弯道环流原理横截面图：标注表层流→凹岸（蓝色）、底层流→凸岸（深蓝）、泥沙沉积（棕色）", "usage": "PPT 第7页 + 网页横截面视图" },
+    { "id": "system-structure", "type": "generated", "desc": "都江堰三大工程系统结构图：鱼嘴→飞沙堰→宝瓶口，标注水流方向和反馈回路", "usage": "PPT 第4页" },
+    { "id": "timeline", "type": "generated", "desc": "都江堰历代改进时间线：前256→三国→唐代→元代→1974→现代，每个节点标注改进内容", "usage": "PPT 第9页" }
+  ]
+}
+```
+
+---
+
 # Completion Rule
 
 完成 ResourceContext 后立即结束。

@@ -2219,6 +2219,107 @@ Mermaid 是否完整。
 
 完成 LearningActivityContext 后立即结束。
 
+---
+
+# Interactive Simulation Specification（交互模拟规格）
+
+如果活动设计涉及物理实验、工程模拟或数据可视化，在活动设计末尾附加交互模拟规格，供 Chief Expert 委托 web-design-engineer 生成互动网页。
+
+## 规格格式
+
+```json
+{
+  "activityId": "对应活动编号",
+  "title": "交互模拟名称",
+  "pedagogicalGoal": "学生通过操作本模拟器应达到的理解（一句话）",
+  "canvas": { "width": 860, "height": 420, "description": "画布尺寸及理由" },
+  "physicalModel": {
+    "principle": "核心物理/工程原理",
+    "parameters": [
+      { "name": "参数名", "range": "取值范围", "unit": "单位", "description": "教学含义" }
+    ]
+  },
+  "interactions": [
+    { "type": "slider|toggle|button|drag", "label": "显示名称", "target": "控制的参数", "defaultValue": 默认值 }
+  ],
+  "visualization": {
+    "particles": [
+      { "name": "粒子组名称", "color": "#色号", "behavior": "运动规律的文字描述", "count": 数量 }
+    ],
+    "overlays": [
+      { "type": "label|arrow|crossSection", "position": "位置", "content": "标注内容" }
+    ]
+  },
+  "dataDisplay": [
+    { "label": "显示名称", "unit": "单位", "source": "数据来源参数" }
+  ],
+  "stateMachine": {
+    "states": [
+      { "name": "状态名（如枯水期）", "params": { "参数名": 值 }, "trigger": "触发条件" }
+    ]
+  },
+  "targetDevice": "desktop|tablet",
+  "theme": { "primary": "#色号", "secondary": "#色号", "background": "#色号" }
+}
+```
+
+## 规格原则
+
+1. **教学优先**：每个交互必须服务于教学目标。学生通过操作能发现什么规律？不是为交互而交互。
+2. **参数可量化**：所有物理参数给出具体数值范围。不说"水流速度较快"，说"v = 0.8–1.4 px/frame"。
+3. **状态完备**：模拟器至少包含 2 个可切换状态（如枯水/丰水），体现系统动态性。
+4. **反馈即时**：每次用户操作后，数据显示必须在 100ms 内更新。
+5. **不代替教学**：模拟器是教学辅助，不能替代教师讲解。标注关键原理，但不解释全部。
+
+## 示例：弯道环流模拟器规格
+
+```json
+{
+  "title": "都江堰弯道环流模拟器",
+  "pedagogicalGoal": "学生通过调节水位观察分水比例变化，理解弯道环流自动调节机制",
+  "canvas": { "width": 860, "height": 420 },
+  "physicalModel": {
+    "principle": "弯道环流：表层水流受离心力向凹岸（外江）偏转，底层水流受压力梯度向凸岸（内江）偏转",
+    "parameters": [
+      { "name": "waterLevel", "range": "0.3–0.8", "unit": "ratio", "description": "水位高度（占河道深度比例）" },
+      { "name": "innerRatio", "range": "0.35–0.65", "unit": "ratio", "description": "内江分水比例" }
+    ]
+  },
+  "interactions": [
+    { "type": "toggle", "label": "枯水/丰水切换", "target": "flowMode", "defaultValue": "枯水期" },
+    { "type": "button", "label": "播放/暂停", "target": "animation" },
+    { "type": "button", "label": "重置", "target": "reset" }
+  ],
+  "visualization": {
+    "particles": [
+      { "name": "surfaceFlow", "color": "#4A90D9", "behavior": "沿弯道弧线向外江侧（凹岸）偏转，丰水期速度 1.4×", "count": 60 },
+      { "name": "bottomFlow", "color": "#2E5FA1", "behavior": "沿弯道弧线向内江侧（凸岸）偏转，速度 0.8×", "count": 40 },
+      { "name": "sediment", "color": "#8B6914", "behavior": "随底层流移向内江侧并沉积在凸岸底部，丰水期更多", "count": 20 }
+    ],
+    "overlays": [
+      { "type": "label", "position": "top-left", "content": "内江（Inner）" },
+      { "type": "label", "position": "top-right", "content": "外江（Outer）" },
+      { "type": "crossSection", "position": "bottom-right", "content": "弯道横截面视图（表面流向凹岸 ←→ 底层流向凸岸）" }
+    ]
+  },
+  "dataDisplay": [
+    { "label": "内江分水比", "unit": "%", "source": "innerRatio" },
+    { "label": "外江分水比", "unit": "%", "source": "outerRatio" },
+    { "label": "排沙效率", "unit": "%", "source": "sedimentEfficiency" }
+  ],
+  "stateMachine": {
+    "states": [
+      { "name": "枯水期", "params": { "innerRatio": 0.60, "outerRatio": 0.40, "sedimentEfficiency": 0.85 }, "trigger": "默认" },
+      { "name": "丰水期", "params": { "innerRatio": 0.40, "outerRatio": 0.60, "sedimentEfficiency": 0.78 }, "trigger": "用户点击丰水期按钮" }
+    ]
+  },
+  "targetDevice": "desktop",
+  "theme": { "primary": "#4A90D9", "secondary": "#2E5FA1", "background": "#F5F0E8" }
+}
+```
+
+---
+
 不得生成：
 
 - 教学评价

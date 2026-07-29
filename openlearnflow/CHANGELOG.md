@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.3.0 (2026-07-29)
+
+### 成果物质量 + 文档落盘
+
+**外部 skill 降级策略：**
+- 首次对话自动检测外部 skill 可用性（skillhub list）
+- 缺失 skill 时自动降级，不阻塞教学设计主流程
+- PPT 降级：手写 16:9 HTML 幻灯片 / 网页降级：手写 Canvas 页面
+- 视觉方向降级：默认"教育科技"方案 / UI 审查降级：自检清单替代
+- 向用户透明报告当前可用/降级状态
+
+**PPT 模板系统：**
+- 新增 `templates/pptx/layouts/`：11 种专业 PPT 布局模板
+- 新增 `templates/pptx/layout-catalog.json`：布局 ID → HTML 文件 → 插槽定义 → 路由规则
+
+**互动网页四步协作链：**
+- `design-taste-frontend` → 3 个视觉方向供用户选择
+- `web-design-engineer` → 严格工作流（System → v0 → Build → Critique）
+- `web-design-guidelines` → UI 合规审查
+- Review Expert → WC01–WC04 教学合规审查
+
+**教学设计文档落盘：**
+- Review 通过后自动保存 `workspace/{项目}/{课题}-教学设计.md`
+- 对话输出摘要，完整内容以文件为准
+- 文档末尾附成果物索引表
+
+**Expert 更新：**
+- Chief Expert：可用性检测 + 降级策略 + 文档保存规则
+- Activity Expert：交互模拟规格输出段
+- Resource Expert：素材来源标注（builtin / generated / external）
+- Teaching Review Expert：PPT 审核（PC01–PC04）+ 网页审核（WC01–WC04）
+
 ## v1.1.0 (2026-07-29)
 
 ### Skill Rename

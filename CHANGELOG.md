@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.0 (2026-07-29)
+
+### openlearnflow v1.3.0 — 外部 skill 降级 + 模板系统
+
+- 外部 skill 可用性自动检测（skillhub list），缺失时降级不阻塞主流程
+- PPT 降级：手写 16:9 HTML 幻灯片 / 网页降级：手写 Canvas / 视觉降级：默认方案
+- PPT 模板系统：11 种专业布局 + layout-catalog.json 路由规则
+- 网页四步协作链：design-taste-frontend → web-design-engineer → web-design-guidelines → Review Expert
+
+## v1.1.0 (2026-07-29)
+
+### openlearnflow v1.2.0 — 成品物质量优化
+
+- PPT 生成：Chief Expert 全 Context 汇总 → 结构化规格 JSON → pptx skill → Review 审核（最多 2 次重试）
+- 互动网页：Activity Expert 交互模拟规格 → Chief Expert 技术翻译 → web-design-engineer → Review 审核（最多 2 次重试）
+- 素材策略：builtin（知识库预存）/ generated（运行时绘制）/ external（外部 URL）
+- 4 Expert Prompt 更新：Chief / Activity / Resource / Teaching Review
+
 ## v1.0.0 (2026-07-29)
 
 ### Edu Skills Collection 初始化

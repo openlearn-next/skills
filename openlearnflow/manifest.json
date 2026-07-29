@@ -1,10 +1,10 @@
 {
   "$schema": "./schema/manifest.schema.json",
   "id": "openlearnflow",
-  "name": "OpenLearn Flow — Teaching Design Skill",
+  "name": "OpenLearn Flow — 技术与工程教学设计",
   "displayName": "技术与工程教学设计",
-  "version": "1.1.0",
-  "description": "中国普通高中《技术与工程》AI 协同教学设计技能。支持课程标准分析、教学目标设计、学习活动设计、评价方案设计、教学反思、PPT 课件生成和互动教学网页生成。",
+  "version": "1.3.0",
+  "description": "高中《技术与工程》AI教学设计。支持文档/PPT/网页生成，外部skill缺失时自动降级，不影响主流程。",
   "type": "skill",
   "author": {
     "name": "OpenLearn AI Team",
@@ -133,20 +133,24 @@
       "id": "ppt-generation",
       "name": "PPT 课件生成",
       "type": "generation",
-      "description": "基于 Resource Expert 产出的 PPT 大纲，调用外部 pptx skill 渲染实际 .pptx 演示文稿",
-      "input": ["resourceOutput"],
+      "description": "Chief Expert 汇总全 Context 生成 PPT 规格，委托 pptx skill 渲染 .pptx，Review Expert 审核（PC01–PC04），最多 2 次重试",
+      "input": ["allContexts"],
       "output": ["pptxFile"],
       "externalSkill": "pptx",
+      "reviewRequired": true,
+      "maxRetries": 2,
       "timeout": 120000
     },
     {
       "id": "web-interactive",
       "name": "互动教学网页生成",
       "type": "generation",
-      "description": "基于 Activity Expert 产出的活动设计，调用外部 web-design-engineer skill 生成 HTML/CSS/JS 互动教学页面",
-      "input": ["activityOutput", "strategyOutput"],
+      "description": "Activity Expert 产出交互规格 + Chief Expert 技术翻译，委托 web-design-engineer 生成 HTML，Review Expert 审核（WC01–WC04），最多 2 次重试",
+      "input": ["activityOutput", "strategyOutput", "teachingContext"],
       "output": ["htmlPage"],
       "externalSkill": "web-design-engineer",
+      "reviewRequired": true,
+      "maxRetries": 2,
       "timeout": 180000
     }
   ],
@@ -225,15 +229,15 @@
 
   "outputs": [
     { "format": "markdown", "template": "templates/markdown/lesson-plan.md", "default": true },
-    { "format": "json", "template": "templates/json/teaching-design.schema.json" },
-    { "format": "docx", "template": "templates/docx/lesson-plan.template.docx" },
-    { "format": "pptx", "template": "templates/ppt/lesson-plan.template.pptx" }
+    { "format": "json", "template": "templates/json/teaching-design.schema.json" }
   ],
 
   "dependencies": {
     "skills": [
-      { "id": "pptx", "purpose": "PPT 课件渲染", "required": false },
-      { "id": "web-design-engineer", "purpose": "互动教学网页生成", "required": false }
+      { "id": "pptx", "purpose": "PPT 课件渲染（基于 layout-catalog 模板系统）", "required": false },
+      { "id": "web-design-engineer", "purpose": "互动教学网页生成（System→v0→Build→Critique）", "required": false },
+      { "id": "design-taste-frontend", "purpose": "网页视觉方向确定（3 选 1）", "required": false },
+      { "id": "web-design-guidelines", "purpose": "UI 合规审查（对比度/触控/响应式/无障碍）", "required": false }
     ],
     "plugins": [],
     "providers": ["default"]
