@@ -1,0 +1,40 @@
+{
+  "slug": "assessment-creator",
+  "name": "assessment-creator",
+  "displayName": "试题生成器",
+  "version": "1.0.0",
+  "description": "面向中学信息科技教师的练习试题自动生成技能，支持单选、多选、判断、填空、简答、连线六种纸笔测试题型。内置13条审查规则保障题目质量，输出标准化Markdown试卷+答案卷。",
+  "author": "edu-skills",
+  "license": "MIT",
+  "category": "education",
+  "tags": ["试题生成", "信息科技", "中学教育", "出题工具", "教学评估"],
+  "entryPoint": "SKILL.md",
+  "dependencies": {
+    "knowledgeBases": ["data-and-coding"],
+    "prompts": ["question-generator", "question-reviewer", "output-formatter"],
+    "templates": ["exam-paper", "answer-sheet"]
+  },
+  "externalSkills": {
+    "ima": {
+      "required": false,
+      "purpose": "云端知识库补充",
+      "strategy": "soft_dependency"
+    }
+  },
+  "configuration": {
+    "runtime": "config/skill.config.json",
+    "knowledge": "config/knowledge.config.json",
+    "qualityRules": "config/quality-rules.json"
+  },
+  "supportedQuestionTypes": [
+    "single_choice",
+    "multiple_choice",
+    "true_false",
+    "fill_in_blank",
+    "short_answer",
+    "matching"
+  ],
+  "supportedModules": ["data-and-coding"],
+  "curriculumStandard": "2022版义务教育信息科技课程标准",
+  "gradeLevel": ["7", "8", "9"]
+}

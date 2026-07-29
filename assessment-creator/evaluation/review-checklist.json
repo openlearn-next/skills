@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "phases": [
+    {
+      "phase": "pre_generation",
+      "label": "出题前检查",
+      "items": [
+        { "id": "PRE-01", "description": "知识点在知识库中存在", "required": true },
+        { "id": "PRE-02", "description": "请求的题型在知识点的question_type_suitability中", "required": true },
+        { "id": "PRE-03", "description": "题量在合理范围内（单批≤20道）", "required": true },
+        { "id": "PRE-04", "description": "难度等级有效（easy/medium/hard）", "required": true }
+      ]
+    },
+    {
+      "phase": "generation",
+      "label": "出题中检查",
+      "items": [
+        { "id": "GEN-01", "description": "每题使用了至少一个question_template", "required": false },
+        { "id": "GEN-02", "description": "同模板连续使用不超过2次", "required": true },
+        { "id": "GEN-03", "description": "参数值在同批次内无重复", "required": true },
+        { "id": "GEN-04", "description": "教学解析包含步骤+原理+教学提示三部分", "required": true },
+        { "id": "GEN-05", "description": "干扰项来源于common_errors或common_misconceptions", "required": false }
+      ]
+    },
+    {
+      "phase": "review",
+      "label": "审题检查（13条规则）",
+      "items": [
+        { "id": "REV-R01", "description": "答案唯一性", "severity": "severe", "required": true },
+        { "id": "REV-R02", "description": "表述无歧义", "severity": "severe", "required": true },
+        { "id": "REV-R03", "description": "难度一致性", "severity": "major", "required": true },
+        { "id": "REV-R04", "description": "知识点覆盖准确", "severity": "severe", "required": true },
+        { "id": "REV-R05", "description": "无科学性错误", "severity": "severe", "required": true },
+        { "id": "REV-R06", "description": "干扰项质量", "severity": "major", "required": true },
+        { "id": "REV-R07", "description": "题目独立性", "severity": "major", "required": true },
+        { "id": "REV-R08", "description": "知识点不重叠", "severity": "major", "required": true },
+        { "id": "REV-R09", "description": "语言难度匹配", "severity": "major", "required": true },
+        { "id": "REV-R10", "description": "情境贴近性", "severity": "minor", "required": false },
+        { "id": "REV-R11", "description": "预计作答时间", "severity": "minor", "required": true },
+        { "id": "REV-R12", "description": "术语规范性", "severity": "severe", "required": true },
+        { "id": "REV-R13", "description": "价值观把关", "severity": "severe", "required": true }
+      ]
+    },
+    {
+      "phase": "formatting",
+      "label": "排版检查",
+      "items": [
+        { "id": "FMT-01", "description": "试卷格式符合模板规范", "required": true },
+        { "id": "FMT-02", "description": "答案卷与试卷分离", "required": true },
+        { "id": "FMT-03", "description": "题型排序正确（单选→多选→判断→填空→简答→连线）", "required": true },
+        { "id": "FMT-04", "description": "赋分合理，总分50-100分", "required": true },
+        { "id": "FMT-05", "description": "中文标点规范，格式整洁", "required": true }
+      ]
+    }
+  ]
+}

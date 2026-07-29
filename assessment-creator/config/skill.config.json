@@ -1,0 +1,74 @@
+{
+  "skill": {
+    "name": "assessment-creator",
+    "displayName": "试题生成器",
+    "version": "1.0.0",
+    "description": "面向中学信息科技教师的练习试题生成技能，支持纸笔测试全题型出题与审查"
+  },
+  "runtime": {
+    "model": {
+      "temperature": 0.4,
+      "maxTokens": 4096,
+      "topP": 0.9
+    },
+    "batch": {
+      "questionsPerBatch": 5,
+      "maxBatchesPerSession": 10
+    },
+    "fallback": {
+      "maxRetries": 2,
+      "timeoutMs": 30000
+    }
+  },
+  "expert": {
+    "questionGenerator": {
+      "id": "question-generator",
+      "prompt": "prompts/experts/question-generator.md",
+      "temperature": 0.5,
+      "maxTokens": 4096
+    },
+    "questionReviewer": {
+      "id": "question-reviewer",
+      "prompt": "prompts/experts/question-reviewer.md",
+      "temperature": 0.3,
+      "maxTokens": 4096
+    },
+    "outputFormatter": {
+      "id": "output-formatter",
+      "prompt": "prompts/experts/output-formatter.md",
+      "temperature": 0.2,
+      "maxTokens": 2048
+    }
+  },
+  "knowledge": {
+    "local": {
+      "curriculumStandard": "knowledge/curriculum-standard/it-curriculum-2022.json",
+      "modules": "knowledge/modules/"
+    },
+    "external": {
+      "enabled": true,
+      "strategy": "soft_dependency",
+      "sources": ["ima"],
+      "fallbackBehavior": "use_local_knowledge"
+    }
+  },
+  "output": {
+    "format": "markdown",
+    "separateAnswerSheet": true,
+    "analysisLevel": "teaching",
+    "templates": {
+      "examPaper": "templates/markdown/exam-paper.md",
+      "answerSheet": "templates/markdown/answer-sheet.md"
+    }
+  },
+  "quality": {
+    "threshold": 70,
+    "rules": "config/quality-rules.json",
+    "reviewMode": "hybrid"
+  },
+  "interaction": {
+    "modes": ["single_turn", "multi_turn_guided"],
+    "defaultMode": "user_choice",
+    "requiredInputs": ["knowledge_point", "difficulty", "question_count"]
+  }
+}

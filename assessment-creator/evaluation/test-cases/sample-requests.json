@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "testCases": [
+    {
+      "id": "TC-001",
+      "name": "基础单选题生成（二进制基数）",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "binary-basics",
+        "difficulty": "easy",
+        "types": [{ "type": "single_choice", "count": 3 }]
+      },
+      "expected": {
+        "totalQuestions": 3,
+        "allType": "single_choice",
+        "allDifficulty": "easy",
+        "reviewPassRate": ">= 66%"
+      }
+    },
+    {
+      "id": "TC-002",
+      "name": "混合题型生成（进制转换）",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "binary-decimal-conversion",
+        "difficulty": "medium",
+        "types": [
+          { "type": "single_choice", "count": 3 },
+          { "type": "fill_in_blank", "count": 3 },
+          { "type": "true_false", "count": 2 }
+        ]
+      },
+      "expected": {
+        "totalQuestions": 8,
+        "types": ["single_choice", "fill_in_blank", "true_false"],
+        "reviewPassRate": ">= 60%"
+      }
+    },
+    {
+      "id": "TC-003",
+      "name": "多轮引导模式",
+      "mode": "multi_turn_guided",
+      "input": {
+        "initial_intent": "我想出几道关于数据编码的题"
+      },
+      "expected": {
+        "interactionRounds": ">= 2",
+        "clarificationAsked": true,
+        "finalConfirmed": true
+      }
+    },
+    {
+      "id": "TC-004",
+      "name": "变体不重复测试",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "binary-decimal-conversion",
+        "difficulty": "easy",
+        "types": [{ "type": "fill_in_blank", "count": 10 }]
+      },
+      "expected": {
+        "totalQuestions": 10,
+        "allUnique": true,
+        "batchCount": 2
+      }
+    },
+    {
+      "id": "TC-005",
+      "name": "教学解析完整性",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "binary-hex-conversion",
+        "difficulty": "medium",
+        "types": [{ "type": "single_choice", "count": 2 }]
+      },
+      "expected": {
+        "analysisComplete": true,
+        "hasSteps": true,
+        "hasPrinciple": true,
+        "hasTeachingTip": true
+      }
+    },
+    {
+      "id": "TC-006",
+      "name": "审查：知识点不匹配检测",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "data-storage-units",
+        "difficulty": "easy",
+        "types": [{ "type": "single_choice", "count": 1 }]
+      },
+      "expected": {
+        "knowledgePointMatch": true,
+        "noOffTopicContent": true
+      }
+    },
+    {
+      "id": "TC-007",
+      "name": "外部知识库降级测试",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "character-encoding",
+        "difficulty": "medium",
+        "types": [{ "type": "single_choice", "count": 3 }]
+      },
+      "externalSkillUnavailable": true,
+      "expected": {
+        "noError": true,
+        "fallbackToLocal": true,
+        "outputGenerated": true
+      }
+    },
+    {
+      "id": "TC-008",
+      "name": "输出格式验证",
+      "mode": "single_turn",
+      "input": {
+        "knowledge_point": "image-encoding",
+        "difficulty": "easy",
+        "types": [{ "type": "single_choice", "count": 2 }, { "type": "true_false", "count": 2 }]
+      },
+      "expected": {
+        "hasExamPaper": true,
+        "hasAnswerSheet": true,
+        "separatedCleanly": true,
+        "hasScoreSummary": true
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "collection": "edu-skills",
   "name": "教育领域 AI Skills 合集",
   "displayName": "Edu Skills Collection",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "description": "面向中国 K-12 教育的 AI 协同教学 Skills 合集。每个 Skill 封装一个教学领域的专业知识与工作流，通过 Chief Expert 编排实现完整教学任务自动化。",
   "type": "collection",
   "author": {
@@ -43,6 +43,30 @@
         "optional": ["pptx", "web-design-engineer"]
       },
       "keywords": ["教学设计", "技术与工程", "通用技术", "项目式学习", "工程教育", "PPT", "互动网页"]
+    },
+    {
+      "id": "assessment-creator",
+      "path": "assessment-creator/",
+      "version": "1.0.0",
+      "name": "Assessment Creator",
+      "displayName": "试题生成器",
+      "description": "面向中学信息科技教师的练习试题自动生成技能，支持六种纸笔测试题型、13条质量审查规则、参数化变体出题。",
+      "category": "exercise-generation",
+      "subject": "信息科技",
+      "gradeLevels": ["七年级", "八年级", "九年级"],
+      "capabilities": [
+        "question-generation",
+        "quality-review",
+        "answer-analysis",
+        "template-rendering",
+        "batch-processing",
+        "multi-mode-interaction"
+      ],
+      "dependencies": {
+        "skills": [],
+        "optional": ["ima"]
+      },
+      "keywords": ["试题生成", "信息科技", "出题", "练习", "测试", "数据与编码"]
     }
   ],
 
@@ -65,7 +89,7 @@
     "exercise-generation": {
       "name": "练习生成",
       "description": "自动生成学科练习题、测试卷和答案解析",
-      "status": "planned"
+      "status": "active"
     },
     "knowledge-graph": {
       "name": "知识图谱",

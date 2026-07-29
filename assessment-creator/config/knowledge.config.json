@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "knowledgeBase": {
+    "structure": "module_based",
+    "modules": [
+      "data-and-coding"
+    ],
+    "entrySchema": {
+      "required": ["id", "name", "module", "grade_level", "description"],
+      "optional": [
+        "cognition_levels",
+        "key_concepts",
+        "prerequisite_knowledge",
+        "question_type_suitability",
+        "question_templates",
+        "common_errors",
+        "common_misconceptions",
+        "sample_questions"
+      ]
+    },
+    "searchStrategy": {
+      "primary": "keyword_match",
+      "secondary": "semantic_similarity",
+      "fallback": "module_browse"
+    }
+  },
+  "externalKnowledge": {
+    "ima": {
+      "description": "IMA云端知识库，用于补充和扩展知识点信息",
+      "enabled": true,
+      "required": false,
+      "usage": "knowledge_enrichment",
+      "onFailure": "skip_and_log"
+    }
+  },
+  "questionTypes": {
+    "supported": [
+      "single_choice",
+      "multiple_choice",
+      "true_false",
+      "fill_in_blank",
+      "short_answer",
+      "matching"
+    ],
+    "typeMapping": {
+      "single_choice": "单选题",
+      "multiple_choice": "多选题",
+      "true_false": "判断题",
+      "fill_in_blank": "填空题",
+      "short_answer": "简答题",
+      "matching": "连线题"
+    }
+  },
+  "difficultyLevels": {
+    "levels": ["easy", "medium", "hard"],
+    "definitions": {
+      "easy": {
+        "label": "易",
+        "cognitionLevels": ["识记"],
+        "description": "回忆基本概念、定义、事实，考查基础记忆能力"
+      },
+      "medium": {
+        "label": "中",
+        "cognitionLevels": ["理解", "应用"],
+        "description": "解释原理、简单应用、知识迁移"
+      },
+      "hard": {
+        "label": "难",
+        "cognitionLevels": ["分析", "评价", "创造"],
+        "description": "多知识点综合、问题分析、方案设计、批判评价"
+      }
+    }
+  },
+  "cognitionTaxonomy": {
+    "framework": "bloom_revised",
+    "levels": [
+      { "id": "remember", "label": "识记", "order": 1 },
+      { "id": "understand", "label": "理解", "order": 2 },
+      { "id": "apply", "label": "应用", "order": 3 },
+      { "id": "analyze", "label": "分析", "order": 4 },
+      { "id": "evaluate", "label": "评价", "order": 5 },
+      { "id": "create", "label": "创造", "order": 6 }
+    ]
+  },
+  "variantGeneration": {
+    "strategies": ["parameter_sampling", "template_rotation"],
+    "parameterSampling": {
+      "noReplacement": true,
+      "maxFromSingleTemplate": 3
+    },
+    "templateRotation": {
+      "minTemplatesPerKnowledgePoint": 3,
+      "maxConsecutiveFromSameTemplate": 2
+    }
+  }
+}
