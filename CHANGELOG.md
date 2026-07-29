@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.1 (2026-07-29)
+
+### openlearnflow v1.3.1 — 文档优化
+
+- README 执行流水线增加中文 Expert 名称和职责说明
+
 ## v1.2.0 (2026-07-29)
 
 ### openlearnflow v1.3.0 — 外部 skill 降级 + 模板系统

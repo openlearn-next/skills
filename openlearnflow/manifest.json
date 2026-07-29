@@ -3,7 +3,7 @@
   "id": "openlearnflow",
   "name": "OpenLearn Flow — 技术与工程教学设计",
   "displayName": "技术与工程教学设计",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "高中《技术与工程》AI教学设计。支持文档/PPT/网页生成，外部skill缺失时自动降级，不影响主流程。",
   "type": "skill",
   "author": {

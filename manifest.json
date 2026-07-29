@@ -16,7 +16,7 @@
     {
       "id": "openlearnflow",
       "path": "openlearnflow/",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "name": "OpenLearn Flow",
       "displayName": "技术与工程教学设计",
       "description": "高中《技术与工程》AI 协同教学设计。支持课程分析、活动设计、评价方案、PPT 课件和互动网页生成。",
