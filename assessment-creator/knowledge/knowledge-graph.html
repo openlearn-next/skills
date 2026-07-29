@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据与编码 — 知识图谱</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#1a1a2e; font-family:"PingFang SC","Microsoft YaHei",sans-serif; overflow:hidden; }
+#graph { width:100vw; height:100vh; }
+.links line { stroke:#555; stroke-opacity:0.6; }
+.links line.hierarchy { stroke-dasharray:none; stroke-width:2; }
+.links line.dependency { stroke-dasharray:6,3; stroke-width:1.5; stroke:#8a6; stroke-opacity:0.5; }
+.nodes circle { stroke:#fff; stroke-width:1.5; cursor:pointer; }
+.nodes circle.group-node { stroke-width:3; stroke-opacity:0.9; }
+.nodes text { fill:#ddd; font-size:11px; pointer-events:none; }
+.nodes text.group-node { font-size:13px; font-weight:bold; fill:#fff; }
+.tooltip { 
+  position:absolute; padding:12px 16px; background:rgba(10,10,30,0.95); color:#eee; 
+  border:1px solid #555; border-radius:8px; max-width:400px; font-size:13px; line-height:1.6;
+  pointer-events:none; opacity:0; transition:opacity 0.2s; z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+}
+.tooltip h3 { font-size:15px; margin-bottom:6px; }
+.tooltip .grade { font-size:11px; color:#aaa; margin-bottom:4px; }
+.tooltip .desc { color:#ccc; margin-bottom:6px; }
+.tooltip .concepts { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; }
+.tooltip .concepts span { background:rgba(100,100,255,0.2); padding:2px 8px; border-radius:10px; font-size:11px; }
+.tooltip .cog { font-size:11px; color:#8af; }
+.legend { position:absolute; top:20px; left:20px; background:rgba(10,10,30,0.9); padding:12px 16px; border-radius:8px; border:1px solid #444; }
+.legend h4 { color:#aaa; font-size:12px; margin-bottom:8px; }
+.legend-item { display:flex; align-items:center; gap:8px; margin:4px 0; font-size:12px; color:#ccc; }
+.legend-dot { width:12px; height:12px; border-radius:50%; }
+.legend-line { display:flex; align-items:center; gap:8px; margin:4px 0 4px 16px; font-size:11px; color:#888; }
+.legend-line .solid { width:20px; height:2px; background:#555; }
+.legend-line .dashed { width:20px; height:0; border-top:2px dashed #8a6; }
+.controls { position:absolute; bottom:20px; right:20px; display:flex; gap:8px; }
+.controls button { 
+  padding:6px 12px; background:rgba(10,10,30,0.9); color:#ccc; border:1px solid #444; 
+  border-radius:4px; cursor:pointer; font-size:12px; 
+}
+.controls button:hover { background:rgba(50,50,100,0.9); color:#fff; }
+</style>
+</head>
+<body>
+<div class="legend">
+  <h4>知识模块</h4>
+  <div class="legend-item"><span class="legend-dot" style="background:#4C72B0"></span> 数据与信息</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#55A868"></span> 数制系统</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#C44E52"></span> 数据存储</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#8172B2"></span> 数据编码</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#CCB974"></span> 数据处理</div>
+  <div style="margin-top:8px;">
+    <div class="legend-line"><span class="solid"></span> 层级归属</div>
+    <div class="legend-line"><span class="dashed"></span> 前置依赖</div>
+  </div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+<div class="controls">
+  <button onclick="resetZoom()">重置视图</button>
+  <button onclick="toggleLabels()">切换标签</button>
+</div>
+<svg id="graph"></svg>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const data = {"nodes": [{"id": "data-and-info", "label": "数据与信息", "grade": "", "description": "", "concepts": [], "prereqs": [], "cog_levels": [], "group": "数据与信息", "groupName": "数据与信息", "color": "#4C72B0"}, {"id": "data-vs-info", "label": "数据与信息的概念", "grade": "7", "description": "数据是对客观事物的符号表示，信息是经过加工处理后有意义的数据。理解两者区别与联系。", "concepts": ["数据", "信息", "数据处理", "信息价值", "知识"], "prereqs": [], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据与信息", "color": "#4C72B0"}, {"id": "info-encoding-decoding", "label": "信息的编码与解码", "grade": "7, 8", "description": "编码是将信息转换成特定格式的过程，解码是反向还原过程。理解常用编码规则及其应用。", "concepts": ["编码", "解码", "编码规则", "摩尔斯电码", "条码", "二维码", "凯撒密码"], "prereqs": ["binary-basics"], "cog_levels": ["理解", "应用", "分析"], "group": "", "groupName": "数据与信息", "color": "#4C72B0"}, {"id": "numeral-systems", "label": "数制系统", "grade": "", "description": "", "concepts": [], "prereqs": [], "cog_levels": [], "group": "数制系统", "groupName": "数制系统", "color": "#55A868"}, {"id": "binary-basics", "label": "二进制计数原理", "grade": "7", "description": "二进制使用0和1两个数码，逢二进一。理解位权概念：每位对应2ⁿ。掌握二进制展开式。", "concepts": ["二进制", "基数", "位权", "逢二进一", "数码", "2的幂"], "prereqs": [], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数制系统", "color": "#55A868"}, {"id": "binary-decimal-conversion", "label": "二进制与十进制转换", "grade": "7", "description": "十进制→二进制：除2取余逆序排列。二进制→十进制：按权展开求和。仅限正整数范围。", "concepts": ["除2取余法", "逆序排列", "按权展开求和", "验算"], "prereqs": ["binary-basics"], "cog_levels": ["理解", "应用"], "group": "", "groupName": "数制系统", "color": "#55A868"}, {"id": "binary-hex-conversion", "label": "二进制与十六进制转换", "grade": "8", "description": "十六进制用0-9和A-F表示0-15。二进制→十六进制：从右向左四位一组映射。十六进制→二进制：每位展开为4位。", "concepts": ["十六进制", "A-F对应10-15", "四位一分法", "补零规则"], "prereqs": ["binary-basics", "binary-decimal-conversion"], "cog_levels": ["理解", "应用"], "group": "", "groupName": "数制系统", "color": "#55A868"}, {"id": "data-storage", "label": "数据存储", "grade": "", "description": "", "concepts": [], "prereqs": [], "cog_levels": [], "group": "数据存储", "groupName": "数据存储", "color": "#C44E52"}, {"id": "data-storage-units", "label": "数据存储单位", "grade": "7", "description": "计算机存储的基本单位：bit（位）、Byte（字节）、KB、MB、GB、TB。单位间以1024为进率（2¹⁰=1024）。", "concepts": ["bit", "Byte", "KB/MB/GB/TB", "1024进率", "1Byte=8bit", "厂商1000进率"], "prereqs": ["binary-basics"], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据存储", "color": "#C44E52"}, {"id": "analog-digital-signal", "label": "模拟信号与数字信号", "grade": "8", "description": "模拟信号在时间与幅度上连续变化；数字信号离散取值。A/D转换三步骤：采样→量化→编码。数字信号抗干扰能力强。", "concepts": ["模拟信号", "数字信号", "连续信号", "离散信号", "A/D转换", "采样", "量化", "抗干扰"], "prereqs": [], "cog_levels": ["识记", "理解"], "group": "", "groupName": "数据存储", "color": "#C44E52"}, {"id": "data-encoding", "label": "数据编码", "grade": "", "description": "", "concepts": [], "prereqs": [], "cog_levels": [], "group": "数据编码", "groupName": "数据编码", "color": "#8172B2"}, {"id": "character-encoding", "label": "字符编码", "grade": "7, 8", "description": "ASCII：7位编码128个字符（英文/数字/符号）。GB2312/GBK：2字节编码汉字。Unicode：统一全球字符编码；UTF-8变长编码（英文1字节，汉字3字节）。乱码原因：编解码方案不匹配。", "concepts": ["ASCII", "GB2312", "GBK", "Unicode", "UTF-8", "字符集", "码点", "编码长度", "乱码"], "prereqs": ["binary-basics", "data-storage-units"], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据编码", "color": "#8172B2"}, {"id": "image-encoding", "label": "图像数字化与编码", "grade": "7, 8", "description": "图像由像素矩阵构成。分辨率（宽×高像素数）、颜色深度（每像素位数）决定图像质量与文件大小。位图放大失真，矢量图数学描述缩放不失真。图像文件大小 = 宽×高×颜色深度÷8。", "concepts": ["像素", "分辨率", "颜色深度", "位图", "矢量图", "RGB", "BMP", "JPEG", "PNG", "图像文件大小计算"], "prereqs": ["binary-basics", "data-storage-units"], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据编码", "color": "#8172B2"}, {"id": "audio-encoding", "label": "音频数字化与编码", "grade": "8", "description": "音频数字化三要素：采样频率（44.1kHz为CD标准）、量化位数（如16bit）、声道数（单声道/立体声）。奈奎斯特定理：采样频率≥2×信号最高频率。文件大小 = 采样频率×量化位数×声道数×时长。", "concepts": ["采样", "量化", "采样频率", "量化位数", "声道", "奈奎斯特定理", "PCM", "MP3", "WAV", "音频文件大小计算"], "prereqs": ["binary-basics", "data-storage-units", "analog-digital-signal"], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据编码", "color": "#8172B2"}, {"id": "data-processing", "label": "数据处理", "grade": "", "description": "", "concepts": [], "prereqs": [], "cog_levels": [], "group": "数据处理", "groupName": "数据处理", "color": "#CCB974"}, {"id": "data-compression", "label": "数据压缩基本概念", "grade": "8", "description": "压缩目的：减少存储空间和传输时间。无损压缩：解压后数据完整恢复（如ZIP、PNG）；有损压缩：牺牲部分质量换取更高压缩率（如JPEG、MP3）。压缩比 = 压缩前÷压缩后。", "concepts": ["无损压缩", "有损压缩", "压缩比", "冗余", "RLE编码", "哈夫曼编码", "ZIP", "JPEG", "MP3", "PNG"], "prereqs": ["image-encoding", "audio-encoding"], "cog_levels": ["识记", "理解", "应用"], "group": "", "groupName": "数据处理", "color": "#CCB974"}, {"id": "checksum-basics", "label": "校验码基础", "grade": "8, 9", "description": "校验码目的：检测数据传输/存储中的错误。奇偶校验：使1的总数为奇数（奇校验）或偶数（偶校验），能检测奇数个错误，不能纠错。校验和：简单累加后用低字节作为校验值。", "concepts": ["奇偶校验", "校验和", "检错码", "纠错码", "冗余位", "汉明距离"], "prereqs": ["binary-basics"], "cog_levels": ["理解", "应用"], "group": "", "groupName": "数据处理", "color": "#CCB974"}], "edges": [{"source": "data-and-info", "target": "data-vs-info", "relation": "contains", "type": "hierarchy"}, {"source": "data-and-info", "target": "info-encoding-decoding", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "info-encoding-decoding", "relation": "prerequisite", "type": "dependency"}, {"source": "numeral-systems", "target": "binary-basics", "relation": "contains", "type": "hierarchy"}, {"source": "numeral-systems", "target": "binary-decimal-conversion", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "binary-decimal-conversion", "relation": "prerequisite", "type": "dependency"}, {"source": "numeral-systems", "target": "binary-hex-conversion", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "binary-hex-conversion", "relation": "prerequisite", "type": "dependency"}, {"source": "binary-decimal-conversion", "target": "binary-hex-conversion", "relation": "prerequisite", "type": "dependency"}, {"source": "data-storage", "target": "data-storage-units", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "data-storage-units", "relation": "prerequisite", "type": "dependency"}, {"source": "data-storage", "target": "analog-digital-signal", "relation": "contains", "type": "hierarchy"}, {"source": "data-encoding", "target": "character-encoding", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "character-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-storage-units", "target": "character-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-encoding", "target": "image-encoding", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "image-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-storage-units", "target": "image-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-encoding", "target": "audio-encoding", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "audio-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-storage-units", "target": "audio-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "analog-digital-signal", "target": "audio-encoding", "relation": "prerequisite", "type": "dependency"}, {"source": "data-processing", "target": "data-compression", "relation": "contains", "type": "hierarchy"}, {"source": "image-encoding", "target": "data-compression", "relation": "prerequisite", "type": "dependency"}, {"source": "audio-encoding", "target": "data-compression", "relation": "prerequisite", "type": "dependency"}, {"source": "data-processing", "target": "checksum-basics", "relation": "contains", "type": "hierarchy"}, {"source": "binary-basics", "target": "checksum-basics", "relation": "prerequisite", "type": "dependency"}]};
+const groupColors = {"数据与信息": "#4C72B0", "数制系统": "#55A868", "数据存储": "#C44E52", "数据编码": "#8172B2", "数据处理": "#CCB974"};
+
+var svg = d3.select("#graph"),
+    width = window.innerWidth,
+    height = window.innerHeight;
+
+var g = svg.append("g");
+var zoom = d3.zoom().scaleExtent([0.3, 3]).on("zoom", (e) => g.attr("transform", e.transform));
+svg.call(zoom);
+svg.on("dblclick.zoom", null);
+
+var simulation = d3.forceSimulation(data.nodes)
+    .force("link", d3.forceLink(data.edges).id(d => d.id).distance(d => d.type === 'hierarchy' ? 120 : 180))
+    .force("charge", d3.forceManyBody().strength(-400))
+    .force("center", d3.forceCenter(width/2, height/2))
+    .force("collision", d3.forceCollide(40));
+
+var link = g.append("g").attr("class", "links").selectAll("line")
+    .data(data.edges).join("line")
+    .attr("class", d => d.type)
+    .attr("stroke-width", d => d.type === 'hierarchy' ? 2 : 1.5);
+
+var node = g.append("g").attr("class", "nodes").selectAll("g")
+    .data(data.nodes).join("g")
+    .call(d3.drag()
+        .on("start", (e,d) => { if(!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag", (e,d) => { d.fx = e.x; d.fy = e.y; })
+        .on("end", (e,d) => { if(!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+var isGroupNode = d => !!d.groupName && d.groupName === d.label;
+
+node.append("circle")
+    .attr("r", d => isGroupNode(d) ? 22 : 14)
+    .attr("fill", d => d.color || '#999')
+    .attr("class", d => isGroupNode(d) ? 'group-node' : '')
+    .attr("fill-opacity", d => isGroupNode(d) ? 0.9 : 0.7);
+
+var labels = node.append("text")
+    .attr("dx", 18).attr("dy", 4)
+    .text(d => d.label)
+    .attr("class", d => isGroupNode(d) ? 'group-node' : '')
+    .style("font-size", d => isGroupNode(d) ? '13px' : '11px');
+
+node.on("mouseover", (e, d) => {
+    if (d.description) {
+        var html = '<h3 style="color:' + d.color + '">' + d.label + '</h3>';
+        html += '<div class="grade">适用年级：' + (d.grade || '—') + ' · 认知层级：' + (d.cog_levels?.join('、') || '—') + '</div>';
+        html += '<div class="desc">' + d.description + '</div>';
+        if (d.concepts?.length) {
+            html += '<div class="concepts">' + d.concepts.map(c => '<span>' + c + '</span>').join('') + '</div>';
+        }
+        d3.select("#tooltip").html(html).style("opacity", 1)
+            .style("left", (e.pageX + 16) + "px").style("top", (e.pageY - 10) + "px");
+    } else if (isGroupNode(d)) {
+        var count = data.edges.filter(e => e.source === d.id || e.target === d.id).length;
+        d3.select("#tooltip").html('<h3>' + d.label + '</h3><div class="desc">包含 ' + data.nodes.filter(n => n.groupName === d.label && n.id !== d.id).length + ' 个子知识点</div>').style("opacity", 1)
+            .style("left", (e.pageX + 16) + "px").style("top", (e.pageY - 10) + "px");
+    }
+}).on("mouseout", () => d3.select("#tooltip").style("opacity", 0));
+
+simulation.on("tick", () => {
+    link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    node.attr("transform", d => 'translate(' + d.x + ',' + d.y + ')');
+});
+
+function resetZoom() { svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity); }
+var labelsVisible = true;
+function toggleLabels() { labelsVisible = !labelsVisible; labels.style("opacity", labelsVisible ? 1 : 0); }
+</script>
+</body>
+</html>
