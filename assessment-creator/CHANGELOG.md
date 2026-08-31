@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1] - 2026-08-31
+
+### Fixed
+
+- 修复 `SKILL.md` 中 13 条质量审查规则分级与处理动作的表述差异
+- 统一 `config/knowledge.config.json` 中前置依赖字段名称为 `prerequisites`
+- 修复 `config/quality-rules.json` 中 R03 的审查处理动作为 `auto_fix_if_minor`
+- 对齐 `evaluation/review-checklist.json` 中 PRE-03 的单批题量上限检查描述
+
 ## [1.0.0] - 2026-07-29
 
 ### Added

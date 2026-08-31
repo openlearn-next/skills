@@ -7,7 +7,7 @@
       "items": [
         { "id": "PRE-01", "description": "知识点在知识库中存在", "required": true },
         { "id": "PRE-02", "description": "请求的题型在知识点的question_type_suitability中", "required": true },
-        { "id": "PRE-03", "description": "题量在合理范围内（单批≤20道）", "required": true },
+        { "id": "PRE-03", "description": "题量在合理范围内（单批≤5道，每会话≤50道）", "required": true },
         { "id": "PRE-04", "description": "难度等级有效（easy/medium/hard）", "required": true }
       ]
     },

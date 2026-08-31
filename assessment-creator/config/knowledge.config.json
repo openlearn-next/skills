@@ -10,7 +10,7 @@
       "optional": [
         "cognition_levels",
         "key_concepts",
-        "prerequisite_knowledge",
+        "prerequisites",
         "question_type_suitability",
         "question_templates",
         "common_errors",

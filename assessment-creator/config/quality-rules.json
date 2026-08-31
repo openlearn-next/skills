@@ -45,7 +45,7 @@
         "中：需要理解概念并做简单应用或一步计算",
         "难：需要多步推理、多知识点综合或批判性思考"
       ],
-      "action": "must_report"
+      "action": "auto_fix_if_minor"
     },
     {
       "id": "R04",

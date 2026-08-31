@@ -2,7 +2,7 @@
   "skill": {
     "name": "assessment-creator",
     "displayName": "试题生成器",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "面向中学信息科技教师的练习试题生成技能，支持纸笔测试全题型出题与审查"
   },
   "runtime": {
