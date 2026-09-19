@@ -14,7 +14,7 @@
     "topic": "系统的结构",
     "knowledgePoints": ["系统", "子系统", "系统优化", "反馈"],
     "classHours": 3,
-    "studentProfile": "学生对技术课程兴趣较高，已学习过技术与设计基础，动手能力较强，但系统思维较弱",
+    "studentProfile": "学生对技术课程兴趣较高，已学习过技术与工程设计基础，动手能力较强，但系统思维较弱",
     "teachingMode": "项目式学习",
     "equipment": "多媒体教室、Arduino套件×15、常用工具套件"
   },

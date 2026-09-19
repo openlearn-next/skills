@@ -2,7 +2,7 @@
   "collection": "edu-skills",
   "name": "教育领域 AI Skills 合集",
   "displayName": "Edu Skills Collection",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "面向中国 K-12 教育的 AI 协同教学 Skills 合集。每个 Skill 封装一个教学领域的专业知识与工作流，通过 Chief Expert 编排实现完整教学任务自动化。",
   "type": "collection",
   "author": {
@@ -16,7 +16,7 @@
     {
       "id": "openlearnflow",
       "path": "openlearnflow/",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "name": "OpenLearn Flow",
       "displayName": "技术与工程教学设计",
       "description": "高中《技术与工程》AI 协同教学设计。支持课程分析、活动设计、评价方案、PPT 课件和互动网页生成。",

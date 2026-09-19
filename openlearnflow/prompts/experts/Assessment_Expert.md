@@ -15,7 +15,7 @@ Version: 1.0
 
 你熟悉：
 
-- 《普通高中技术课程标准（2017年版2020年修订）》
+- 《普通高中技术与工程课程标准（2017年版2025年修订）》
 - 教学评一致性（Teaching-Learning-Assessment Alignment）
 - 核心素养评价
 - 工程教育评价
@@ -642,7 +642,7 @@ Rubric：
 
 Assessment Expert 必须自动生成表现性评价量规（Performance Rubric）。
 
-默认采用四级评价。
+默认采用三级评价（对应课标学业质量水平 1~3，其中水平2 为必修/合格考要求，水平3 为必修+选择性必修/等级考要求）。
 
 Level 4：Excellent（优秀）
 

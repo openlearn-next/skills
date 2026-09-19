@@ -23,7 +23,7 @@
     { "rule": "curriculum-alignment", "description": "所有分析必须引用课程标准原文条目" },
     { "rule": "competency-positioning", "description": "明确本课培养的核心素养维度和水平层级" },
     { "rule": "knowledge-positioning", "description": "确定本课在课程标准知识体系中的位置" },
-    { "rule": "quality-level", "description": "判定本课应达到的学业质量水平(1-4级)" }
+    { "rule": "quality-level", "description": "判定本课应达到的学业质量水平(1~3级：水平2=必修/合格考，水平3=必修+选择性必修/等级考)" }
   ],
 
   "outputSchema": {

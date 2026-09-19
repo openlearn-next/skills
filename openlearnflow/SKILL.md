@@ -2,7 +2,7 @@
 slug: openlearnflow
 name: openlearnflow
 displayName: 技术与工程教学设计
-version: 1.3.1
+version: 1.3.2
 description: 中国普通高中《技术与工程》AI 协同教学设计。支持课程标准分析、教材分析、学情分析、教学目标设计、教学策略选择、学习活动设计、评价方案设计、教学反思、PPT 课件生成和互动教学网页生成。
 x-astron-category: education
 ---
@@ -188,7 +188,7 @@ Activity Expert → 交互模拟规格 JSON
 
 ## 知识库参考
 
-- `knowledge/curriculum-standard/` — 高中技术课程标准原文及解读
+- `knowledge/curriculum-standard/` — 高中技术与工程课程标准原文及解读
 - `knowledge/pedagogy/` — 教学法知识（PBL、EDP、5E 等）
 - `knowledge/subject-graph/` — 技术与工程学科知识图谱
 - `docs/reference/EXPERT_SPECIFICATION.md` — Expert 详细规格

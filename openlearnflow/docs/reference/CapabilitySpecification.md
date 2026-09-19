@@ -10,7 +10,7 @@ Capability 是 Skill 提供的可复用能力单元。每个 Capability 定义�
 # capabilities/curriculum-analysis.yaml
 id: curriculum-analysis
 name: 课程标准分析
-description: 解析《普通高中技术课程标准》，提取与当前章节相关的课标要求
+description: 解析《普通高中技术与工程课程标准》，提取与当前章节相关的课标要求
 type: analysis
 version: 1.0.0
 
